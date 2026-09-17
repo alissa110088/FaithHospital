@@ -144,6 +144,7 @@ public class SwipeFollow : MonoBehaviour
         {
             Debug.Log("NOT VALIDATED RESET");
             _currentPoint = _points[0];
+            _currentErrorMargin = 0;
             _touching = false;
         }
         else
