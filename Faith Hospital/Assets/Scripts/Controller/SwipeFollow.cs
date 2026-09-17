@@ -70,7 +70,9 @@ public class SwipeFollow : MonoBehaviour
 
         float dot = Vector2.Dot(dir, dirPoints);
         bool sameDirection = dot > 0.9f;
-        Debug.Log(sameDirection);
 
+        
+        // if(sameDirection)
+            
     }
 }
