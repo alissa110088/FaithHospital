@@ -7,6 +7,10 @@ public class SwipeFollow : MonoBehaviour
     [SerializeField] private GameObject _follow;
     [SerializeField] private DrawShape _drawShape;
 
+    [Header("GD")] 
+    [SerializeField] private float marginHowCloseeToPointToMoveOn = 0.1f;
+
+    [SerializeField] private float marginHowFarCanGoFromLine = 0.3f;
     private bool _touching = false;
 
     private Vector2 _lastPos = Vector2.zero;
@@ -59,10 +63,30 @@ public class SwipeFollow : MonoBehaviour
         _touching = false;
         _currentPoint = _points[0];
     }
-
-    private void CalculateDistanceToSegment()
+    private static float DistancePointToSegment(Vector3 a, Vector3 b, Vector3 p)
     {
-        
+        Vector3 ab = b - a;
+        Vector3 ap = p - a;
+
+        float abLengthSq = ab.sqrMagnitude;
+
+        if (abLengthSq < Mathf.Epsilon)
+            return ap.magnitude;
+
+        float t = Vector3.Dot(ap, ab) / abLengthSq;
+
+        if (t < 0f)
+        {
+            return ap.magnitude;
+        }
+
+        if (t > 1f)
+        {
+            return (p - b).magnitude;
+        }
+
+        Vector3 closestPoint = a + t * ab;
+        return (p - closestPoint).magnitude;
     }
 
     private void OnSwipeStarted(Vector2 pPos)
@@ -94,13 +118,14 @@ public class SwipeFollow : MonoBehaviour
 
         float dot = Vector2.Dot(dir, dirPoints);
         bool sameDirection = dot > 0.9f;
-
+        float distancePointToSegment = DistancePointToSegment(_points[_points.IndexOf(_currentPoint) + 1], _currentPoint, pos);
+        
         //Checks if went to first point
-        if (sameDirection && (worldPos - _points[1]).magnitude < 0.1f)
+        if (sameDirection && (worldPos - _points[1]).magnitude < marginHowCloseeToPointToMoveOn && distancePointToSegment < 0.3f)
         {
             if (_currentPoint == _points[^2])
             {
-                Debug.Log("VALIDATED"); 
+                Debug.Log("VALIDATED");
                 Controller.OnInputValidate.Invoke();
                 gameObject.SetActive(false);
             }
@@ -110,10 +135,9 @@ public class SwipeFollow : MonoBehaviour
                 _currentPoint = _points[_points.IndexOf(_currentPoint) + 1];
             }
         }
-        else if (sameDirection)
+        else if (sameDirection && distancePointToSegment < marginHowFarCanGoFromLine)
         {
             Debug.Log("CONTINUE");
-            return;
         }
         //Checks if goes to the wrong direction 
         else if (_currentErrorMargin == _errorMargin)
