@@ -507,6 +507,7 @@ GameObject:
   - component: {fileID: 855070134}
   - component: {fileID: 855070133}
   - component: {fileID: 855070135}
+  - component: {fileID: 855070136}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -556,6 +557,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SwipeFollow
   _follow: {fileID: 675166681}
   _drawShape: {fileID: 603522467}
+--- !u!114 &855070136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855070132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb84d34d39d6eb43b7ff508e62c713e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpdateVisual
+  _object: {fileID: 603522466}
+  _object2: {fileID: 2099544514}
 --- !u!1 &1493595036
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,7 +820,7 @@ Transform:
   m_GameObject: {fileID: 2099544514}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.33109087, w: 0.94359887}
-  m_LocalPosition: {x: 1.32, y: 1.04, z: 0}
+  m_LocalPosition: {x: 1.48, y: 1.17, z: 0}
   m_LocalScale: {x: -3.79, y: 7.79, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
