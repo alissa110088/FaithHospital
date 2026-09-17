@@ -6,7 +6,6 @@ public class SwipeFollow : MonoBehaviour
     [SerializeField] private GameObject _follow;
     [SerializeField] private DrawShape _drawShape;
 
-    private ControlState _currentState = ControlState.SwipeFollow;
     private bool _touching = false;
     private Vector2 _lastPos = Vector2.zero;
     private Vector2 _pos;
@@ -29,6 +28,8 @@ public class SwipeFollow : MonoBehaviour
         inputManager.onToucheStart += TouchStarted;
         inputManager.onToucheEnd += TouchEnded;
         inputManager.onTouchingPos += OnSwipeStarted;
+        
+        _points = _drawShape.points;
     }
 
     private void OnDisable()
@@ -70,9 +71,14 @@ public class SwipeFollow : MonoBehaviour
 
         float dot = Vector2.Dot(dir, dirPoints);
         bool sameDirection = dot > 0.9f;
-
         
-        // if(sameDirection)
+        Debug.Log(dot);
+
+        if (sameDirection && (worldPos - _points[1]).magnitude < 0.1f)
+        {
+            Debug.Log("VALIDATED");
+            Controller.OnInputValidate.Invoke();
+        }
             
     }
 }

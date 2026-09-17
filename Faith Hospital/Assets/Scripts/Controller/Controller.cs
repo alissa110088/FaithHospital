@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class Controller : MonoBehaviour
     private SwipeFollow _swipeFollow;
 
     private InputManager _inputManager;
+
+    public static Action OnInputValidate;
 
     private void OnEnable()
     {
