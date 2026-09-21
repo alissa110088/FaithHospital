@@ -869,7 +869,6 @@ GameObject:
   - component: {fileID: 1640535151}
   - component: {fileID: 1640535150}
   - component: {fileID: 1640535149}
-  - component: {fileID: 1640535154}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -890,10 +889,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
   points:
-  - {x: -3.1602802, y: 4.600596}
-  - {x: 2.0422149, y: 3.440076}
-  - {x: -2.58914, y: 1.070627}
-  - {x: 1.8200868, y: 0.53863454}
+  - {x: -0.83734477, y: 3.0349905}
+  - {x: 0.8229695, y: 2.1507535}
+  - {x: -0.63407147, y: 1.6209514}
+  - {x: 0.559295, y: 1.3021302}
+  - {x: -1.4053242, y: 1.1016247}
+  - {x: 0.56675535, y: 0.84694624}
+  - {x: -0.7651365, y: 0.28348875}
+  - {x: 0.69279385, y: -0.10457182}
 --- !u!65 &1640535150
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -987,19 +990,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1640535154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1640535148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0eef7d026cc64af44a101dcde0315e89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Trace
-  _visualisation: {fileID: 0}
 --- !u!1 &1690869970
 GameObject:
   m_ObjectHideFlags: 0

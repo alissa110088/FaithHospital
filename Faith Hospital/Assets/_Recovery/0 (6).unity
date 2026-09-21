@@ -890,10 +890,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
   points:
-  - {x: -3.1602802, y: 4.600596}
-  - {x: 2.0422149, y: 3.440076}
-  - {x: -2.58914, y: 1.070627}
-  - {x: 1.8200868, y: 0.53863454}
+  - {x: -0.34766078, y: 4.2974024}
+  - {x: 1.0142858, y: 3.316997}
+  - {x: -0.106206894, y: 2.6134448}
+  - {x: 0.94837195, y: 2.0193775}
+  - {x: 0.17572725, y: 1.6790015}
 --- !u!65 &1640535150
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -999,7 +1000,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eef7d026cc64af44a101dcde0315e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Trace
-  _visualisation: {fileID: 0}
 --- !u!1 &1690869970
 GameObject:
   m_ObjectHideFlags: 0

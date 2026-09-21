@@ -23,7 +23,7 @@ public class SwipeFollow : MonoBehaviour
     private int _errorMargin = 25;
     private int _currentErrorMargin = 0;
 
-    private InputManager inputManager;
+    public InputManager inputManager;
 
     public Vector2 pos
     {
@@ -37,7 +37,6 @@ public class SwipeFollow : MonoBehaviour
 
     private void OnEnable()
     {
-        inputManager = new InputManager();
         inputManager.onToucheStart += TouchStarted;
         inputManager.onToucheEnd += TouchEnded;
         inputManager.onTouchingPos += OnSwipeStarted;

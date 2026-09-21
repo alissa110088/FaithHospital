@@ -981,9 +981,9 @@ Transform:
   m_GameObject: {fileID: 1640535148}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: -0.75}
+  m_LocalScale: {x: 0.72, y: 0.72, z: 0.72}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -999,7 +999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eef7d026cc64af44a101dcde0315e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Trace
-  _visualisation: {fileID: 0}
+  _visualisation: {fileID: 1640535148}
 --- !u!1 &1690869970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1268,7 +1268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41187f6bdf320cb499d1e77b339970fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonDeactivates
-  stateToSwitch: 0
+  stateToSwitch: 1
 --- !u!114 &1995651002
 MonoBehaviour:
   m_ObjectHideFlags: 0

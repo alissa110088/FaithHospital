@@ -9,7 +9,8 @@ public class Controller : MonoBehaviour
 
     private SwipeFollow _swipeFollow;
 
-    private InputManager _inputManager;
+    public InputManager inputManager;
+    
 
     public static Action OnInputValidate; //TODO ENLEVER
     public static Action OnInputNotValidate;
@@ -32,6 +33,7 @@ public class Controller : MonoBehaviour
     private void OnEnable()
     {
         _swipeFollow = GetComponent<SwipeFollow>();
+        inputManager = new InputManager();
     }
 
     public void SwitchState(ControlState pState, GameObject pTool = null)
@@ -40,6 +42,7 @@ public class Controller : MonoBehaviour
         if (_currentState == ControlState.SwipeFollow)
         {
             Debug.Log("SCALPEL SELECTED");
+            _swipeFollow.inputManager = inputManager;
             _swipeFollow.follow = pTool;
             _swipeFollow.enabled = true;
         }
@@ -47,6 +50,13 @@ public class Controller : MonoBehaviour
         {
             _swipeFollow.enabled = false;
             _swipeFollow.follow = null;
+        }
+        else if (_currentState == ControlState.trace)
+        {
+            _swipeFollow.enabled = false;
+            _swipeFollow.follow = null;
+            
+            
         }
     }
 }
