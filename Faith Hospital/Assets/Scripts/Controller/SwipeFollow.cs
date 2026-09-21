@@ -4,7 +4,7 @@ using UnityEditor;
 
 public class SwipeFollow : MonoBehaviour
 {
-    [SerializeField] private GameObject _follow;
+    public GameObject follow;
     [SerializeField] private DrawShape _drawShape;
 
     [Header("GD")] 
@@ -12,7 +12,7 @@ public class SwipeFollow : MonoBehaviour
 
     [SerializeField] private float marginHowFarCanGoFromLine = 1.5f;
     private bool _touching = false;
-    private bool patternValidated;
+    private bool _patternValidated;
 
     private Vector2 _lastPos = Vector2.zero;
     private Vector2 _pos;
@@ -104,10 +104,10 @@ public class SwipeFollow : MonoBehaviour
 
         Vector2 worldPos = new Vector2(worldPos3.x, worldPos3.y);
 
-        if (patternValidated)
+        if (_patternValidated)
             return;
-        
-        _follow.transform.position = new Vector3(worldPos.x, worldPos.y, 3f);
+
+        follow.transform.position = pPos; //new Vector3(worldPos.x, worldPos.y, 3f);
 
         pos = worldPos;
         Vector2 dir = (_lastPos - pos).normalized;
@@ -117,7 +117,6 @@ public class SwipeFollow : MonoBehaviour
         //Turned positive to allow both side swipe
         dir = new Vector2(Mathf.Abs(dir.x), Mathf.Abs(dir.y));
         dirPoints = new Vector2(Mathf.Abs(dirPoints.x), Mathf.Abs(dirPoints.y));
-        
 
         float dot = Vector2.Dot(dir, dirPoints);
         bool sameDirection = dot > 0.9f;
@@ -130,7 +129,7 @@ public class SwipeFollow : MonoBehaviour
             {
                 Debug.Log("VALIDATED");
                 Controller.OnInputValidate.Invoke();
-                patternValidated = true;
+                _patternValidated = true;
             }
             else
             {
@@ -153,9 +152,8 @@ public class SwipeFollow : MonoBehaviour
         }
         else
         {
-             Controller.OnInputNotValidate.Invoke();
+            Controller.OnInputNotValidate.Invoke();
             Debug.Log("NOT VALIDATED " + sameDirection);
-            Debug.Log(distancePointToSegment );
             _currentErrorMargin++;
         }
     }
