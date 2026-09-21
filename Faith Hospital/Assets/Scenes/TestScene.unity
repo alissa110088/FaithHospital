@@ -289,8 +289,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
   points:
-  - {x: -2.48, y: 3}
-  - {x: 2.19, y: -2.89}
+  - {x: -0.072984844, y: 5.192933}
+  - {x: -0.042569026, y: -0.92767125}
 --- !u!65 &603522468
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -377,13 +377,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 603522466}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.33109087, w: 0.94359887}
-  m_LocalPosition: {x: -1.77, y: -1.42, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.29, y: 2.49, z: 0}
   m_LocalScale: {x: 4.25, y: 7.79, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 38.67}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &675166681
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,13 +805,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2099544514}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.33109087, w: 0.94359887}
-  m_LocalPosition: {x: 1.48, y: 1.17, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.84, y: 2.52, z: 0}
   m_LocalScale: {x: -3.79, y: 7.79, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 38.67}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

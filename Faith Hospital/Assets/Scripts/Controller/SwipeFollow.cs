@@ -12,6 +12,7 @@ public class SwipeFollow : MonoBehaviour
 
     [SerializeField] private float marginHowFarCanGoFromLine = 0.3f;
     private bool _touching = false;
+    private bool patternValidated;
 
     private Vector2 _lastPos = Vector2.zero;
     private Vector2 _pos;
@@ -103,8 +104,10 @@ public class SwipeFollow : MonoBehaviour
 
         Vector2 worldPos = new Vector2(worldPos3.x, worldPos3.y);
 
-
-        _follow.transform.position = worldPos;
+        if (patternValidated)
+            return;
+        
+        _follow.transform.position = new Vector3(worldPos.x, worldPos.y, 3f);
 
         pos = worldPos;
         Vector2 dir = (_lastPos - pos).normalized;
@@ -114,20 +117,20 @@ public class SwipeFollow : MonoBehaviour
         //Turned positive to allow both side swipe
         dir = new Vector2(Mathf.Abs(dir.x), Mathf.Abs(dir.y));
         dirPoints = new Vector2(Mathf.Abs(dirPoints.x), Mathf.Abs(dirPoints.y));
-
+        
 
         float dot = Vector2.Dot(dir, dirPoints);
         bool sameDirection = dot > 0.9f;
         float distancePointToSegment = DistancePointToSegment(_points[_points.IndexOf(_currentPoint) + 1], _currentPoint, pos);
         
         //Checks if went to first point
-        if (sameDirection && (worldPos - _points[1]).magnitude < marginHowCloseeToPointToMoveOn && distancePointToSegment < 0.3f)
+        if (sameDirection && (worldPos - _points[1]).magnitude < marginHowCloseeToPointToMoveOn && distancePointToSegment < 3f)
         {
             if (_currentPoint == _points[^2])
             {
                 Debug.Log("VALIDATED");
                 Controller.OnInputValidate.Invoke();
-                gameObject.SetActive(false);
+                patternValidated = true;
             }
             else
             {
