@@ -4,7 +4,6 @@ using UnityEditor;
 
 public class SwipeFollow : MonoBehaviour
 {
-    public GameObject follow;
     [SerializeField] private DrawShape _drawShape;
 
     [Header("GD")] 
@@ -103,7 +102,6 @@ public class SwipeFollow : MonoBehaviour
 
         Vector2 worldPos = new Vector2(worldPos3.x, worldPos3.y);
         
-        follow.transform.position = pPos; //new Vector3(worldPos.x, worldPos.y, 3f);
 
         if (_patternValidated)
             return;

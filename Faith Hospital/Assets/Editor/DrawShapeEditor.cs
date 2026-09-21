@@ -35,11 +35,17 @@ public class DrawShapeEditor : Editor
         if (m_Event.type == EventType.MouseDown && m_Event.button == 0 && m_Event.control)
         {
             Ray ray = HandleUtility.GUIPointToWorldRay(m_Event.mousePosition);
-            Vector3 pos = ray.origin + ray.direction * 10f;
 
-            drawShape.points.Add(pos);
-            EditorUtility.SetDirty(drawShape);
-            m_Event.Use();
+            Plane plane = new Plane(Vector3.forward, Vector3.zero);
+
+            if (plane.Raycast(ray, out float enter))
+            {
+                Vector3 pos = ray.GetPoint(enter);
+                Undo.RecordObject(drawShape, "Add Point");
+                drawShape.points.Add(pos);
+                EditorUtility.SetDirty(drawShape);
+                m_Event.Use();
+            }
         }
     }
 

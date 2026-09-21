@@ -16,14 +16,15 @@ public class ButtonDeactivates : MonoBehaviour, IPointerUpHandler, IPointerDownH
             holdCor = null;
         }
         holdCor = StartCoroutine(Hold(eventData));
+        Controller.Instance.SwitchState(stateToSwitch, this.gameObject);
     }
 
     private IEnumerator Hold(PointerEventData eventData)
     {
         while (true)
         {
-            Controller.Instance.SwitchState(stateToSwitch, this.gameObject);
-            transform.position = eventData.pressPosition;   
+            transform.position = eventData.position;
+            yield return new WaitForEndOfFrame();   
         }
     }
     

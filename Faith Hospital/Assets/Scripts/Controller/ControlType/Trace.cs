@@ -33,7 +33,19 @@ public class Trace : MonoBehaviour
 
     private void OnTouchingScnreen(Vector2 pPosition)
     {
-        if (!_canStart && CheckIfInRange(pPosition) &&
+        if (_patternValidated)
+            return;
+        
+        float distance = -Camera.main.transform.position.z;
+
+        //Converte to world point 
+        Vector3 worldPos3 = Camera.main.ScreenToWorldPoint(
+            new Vector3(pPosition.x, pPosition.y, distance)
+        );
+
+        Vector2 worldPos = new Vector2(worldPos3.x, worldPos3.y);
+        
+        if (!_canStart && CheckIfInRange(worldPos) &&
             new Vector2(transform.position.x, transform.position.y) == _points[0])
         {
             _canStart = true;
@@ -42,7 +54,7 @@ public class Trace : MonoBehaviour
         if (!_canStart)
             return;
         
-        if (!CheckIfInRange(pPosition))
+        if (!CheckIfInRange(worldPos))
         {
             if (_currentErrorMargin != _errorMargin)
             {
@@ -55,12 +67,12 @@ public class Trace : MonoBehaviour
                 Controller.OnInputNotValidate.Invoke();
                 Debug.Log("NOT VALIDATED RESET");
                 _currentPoint = _points[1];
-                transform.position = _points[0];
+                transform.position = new Vector3( _points[0].x, _points[0].y, -1);
                 _currentErrorMargin = 0;
             }
         }
-
-        if (Vector3.Distance(transform.position, _currentPoint) < 0.1f)
+        Debug.Log(Vector3.Distance(transform.position, _currentPoint));
+        if (Vector3.Distance(transform.position, _currentPoint) < 1.1f)
         {
             if (_currentPoint == _points[^1])
             {
@@ -76,7 +88,7 @@ public class Trace : MonoBehaviour
         }
         Vector2 direction = new Vector2(_currentPoint.x - transform.position.x, _currentPoint.y - transform.position.y).normalized;
         Vector3 dirV3 = new Vector3(direction.x, direction.y, 0f);
-        transform.position += dirV3 * Time.deltaTime * 1.5f;
+        transform.position += dirV3 * Time.deltaTime * .5f;
     }
     
 

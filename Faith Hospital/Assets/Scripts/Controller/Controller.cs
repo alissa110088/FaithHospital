@@ -43,18 +43,15 @@ public class Controller : MonoBehaviour
         {
             Debug.Log("SCALPEL SELECTED");
             _swipeFollow.inputManager = inputManager;
-            _swipeFollow.follow = pTool;
             _swipeFollow.enabled = true;
         }
         else if (_currentState == ControlState.none)
         {
             _swipeFollow.enabled = false;
-            _swipeFollow.follow = null;
         }
         else if (_currentState == ControlState.trace)
         {
             _swipeFollow.enabled = false;
-            _swipeFollow.follow = null;
             
             
         }
