@@ -44,6 +44,7 @@ public class Controller : MonoBehaviour
             Debug.Log("SCALPEL SELECTED");
             _swipeFollow.inputManager = inputManager;
             _swipeFollow.enabled = true;
+            _swipeFollow.TouchStarted();
         }
         else if (_currentState == ControlState.none)
         {
