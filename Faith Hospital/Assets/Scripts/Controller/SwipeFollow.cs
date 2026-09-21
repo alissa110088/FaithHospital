@@ -10,7 +10,7 @@ public class SwipeFollow : MonoBehaviour
     [Header("GD")] 
     [SerializeField] private float marginHowCloseeToPointToMoveOn = 0.1f;
 
-    [SerializeField] private float marginHowFarCanGoFromLine = 0.3f;
+    [SerializeField] private float marginHowFarCanGoFromLine = 1.5f;
     private bool _touching = false;
 
     private Vector2 _lastPos = Vector2.zero;
@@ -142,6 +142,7 @@ public class SwipeFollow : MonoBehaviour
         //Checks if goes to the wrong direction 
         else if (_currentErrorMargin == _errorMargin)
         {
+            Controller.OnInputNotValidate.Invoke();
             Debug.Log("NOT VALIDATED RESET");
             _currentPoint = _points[0];
             _currentErrorMargin = 0;
@@ -149,7 +150,9 @@ public class SwipeFollow : MonoBehaviour
         }
         else
         {
+             Controller.OnInputNotValidate.Invoke();
             Debug.Log("NOT VALIDATED " + sameDirection);
+            Debug.Log(distancePointToSegment );
             _currentErrorMargin++;
         }
     }
