@@ -103,11 +103,11 @@ public class SwipeFollow : MonoBehaviour
         );
 
         Vector2 worldPos = new Vector2(worldPos3.x, worldPos3.y);
+        
+        follow.transform.position = pPos; //new Vector3(worldPos.x, worldPos.y, 3f);
 
         if (_patternValidated)
             return;
-
-        follow.transform.position = pPos; //new Vector3(worldPos.x, worldPos.y, 3f);
 
         pos = worldPos;
         Vector2 dir = (_lastPos - pos).normalized;
@@ -148,7 +148,6 @@ public class SwipeFollow : MonoBehaviour
             Debug.Log("NOT VALIDATED RESET");
             _currentPoint = _points[0];
             _currentErrorMargin = 0;
-            _touching = false;
         }
         else
         {

@@ -5,10 +5,14 @@ public class FailedInputFeedback
     : MonoBehaviour
 {
     [SerializeField] private Slider _failedSlider;
+    private CameraShake cam;
 
     private void Start()
     {
         Controller.OnInputNotValidate += OnFailed;
+        cam = Camera.main.GetComponent<CameraShake>();
+        if(cam == null)
+            Debug.Log("NO CAMERE SHAKE FOUND");
     }
     
     private void OnFailed()
@@ -18,6 +22,7 @@ public class FailedInputFeedback
 
         else
         {
+            cam.StartShake();
             _failedSlider.value = 0;
         }
     }
