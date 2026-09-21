@@ -10,7 +10,8 @@ public class Controller : MonoBehaviour
 
     private InputManager _inputManager;
 
-    public static Action OnInputValidate;
+    public static Action OnInputValidate; //TODO ENL
+    public static Action OnInputNotValidate;
 
     private void OnEnable()
     {
