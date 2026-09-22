@@ -5,9 +5,14 @@ using UnityEngine;
 public class Trace : MonoBehaviour
 {
     [SerializeField] private string tool;
+
+    [SerializeField] private float speedTrace = 0.75f;
     
-    private float _range = 1f;
+    [SerializeField] private float _range = 0.5f;
+    
     private Vector2 _currentPoint;
+    private Vector2 _currentPos = Vector2.zero;
+    
     private List<Vector2> _points;
     
     private int _errorMargin = 25;
@@ -17,19 +22,38 @@ public class Trace : MonoBehaviour
     
     private bool _canStart;
     private bool _patternValidated;
+    private bool _start;
     
     private void Start()
     {
         _points = GetComponent<DrawShape>().points;
         _currentPoint = _points[1];
         inputManager = Controller.Instance.inputManager;
-        inputManager.onTouchingPos += OnTouchingScnreen;
+        
+        inputManager.onTouchingPos += OnTouchingScreen;
+        inputManager.onToucheStart += OnTouchedScreen;
+        
         transform.position = new Vector3( _points[0].x, _points[0].y, -1);
     }
     
     private void OnDestroy()
     {
         inputManager.onTouchingPos -= OnTouchingScnreen;
+        inputManager.onToucheStart -= OnTouchedScreen;
+    }
+
+    private void Update()
+    {
+        if(_start)
+            OnTouchingScnreen(_currentPos);
+    }
+
+    private void OnTouchedScreen()=> _start = true;   
+    
+
+    private void OnTouchingScreen(Vector2 pCurrentPos)
+    {
+        _currentPos = pCurrentPos;
     }
     
     private void OnTouchingScnreen(Vector2 pPosition)
@@ -55,6 +79,7 @@ public class Trace : MonoBehaviour
         if (!_canStart)
             return;
         
+        
         if (!CheckIfInRange(worldPos))
         {
             if (_currentErrorMargin != _errorMargin)
@@ -72,7 +97,6 @@ public class Trace : MonoBehaviour
                 _currentErrorMargin = 0;
             }
         }
-        Debug.Log(Vector3.Distance(transform.position, _currentPoint));
         if (Vector3.Distance(transform.position, _currentPoint) < 1.1f)
         {
             if (_currentPoint == _points[^1])
@@ -87,9 +111,10 @@ public class Trace : MonoBehaviour
                 Debug.Log("NEXT POINT");
             }
         }
+        Debug.Log("MOVING");
         Vector2 direction = new Vector2(_currentPoint.x - transform.position.x, _currentPoint.y - transform.position.y).normalized;
         Vector3 dirV3 = new Vector3(direction.x, direction.y, 0f);
-        transform.position += dirV3 * Time.deltaTime * .75f;
+        transform.position += dirV3 * Time.deltaTime * speedTrace;
     }
     
     
