@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Trace : MonoBehaviour
 {
+    [SerializeField] private string tool;
     
     private float _range = 1f;
     private Vector2 _currentPoint;
@@ -33,7 +34,7 @@ public class Trace : MonoBehaviour
     
     private void OnTouchingScnreen(Vector2 pPosition)
     {
-        if (_patternValidated)
+        if (_patternValidated || !Tool.activeTool.gameObject.CompareTag(tool))
             return;
         
         float distance = -Camera.main.transform.position.z;

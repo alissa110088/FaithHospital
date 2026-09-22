@@ -534,6 +534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SwipeFollow
   _drawShape: {fileID: 603522467}
   marginHowCloseeToPointToMoveOn: 0.1
+  tool: Scalpel
   marginHowFarCanGoFromLine: 0.3
 --- !u!114 &855070136
 MonoBehaviour:
@@ -1092,6 +1093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eef7d026cc64af44a101dcde0315e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Trace
+  tool: Ecarteur
 --- !u!1 &1690869970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,7 +1326,7 @@ GameObject:
   - component: {fileID: 1995651001}
   m_Layer: 0
   m_Name: Ecarteur
-  m_TagString: SwipeFollow
+  m_TagString: Ecarteur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1523,7 +1525,7 @@ GameObject:
   - component: {fileID: 2131567424}
   m_Layer: 0
   m_Name: Scalpel
-  m_TagString: SwipeFollow
+  m_TagString: Scalpel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

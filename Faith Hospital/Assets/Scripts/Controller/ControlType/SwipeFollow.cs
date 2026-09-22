@@ -8,7 +8,7 @@ public class SwipeFollow : MonoBehaviour
 
     [Header("GD")] 
     [SerializeField] private float marginHowCloseeToPointToMoveOn = 0.3f;
-
+    [SerializeField] private string tool;
     [SerializeField] private float marginHowFarCanGoFromLine = 1.5f;
     private bool _touching = false;
     private bool _patternValidated;
@@ -93,7 +93,7 @@ public class SwipeFollow : MonoBehaviour
 
     private void OnSwipeStarted(Vector2 pPos)
     {
-        if (!_touching || float.IsInfinity(pPos.x) || float.IsInfinity(pPos.y) || _patternValidated)
+        if (!_touching || float.IsInfinity(pPos.x) || float.IsInfinity(pPos.y) || _patternValidated || !Tool.activeTool.gameObject.CompareTag(tool))
             return;
 
         float distance = -Camera.main.transform.position.z;

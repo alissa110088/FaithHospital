@@ -3,11 +3,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ButtonDeactivates : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
+public class Tool : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
     [SerializeField] private ControlState stateToSwitch;
 
-    private static ButtonDeactivates activeTool;
+    public static Tool activeTool;
     private Vector3 _originPos;
 
     private void Start()
@@ -22,7 +22,6 @@ public class ButtonDeactivates : MonoBehaviour, IPointerUpHandler, IPointerDownH
             Controller.Instance.inputManager.onTouchingPos -= activeTool.PlaceAtTouch;
             activeTool.transform.position = _originPos;
         }
-            
 
         activeTool = this;
         Controller.Instance.SwitchState(stateToSwitch, this.gameObject);
