@@ -34,6 +34,9 @@ public class Controller : MonoBehaviour
     {
         _swipeFollow = GetComponent<SwipeFollow>();
         inputManager = new InputManager();
+        
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = Mathf.RoundToInt((float)Screen.currentResolution.refreshRateRatio.value);
     }
 
     public void SwitchState(ControlState pState, GameObject pTool = null)

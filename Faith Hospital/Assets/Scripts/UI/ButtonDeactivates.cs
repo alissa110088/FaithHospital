@@ -7,33 +7,52 @@ public class ButtonDeactivates : MonoBehaviour, IPointerUpHandler, IPointerDownH
 {
     [SerializeField] private ControlState stateToSwitch;
 
-    private Coroutine holdCor;
-    public void OnPointerDown(PointerEventData eventData)
+    private static ButtonDeactivates activeTool;
+    private Vector3 _originPos;
+
+    private void Start()
     {
-        if (holdCor != null)
-        {
-            StopCoroutine(holdCor);
-            holdCor = null;
-        }
-        holdCor = StartCoroutine(Hold(eventData));
-        Controller.Instance.SwitchState(stateToSwitch, this.gameObject);
+        _originPos = transform.position;
     }
 
-    private IEnumerator Hold(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
-        while (true)
+        if (activeTool != null)
         {
-            transform.position = eventData.position;
-            yield return new WaitForEndOfFrame();   
+            Controller.Instance.inputManager.onTouchingPos -= activeTool.PlaceAtTouch;
+            activeTool.transform.position = _originPos;
         }
+            
+
+        activeTool = this;
+        Controller.Instance.SwitchState(stateToSwitch, this.gameObject);
+
+        transform.position = eventData.position;
+
+        Controller.Instance.inputManager.onTouchingPos += PlaceAtTouch;
+    }
+
+    private void PlaceAtTouch(Vector2 pPos)
+    {
+        bool isDragging = Input.touchCount > 0 &&
+                          (Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetTouch(0).phase == TouchPhase.Stationary);
+        if (!isDragging) return;
+
+        
+        transform.position = pPos;
     }
     
+
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (holdCor != null)
+    }
+
+    private void OnDestroy()
+    {
+        if (activeTool == this)
         {
-            StopCoroutine(holdCor);
-            holdCor = null;
+            Controller.Instance.inputManager.onTouchingPos -= PlaceAtTouch;
+            activeTool = null;
         }
     }
 }
