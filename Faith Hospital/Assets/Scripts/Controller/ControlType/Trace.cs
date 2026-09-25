@@ -2,44 +2,55 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trace : MonoBehaviour
+public class Trace : State
 {
-    [SerializeField] private string tool;
-
     [SerializeField] private float speedTrace = 0.75f;
     
-    [SerializeField] private float _range = 0.5f;
-    
-    private Vector2 _currentPoint;
     private Vector2 _currentPos = Vector2.zero;
     
-    private List<Vector2> _points;
+    private ControlState _state = ControlState.trace;
     
-    private int _errorMargin = 25;
-    private int _currentErrorMargin = 0;
-    
-    public InputManager inputManager;
-    
-    private bool _canStart;
-    private bool _patternValidated;
     private bool _start;
-    
-    private void Start()
+
+    private void OnEnable()
     {
+        unlockState += OnStart;
         _points = GetComponent<DrawShape>().points;
-        _currentPoint = _points[1];
-        inputManager = Controller.Instance.inputManager;
-        
-        inputManager.onTouchingPos += OnTouchingScreen;
-        inputManager.onToucheStart += OnTouchedScreen;
-        
-        transform.position = new Vector3( _points[0].x, _points[0].y, -1);
+        transform.position = new Vector3(_points[0].x, _points[0].y, -1); 
     }
+    
+    private void OnStart(InputManager pInputManager, ControlState controlState)
+    {
+
+        if (controlState == _state)
+        {
+            _currentPoint = _points[1];
+            inputManager = pInputManager;
+
+            inputManager.onTouchingPos += OnTouchingScreen;
+            inputManager.onToucheStart += OnTouchedScreen;
+
+            transform.position = new Vector3(_points[0].x, _points[0].y, -1);
+        }
+        else if(inputManager!=null)
+        {
+            inputManager.onTouchingPos -= OnTouchingScreen;
+            inputManager.onToucheStart -= OnTouchedScreen;   
+            
+            _points = null;
+            _currentPoint = Vector2.zero;
+            inputManager = null;
+        }
+    }
+    
     
     private void OnDestroy()
     {
-        inputManager.onTouchingPos -= OnTouchingScnreen;
-        inputManager.onToucheStart -= OnTouchedScreen;
+        if (inputManager != null)
+        {
+            inputManager.onTouchingPos -= OnTouchingScnreen;
+            inputManager.onToucheStart -= OnTouchedScreen;
+        }
     }
 
     private void Update()
@@ -58,7 +69,8 @@ public class Trace : MonoBehaviour
     
     private void OnTouchingScnreen(Vector2 pPosition)
     {
-        if (_patternValidated || !Tool.activeTool.gameObject.CompareTag(tool))
+        
+        if (_patternValidated || float.IsInfinity(pPosition.x) || float.IsInfinity(pPosition.y))
             return;
         
         float distance = -Camera.main.transform.position.z;
@@ -70,7 +82,7 @@ public class Trace : MonoBehaviour
     
         Vector2 worldPos = new Vector2(worldPos3.x, worldPos3.y);
         
-        if (!_canStart && CheckIfInRange(worldPos) &&
+        if (!_canStart && CheckIfInRange(worldPos, transform.position) &&
             new Vector2(transform.position.x, transform.position.y) == _points[0])
         {
             _canStart = true;
@@ -80,7 +92,7 @@ public class Trace : MonoBehaviour
             return;
         
         
-        if (!CheckIfInRange(worldPos))
+        if (!CheckIfInRange(worldPos, transform.position))
         {
             if (_currentErrorMargin != _errorMargin)
             {
@@ -115,17 +127,6 @@ public class Trace : MonoBehaviour
         Vector2 direction = new Vector2(_currentPoint.x - transform.position.x, _currentPoint.y - transform.position.y).normalized;
         Vector3 dirV3 = new Vector3(direction.x, direction.y, 0f);
         transform.position += dirV3 * Time.deltaTime * speedTrace;
-    }
-    
-    
-    private bool CheckIfInRange(Vector3 pPosition)
-    {
-        if (Mathf.Abs((pPosition.x - transform.position.x)) < _range && Mathf.Abs((pPosition.y - transform.position.y)) < _range)
-        {
-            return true;
-        }
-    
-        return false;
     }
 }
 

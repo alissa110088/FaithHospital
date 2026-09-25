@@ -3,8 +3,21 @@ using UnityEngine;
 
 public class DrawShape : MonoBehaviour
 {
+    [SerializeField] ControlState _stateControl;
     public List<Vector2> points;
 
+    private void OnEnable()
+    {
+        switch (_stateControl)
+        {
+            case ControlState.SwipeFollow:
+                gameObject.AddComponent<SwipeFollow>();
+                break;
+            case ControlState.trace:
+                gameObject.AddComponent<Trace>();
+                break;
+        }
+    }
     private void OnDrawGizmos()
     {
         if (!(points.Count > 1))

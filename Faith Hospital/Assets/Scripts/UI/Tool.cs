@@ -24,7 +24,7 @@ public class Tool : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
         }
 
         activeTool = this;
-        Controller.Instance.SwitchState(stateToSwitch, this.gameObject);
+        Controller.Instance.SwitchState(stateToSwitch);
 
         transform.position = eventData.position;
 

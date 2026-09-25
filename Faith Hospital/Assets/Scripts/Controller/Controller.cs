@@ -10,7 +10,6 @@ public class Controller : MonoBehaviour
     private SwipeFollow _swipeFollow;
 
     public InputManager inputManager;
-    
 
     public static Action OnInputValidate; //TODO ENLEVER
     public static Action OnInputNotValidate;
@@ -25,8 +24,10 @@ public class Controller : MonoBehaviour
                 Destroy(gameObject);
                 return;
             }
+
             return;
         }
+
         Instance = this;
     }
 
@@ -34,30 +35,17 @@ public class Controller : MonoBehaviour
     {
         _swipeFollow = GetComponent<SwipeFollow>();
         inputManager = new InputManager();
-        
+
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = Mathf.RoundToInt((float)Screen.currentResolution.refreshRateRatio.value);
     }
 
-    public void SwitchState(ControlState pState, GameObject pTool = null)
+    public void SwitchState(ControlState pState)
     {
         _currentState = pState;
-        if (_currentState == ControlState.SwipeFollow)
-        {
-            Debug.Log("SCALPEL SELECTED");
-            _swipeFollow.inputManager = inputManager;
-            _swipeFollow.enabled = true;
-            _swipeFollow.TouchStarted();
-        }
-        else if (_currentState == ControlState.none)
-        {
-            _swipeFollow.enabled = false;
-        }
-        else if (_currentState == ControlState.trace)
-        {
-            _swipeFollow.enabled = false;
-            
-            
-        }
+
+
+        State.unlockState.Invoke(inputManager, pState);
+        
     }
 }

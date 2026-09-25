@@ -2,30 +2,18 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEditor;
 
-public class SwipeFollow : MonoBehaviour
+public class SwipeFollow : State
 {
-    [SerializeField] private DrawShape _drawShape;
-
-    [Header("GD")] 
-    [SerializeField] private float marginHowCloseeToPointToMoveOn = 0.3f;
-    [SerializeField] private string tool;
+    [Header("GD")] [SerializeField] private float marginHowCloseeToPointToMoveOn = 0.3f;
     [SerializeField] private float marginHowFarCanGoFromLine = 1.5f;
+
     private bool _touching = false;
-    private bool _patternValidated;
-    private bool _canStart;
+
+    private ControlState _state = ControlState.SwipeFollow;
 
     private Vector2 _lastPos = Vector2.zero;
     private Vector2 _pos;
-    private Vector2 _currentPoint;
 
-    private List<Vector2> _points;
-
-    private int _errorMargin = 25;
-    private int _currentErrorMargin = 0;
-
-    private float _range = 0.5f;
-    
-    public InputManager inputManager;
 
     public Vector2 pos
     {
@@ -39,11 +27,7 @@ public class SwipeFollow : MonoBehaviour
 
     private void OnEnable()
     {
-        inputManager.onToucheStart += TouchStarted;
-        inputManager.onToucheEnd += TouchEnded;
-        inputManager.onTouchingPos += OnSwipeStarted;
-
-        _points = _drawShape.points;
+        unlockState += OnStart;
     }
 
     private void OnDisable()
@@ -51,6 +35,26 @@ public class SwipeFollow : MonoBehaviour
         inputManager.onToucheStart -= TouchStarted;
         inputManager.onToucheEnd -= TouchEnded;
         inputManager.onTouchingPos -= OnSwipeStarted;
+    }
+
+    private void OnStart(InputManager pInputManager, ControlState controlState)
+    {
+        if (controlState == _state)
+        {
+            inputManager = pInputManager;
+            inputManager.onToucheStart += TouchStarted;
+            inputManager.onToucheEnd += TouchEnded;
+            inputManager.onTouchingPos += OnSwipeStarted;
+            _points = GetComponent<DrawShape>().points;
+            ;
+        }
+        else if (inputManager != null)
+        {
+            inputManager.onToucheStart -= TouchStarted;
+            inputManager.onToucheEnd -= TouchEnded;
+            inputManager.onTouchingPos -= OnSwipeStarted;
+            _points = null;
+        }
     }
 
 
@@ -65,6 +69,7 @@ public class SwipeFollow : MonoBehaviour
         _touching = false;
         _currentPoint = _points[0];
     }
+
     private static float DistancePointToSegment(Vector3 a, Vector3 b, Vector3 p)
     {
         Vector3 ab = b - a;
@@ -93,7 +98,7 @@ public class SwipeFollow : MonoBehaviour
 
     private void OnSwipeStarted(Vector2 pPos)
     {
-        if (!_touching || float.IsInfinity(pPos.x) || float.IsInfinity(pPos.y) || _patternValidated || !Tool.activeTool.gameObject.CompareTag(tool))
+        if (!_touching || float.IsInfinity(pPos.x) || float.IsInfinity(pPos.y) || _patternValidated)
             return;
 
         float distance = -Camera.main.transform.position.z;
@@ -111,7 +116,7 @@ public class SwipeFollow : MonoBehaviour
         }
         else if (!_canStart)
             return;
-        
+
         pos = worldPos;
         Vector2 dir = (_lastPos - pos).normalized;
         Vector2 dirPoints = (_points[_points.IndexOf(_currentPoint) + 1] - _currentPoint).normalized;
@@ -123,10 +128,12 @@ public class SwipeFollow : MonoBehaviour
 
         float dot = Vector2.Dot(dir, dirPoints);
         bool sameDirection = dot > 0.9f;
-        float distancePointToSegment = DistancePointToSegment(_points[_points.IndexOf(_currentPoint) + 1], _currentPoint, pos);
-        
+        float distancePointToSegment =
+            DistancePointToSegment(_points[_points.IndexOf(_currentPoint) + 1], _currentPoint, pos);
+
         //Checks if went to first point
-        if (sameDirection && (worldPos - _points[1]).magnitude < marginHowCloseeToPointToMoveOn && distancePointToSegment < 10f)
+        if (sameDirection && (worldPos - _points[1]).magnitude < marginHowCloseeToPointToMoveOn &&
+            distancePointToSegment < 10f)
         {
             if (_currentPoint == _points[^2])
             {
@@ -158,15 +165,5 @@ public class SwipeFollow : MonoBehaviour
             Debug.Log("NOT VALIDATED " + sameDirection);
             _currentErrorMargin++;
         }
-    }
-    
-    private bool CheckIfInRange(Vector3 pPosition, Vector3 pPoint)
-    {
-        if (Mathf.Abs((pPosition.x - pPoint.x)) < _range && Mathf.Abs((pPosition.y - pPoint.y)) < _range)
-        {
-            return true;
-        }
-    
-        return false;
     }
 }
