@@ -32,9 +32,12 @@ public class SwipeFollow : State
 
     private void OnDisable()
     {
-        inputManager.onToucheStart -= TouchStarted;
-        inputManager.onToucheEnd -= TouchEnded;
-        inputManager.onTouchingPos -= OnSwipeStarted;
+        if (inputManager != null)
+        {
+            inputManager.onToucheStart -= TouchStarted;
+            inputManager.onToucheEnd -= TouchEnded;
+            inputManager.onTouchingPos -= OnSwipeStarted;
+        }
     }
 
     private void OnStart(InputManager pInputManager, ControlState controlState)
