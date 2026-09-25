@@ -16,6 +16,9 @@ public class DrawShape : MonoBehaviour
             case ControlState.trace:
                 gameObject.AddComponent<Trace>();
                 break;
+            case ControlState.touch:
+                gameObject.AddComponent<TouchInput>();
+                break;
         }
     }
     private void OnDrawGizmos()

@@ -33,11 +33,6 @@ public class Tool : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
     private void PlaceAtTouch(Vector2 pPos)
     {
-        bool isDragging = Input.touchCount > 0 &&
-                          (Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetTouch(0).phase == TouchPhase.Stationary);
-        if (!isDragging) return;
-
-        
         transform.position = pPos;
     }
     
