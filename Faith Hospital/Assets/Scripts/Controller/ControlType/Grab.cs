@@ -1,12 +1,14 @@
 using UnityEngine;
 
-public class TouchInput : State
+public class Grab : State
 {
-    
-    private ControlState _state = ControlState.touch;
-    
+    private ControlState _state = ControlState.none;
+
     private bool _touchStarted;
     private bool _firtPos;
+    private GameObject _grabbed;
+    private Rigidbody rb;
+
     private void OnEnable()
     {
         unlockState += OnStart;
@@ -30,8 +32,7 @@ public class TouchInput : State
             {
                 return;
             }
-
-            _points = GetComponent<DrawShape>().points;
+            
             inputManager = pInputManager;
             inputManager.onToucheStart += TouchStarted;
             inputManager.onTouchingPos += GetFirstPos;
@@ -42,8 +43,6 @@ public class TouchInput : State
             inputManager.onToucheStart -= TouchStarted;
             inputManager.onTouchingPos -= GetFirstPos;
             inputManager.onToucheEnd -= TouchEnded;
-            _points = null;
-            inputManager = null;
         }
     }
 
@@ -56,32 +55,48 @@ public class TouchInput : State
     {
         _touchStarted = false;
         _firtPos = false;
+        _grabbed = null;
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+            rb = null;
+        }
+        
     }
-    
+
     private void GetFirstPos(Vector2 pPosition)
     {
-        if(!_touchStarted || _firtPos || float.IsInfinity(pPosition.x) || float.IsInfinity(pPosition.y) || _points.Count < 1)
+        if (!_touchStarted || float.IsInfinity(pPosition.x) || float.IsInfinity(pPosition.y))
             return;
+
+        if (!_firtPos)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(pPosition);
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                GameObject clicked = hit.collider.gameObject;
+
+                if (!clicked.CompareTag("Attrapable"))
+                    return;
+                
+                _grabbed = clicked;
+                rb = _grabbed.GetComponent<Rigidbody>();
+                rb.isKinematic = true;
+                _firtPos = true;
+            }
+        }
         
+        if(_grabbed == null)
+            return;
+
         float distance = -Camera.main.transform.position.z;
-        
+
         Vector3 worldPos3 = Camera.main.ScreenToWorldPoint(
             new Vector3(pPosition.x, pPosition.y, distance)
         );
 
-        _firtPos = true;
 
-        foreach (Vector2 pos in _points)
-        {
-            if (CheckIfInRange(worldPos3, pos))
-            {
-                _points.Remove(pos);
-                if (_points.Count == 0)
-                {
-                }
-                return;
-            }
-        }
-        
+        _grabbed.transform.position = Vector3.Lerp(_grabbed.transform.position, new Vector3(worldPos3.x, worldPos3.y, -4f),
+            Time.deltaTime * 10);
     }
 }

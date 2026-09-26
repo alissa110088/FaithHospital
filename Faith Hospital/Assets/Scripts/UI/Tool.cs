@@ -8,36 +8,44 @@ public class Tool : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     [SerializeField] private ControlState stateToSwitch;
 
     public static Tool activeTool;
-    private Vector3 _originPos;
-
+    public Vector3 _originPos;
+    private RawImage _icon;
+    
     private void Start()
     {
         _originPos = transform.position;
+        _icon = GetComponent<RawImage>();
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        
         if (activeTool != null)
         {
+            activeTool._icon.raycastTarget = true;
             Controller.Instance.inputManager.onTouchingPos -= activeTool.PlaceAtTouch;
-            activeTool.transform.position = _originPos;
+            activeTool.transform.position = activeTool._originPos;
         }
 
         activeTool = this;
         Controller.Instance.SwitchState(stateToSwitch);
-
-        transform.position = eventData.position;
-
-        Controller.Instance.inputManager.onTouchingPos += PlaceAtTouch;
+        _icon.raycastTarget = false;
+        
+        if (stateToSwitch != ControlState.none)
+        {
+            transform.position = eventData.position;
+            Controller.Instance.inputManager.onTouchingPos += PlaceAtTouch;
+        }
+            
     }
 
     private void PlaceAtTouch(Vector2 pPos)
     {
-        if (float.IsInfinity(pPos.x) || float.IsInfinity(pPos.y) )
+        if (float.IsInfinity(pPos.x) || float.IsInfinity(pPos.y))
             return;
         transform.position = pPos;
     }
-    
+
 
     public void OnPointerUp(PointerEventData eventData)
     {
