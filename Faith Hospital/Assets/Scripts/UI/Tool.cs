@@ -26,18 +26,21 @@ public class Tool : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
         activeTool = this;
         Controller.Instance.SwitchState(stateToSwitch);
 
-        transform.position = eventData.position;
-
-        Controller.Instance.inputManager.onTouchingPos += PlaceAtTouch;
+        if (stateToSwitch != ControlState.none)
+        {
+            transform.position = eventData.position;
+            Controller.Instance.inputManager.onTouchingPos += PlaceAtTouch;
+        }
+            
     }
 
     private void PlaceAtTouch(Vector2 pPos)
     {
-        if (float.IsInfinity(pPos.x) || float.IsInfinity(pPos.y) )
+        if (float.IsInfinity(pPos.x) || float.IsInfinity(pPos.y))
             return;
         transform.position = pPos;
     }
-    
+
 
     public void OnPointerUp(PointerEventData eventData)
     {
