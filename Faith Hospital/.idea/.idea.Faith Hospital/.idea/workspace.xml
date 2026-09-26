@@ -12,7 +12,8 @@
   <component name="ChangeListManager">
     <list default="true" id="006f48b2-230d-49c6-ad1f-c1054c25bbaa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Faith Hospital/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Faith Hospital/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/TouchInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/TouchInput.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/Trace.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/Trace.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Tool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Tool.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -134,7 +135,7 @@
       <workItem from="1790325487933" duration="502000" />
       <workItem from="1790326003634" duration="24722000" />
       <workItem from="1790428639718" duration="649000" />
-      <workItem from="1790430388740" duration="4416000" />
+      <workItem from="1790430388740" duration="5611000" />
     </task>
     <servers />
   </component>

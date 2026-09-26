@@ -9,23 +9,28 @@ public class Tool : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
     public static Tool activeTool;
     public Vector3 _originPos;
-
+    private RawImage _icon;
+    
     private void Start()
     {
         _originPos = transform.position;
+        _icon = GetComponent<RawImage>();
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        
         if (activeTool != null)
         {
+            activeTool._icon.raycastTarget = true;
             Controller.Instance.inputManager.onTouchingPos -= activeTool.PlaceAtTouch;
             activeTool.transform.position = activeTool._originPos;
         }
 
         activeTool = this;
         Controller.Instance.SwitchState(stateToSwitch);
-
+        _icon.raycastTarget = false;
+        
         if (stateToSwitch != ControlState.none)
         {
             transform.position = eventData.position;

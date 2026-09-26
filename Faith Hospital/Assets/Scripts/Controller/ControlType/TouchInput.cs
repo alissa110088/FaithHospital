@@ -39,7 +39,6 @@ public class TouchInput : State
         }
         else if (inputManager != null)
         {
-            Debug.Log("here");
             inputManager.onToucheStart -= TouchStarted;
             inputManager.onTouchingPos -= GetFirstPos;
             inputManager.onToucheEnd -= TouchEnded;
