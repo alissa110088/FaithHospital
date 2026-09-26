@@ -26,6 +26,11 @@ public class TouchInput : State
     {
         if (controlState == _state)
         {
+            if (inputManager != null)
+            {
+                return;
+            }
+
             _points = GetComponent<DrawShape>().points;
             inputManager = pInputManager;
             inputManager.onToucheStart += TouchStarted;
@@ -34,10 +39,12 @@ public class TouchInput : State
         }
         else if (inputManager != null)
         {
+            Debug.Log("here");
             inputManager.onToucheStart -= TouchStarted;
             inputManager.onTouchingPos -= GetFirstPos;
             inputManager.onToucheEnd -= TouchEnded;
             _points = null;
+            inputManager = null;
         }
     }
 
@@ -54,7 +61,7 @@ public class TouchInput : State
     
     private void GetFirstPos(Vector2 pPosition)
     {
-        if(!_touchStarted || _firtPos || float.IsInfinity(pPosition.x) || float.IsInfinity(pPosition.y))
+        if(!_touchStarted || _firtPos || float.IsInfinity(pPosition.x) || float.IsInfinity(pPosition.y) || _points.Count < 1)
             return;
         
         float distance = -Camera.main.transform.position.z;

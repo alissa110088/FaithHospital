@@ -8,7 +8,7 @@ public class Tool : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     [SerializeField] private ControlState stateToSwitch;
 
     public static Tool activeTool;
-    private Vector3 _originPos;
+    public Vector3 _originPos;
 
     private void Start()
     {
@@ -20,7 +20,7 @@ public class Tool : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
         if (activeTool != null)
         {
             Controller.Instance.inputManager.onTouchingPos -= activeTool.PlaceAtTouch;
-            activeTool.transform.position = _originPos;
+            activeTool.transform.position = activeTool._originPos;
         }
 
         activeTool = this;

@@ -21,10 +21,14 @@ public class Trace : State
     
     private void OnStart(InputManager pInputManager, ControlState controlState)
     {
+        _currentPoint = _points[1];
 
         if (controlState == _state)
         {
-            _currentPoint = _points[1];
+            if (inputManager != null)
+            {
+                return;
+            }
             inputManager = pInputManager;
 
             inputManager.onTouchingPos += OnTouchingScreen;

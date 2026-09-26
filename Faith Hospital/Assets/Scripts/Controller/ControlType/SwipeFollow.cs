@@ -44,6 +44,11 @@ public class SwipeFollow : State
     {
         if (controlState == _state)
         {
+            if (inputManager != null)
+            {
+                return;
+            }
+            
             inputManager = pInputManager;
             inputManager.onToucheStart += TouchStarted;
             inputManager.onToucheEnd += TouchEnded;
