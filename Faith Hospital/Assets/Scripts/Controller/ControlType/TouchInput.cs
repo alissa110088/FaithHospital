@@ -27,7 +27,6 @@ public class TouchInput : State
         if (controlState == _state)
         {
             _points = GetComponent<DrawShape>().points;
-            Debug.Log("HAHA");
             inputManager = pInputManager;
             inputManager.onToucheStart += TouchStarted;
             inputManager.onTouchingPos += GetFirstPos;
@@ -55,20 +54,24 @@ public class TouchInput : State
     
     private void GetFirstPos(Vector2 pPosition)
     {
-        if(!_touchStarted || _firtPos)
+        if(!_touchStarted || _firtPos || float.IsInfinity(pPosition.x) || float.IsInfinity(pPosition.y))
             return;
         
+        float distance = -Camera.main.transform.position.z;
+        
+        Vector3 worldPos3 = Camera.main.ScreenToWorldPoint(
+            new Vector3(pPosition.x, pPosition.y, distance)
+        );
+
         _firtPos = true;
 
         foreach (Vector2 pos in _points)
         {
-            if (CheckIfInRange(pPosition, pos))
+            if (CheckIfInRange(worldPos3, pos))
             {
                 _points.Remove(pos);
-                Debug.Log("TOUCHER");
                 if (_points.Count == 0)
                 {
-                    Debug.Log("FINIIT");
                 }
                 return;
             }

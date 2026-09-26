@@ -33,6 +33,8 @@ public class Tool : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
     private void PlaceAtTouch(Vector2 pPos)
     {
+        if (float.IsInfinity(pPos.x) || float.IsInfinity(pPos.y) )
+            return;
         transform.position = pPos;
     }
     
