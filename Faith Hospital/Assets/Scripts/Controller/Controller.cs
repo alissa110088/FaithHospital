@@ -11,7 +11,7 @@ public class Controller : MonoBehaviour
 
     public InputManager inputManager;
 
-    public static Action OnInputValidate; //TODO ENLEVER
+    public static Action<State> OnInputValidate; 
     public static Action OnInputNotValidate;
     public static Controller Instance { get; private set; }
 

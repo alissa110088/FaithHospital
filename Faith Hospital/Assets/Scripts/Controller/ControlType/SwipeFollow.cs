@@ -146,7 +146,7 @@ public class SwipeFollow : State
             if (_currentPoint == _points[^2])
             {
                 Debug.Log("VALIDATED");
-                Controller.OnInputValidate.Invoke();
+                Controller.OnInputValidate.Invoke(this);
                 _patternValidated = true;
             }
             else

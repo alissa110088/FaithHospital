@@ -119,7 +119,7 @@ public class Trace : State
         {
             if (_currentPoint == _points[^1])
             {
-                Controller.OnInputValidate.Invoke();
+                Controller.OnInputValidate.Invoke(this);
                 _patternValidated = true;
                 Debug.Log("finishhhh");
             }
