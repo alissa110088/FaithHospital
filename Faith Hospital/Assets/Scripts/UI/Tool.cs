@@ -8,7 +8,7 @@ public class Tool : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     [SerializeField] private ControlState stateToSwitch;
 
     public static Tool activeTool;
-    public Vector3 _originPos;
+    private Vector3 _originPos;
     private RawImage _icon;
     
     private void Start()

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Trace : State
 {
     [SerializeField] private float speedTrace = 0.75f;
-    
+
     private Vector2 _currentPos = Vector2.zero;
 
     private ControlState _state = ControlState.trace;
@@ -16,15 +16,42 @@ public class Trace : State
     private void OnEnable()
     {
         unlockState += OnStart;
-        _points = GetComponent<DrawShape>().points;
+
+        if (_drawShape == null)
+            return;
+
+        foreach (SpriteRenderer i in _drawShape.visualFeedBack)
+        {
+            i.enabled = true;
+        }
+    }
+
+    private void OnDisable()
+    {
+        DisableImage(this);
+        unlockState -= OnStart;
+        
+        if (inputManager != null)
+        {
+            inputManager.onTouchingPos -= OnTouchingScreen;
+            inputManager.onToucheStart -= OnTouchedScreen;
+
+            _currentPoint = Vector2.zero;
+            inputManager = null;
+        }
+    }
+
+    private void Start()
+    {
+        if (!_drawShape.isActiveAndEnabled)
+            return;
+        _points = _drawShape.points;
         transform.position = new Vector3(_points[0].x, _points[0].y, -1);
     }
 
+
     private void OnStart(InputManager pInputManager, ControlState controlState)
     {
-        if (_points.Count < 1)
-            _currentPoint = _points[1];
-
         if (controlState == _state)
         {
             if (inputManager != null)
@@ -36,7 +63,11 @@ public class Trace : State
 
             inputManager.onTouchingPos += OnTouchingScreen;
             inputManager.onToucheStart += OnTouchedScreen;
+            if (!_drawShape.isActiveAndEnabled)
+                return;
 
+            if (_points.Count < 1)
+                _currentPoint = _points[1];
             transform.position = new Vector3(_points[0].x, _points[0].y, -1);
         }
         else if (inputManager != null)
@@ -56,6 +87,7 @@ public class Trace : State
         {
             inputManager.onTouchingPos -= OnTouchingScnreen;
             inputManager.onToucheStart -= OnTouchedScreen;
+            inputManager = null;
         }
     }
 
@@ -75,7 +107,8 @@ public class Trace : State
 
     private void OnTouchingScnreen(Vector2 pPosition)
     {
-        if (_patternValidated || float.IsInfinity(pPosition.x) || float.IsInfinity(pPosition.y))
+        if (_patternValidated || float.IsInfinity(pPosition.x) || float.IsInfinity(pPosition.y) ||
+            !_drawShape.isActiveAndEnabled)
             return;
 
         float distance = -Camera.main.transform.position.z;
@@ -135,5 +168,16 @@ public class Trace : State
             .normalized;
         Vector3 dirV3 = new Vector3(direction.x, direction.y, 0f);
         transform.position += dirV3 * Time.deltaTime * speedTrace;
+    }
+
+    private void DisableImage(State state)
+    {
+        if (state != this)
+            return;
+
+        foreach (SpriteRenderer i in _drawShape.visualFeedBack)
+        {
+            i.enabled = false;
+        }
     }
 }

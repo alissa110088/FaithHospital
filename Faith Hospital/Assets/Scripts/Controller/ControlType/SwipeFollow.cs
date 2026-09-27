@@ -28,16 +28,33 @@ public class SwipeFollow : State
     private void OnEnable()
     {
         unlockState += OnStart;
+        if (_drawShape == null)
+            return;
+        
+        foreach (SpriteRenderer i in _drawShape.visualFeedBack)
+        {
+            i.enabled = true;
+        }
     }
 
     private void OnDisable()
     {
+        unlockState -= OnStart;
         if (inputManager != null)
         {
             inputManager.onToucheStart -= TouchStarted;
             inputManager.onToucheEnd -= TouchEnded;
             inputManager.onTouchingPos -= OnSwipeStarted;
+            
+            inputManager = null;
         }
+        DisableImage(this);
+    }
+
+    private void Start()
+    {
+        Controller.OnInputValidate += DisableImage;
+
     }
 
     private void OnStart(InputManager pInputManager, ControlState controlState)
@@ -48,19 +65,26 @@ public class SwipeFollow : State
             {
                 return;
             }
-            
+
+            Debug.Log("ON START");
+
             inputManager = pInputManager;
             inputManager.onToucheStart += TouchStarted;
             inputManager.onToucheEnd += TouchEnded;
             inputManager.onTouchingPos += OnSwipeStarted;
-            _points = GetComponent<DrawShape>().points;
-            ;
+
+            if (_drawShape.isActiveAndEnabled)
+                _points = _drawShape.points;
+
+
+            TouchStarted();
         }
         else if (inputManager != null)
         {
             inputManager.onToucheStart -= TouchStarted;
             inputManager.onToucheEnd -= TouchEnded;
             inputManager.onTouchingPos -= OnSwipeStarted;
+            inputManager = null;
             _points = null;
         }
     }
@@ -68,12 +92,19 @@ public class SwipeFollow : State
 
     public void TouchStarted()
     {
+        Debug.Log("HUH");
+        if (!_drawShape.isActiveAndEnabled)
+            return;
+
+        Debug.Log("WHAT");
         _currentPoint = _points[0];
         _touching = true;
     }
 
     private void TouchEnded()
     {
+        if (!_drawShape.isActiveAndEnabled)
+            return;
         _touching = false;
         _currentPoint = _points[0];
     }
@@ -172,6 +203,17 @@ public class SwipeFollow : State
             Controller.OnInputNotValidate.Invoke();
             Debug.Log("NOT VALIDATED " + sameDirection);
             _currentErrorMargin++;
+        }
+    }
+
+    private void DisableImage(State state)
+    {
+        if (state != this)
+            return;
+
+        foreach (SpriteRenderer i in _drawShape.visualFeedBack)
+        {
+            i.enabled = false;
         }
     }
 }

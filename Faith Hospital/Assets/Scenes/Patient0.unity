@@ -129,8 +129,8 @@ GameObject:
   m_Component:
   - component: {fileID: 42231260}
   - component: {fileID: 42231263}
-  - component: {fileID: 42231262}
   - component: {fileID: 42231261}
+  - component: {fileID: 42231264}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -170,37 +170,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tool
   stateToSwitch: 3
-  _originPos: {x: 0, y: 0, z: 0}
---- !u!114 &42231262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 42231259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.3084782, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fea4bd4d5cc294ea59798fa81207b6d9, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &42231263
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -209,6 +178,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 42231259}
   m_CullTransparentMesh: 1
+--- !u!114 &42231264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42231259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: 0525793900d728a42936791a8a6de63b, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &73574250
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,7 +453,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 509835989}
-  - component: {fileID: 509835993}
   - component: {fileID: 509835992}
   - component: {fileID: 509835991}
   - component: {fileID: 509835990}
@@ -535,75 +530,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonDeactivates
   stateToSwitch: 0
-  _originPos: {x: 0, y: 0, z: 0}
---- !u!114 &509835993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 509835988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 509835990}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1182383974}
-        m_TargetAssemblyTypeName: Controller, Assembly-CSharp
-        m_MethodName: OnToolSelected
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 509835988}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 509835992}
-        m_TargetAssemblyTypeName: ButtonDeactivates, Assembly-CSharp
-        m_MethodName: OnClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &510159132
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,11 +543,11 @@ GameObject:
   - component: {fileID: 510159133}
   m_Layer: 0
   m_Name: Trace
-  m_TagString: Untagged
+  m_TagString: Layer2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &510159133
 SpriteRenderer:
   serializedVersion: 2
@@ -694,12 +620,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
   _stateControl: 1
+  visualFeedBack:
+  - {fileID: 510159133}
   points:
   - {x: -1.1436174, y: 4.833857}
   - {x: 0.66445696, y: 3.862355}
   - {x: -0.98170036, y: 2.9987967}
   - {x: 0.42158127, y: 2.5130458}
   - {x: -0.90074176, y: 1.6225016}
+  _state: {fileID: 0}
+  _nextLayer: 1
 --- !u!4 &510159136
 Transform:
   m_ObjectHideFlags: 0
@@ -1154,7 +1084,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonDeactivates
   stateToSwitch: 1
-  _originPos: {x: 0, y: 0, z: 0}
 --- !u!114 &850542570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1411,11 +1340,11 @@ GameObject:
   - component: {fileID: 957443504}
   m_Layer: 0
   m_Name: Numbers (1)
-  m_TagString: Untagged
+  m_TagString: Layer3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &957443504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1429,10 +1358,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
   _stateControl: 2
+  visualFeedBack:
+  - {fileID: 1949812833}
+  - {fileID: 2044862205}
+  - {fileID: 1756015989}
   points:
   - {x: -0.8664266, y: 3.8444343}
   - {x: -1.5656171, y: 1.3273488}
   - {x: 1.5807399, y: 2.3761344}
+  _state: {fileID: 0}
+  _nextLayer: 0
 --- !u!4 &957443505
 Transform:
   m_ObjectHideFlags: 0
@@ -1796,6 +1731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f0066e537d9da4fb19570756b0318c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Grab
+  _drawShape: {fileID: 0}
 --- !u!114 &1182383973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1808,10 +1744,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb84d34d39d6eb43b7ff508e62c713e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpdateVisual
-  _object: {fileID: 318345143}
-  _object2: {fileID: 2063946730}
-  trace: {fileID: 510159132}
-  arrow: {fileID: 0}
 --- !u!114 &1182383974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1835,6 +1767,51 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.94272, y: 0, z: -7.04919}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1288811058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1288811060}
+  - component: {fileID: 1288811059}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1288811059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288811058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33cab71c98c64c14c90dc1fe63567ed8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PatientManager
+  _currentLayer: 1
+--- !u!4 &1288811060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288811058}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.02766, y: 2.11081, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2211,7 +2188,7 @@ GameObject:
   - component: {fileID: 1489426569}
   m_Layer: 0
   m_Name: Skin
-  m_TagString: Untagged
+  m_TagString: Layer1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2248,9 +2225,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
   _stateControl: 0
+  visualFeedBack:
+  - {fileID: 789862795}
+  - {fileID: 73574252}
   points:
   - {x: -0.17, y: 5.74}
   - {x: -0.12, y: -1.13}
+  _state: {fileID: 0}
+  _nextLayer: 2
 --- !u!114 &1489426570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2263,11 +2245,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd1df34e2d4aca746b4ef41bbb4de61e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Skin
-  _skin2: {fileID: 0}
-  _skin1: {fileID: 0}
-  _visualAid: []
-  _swipeFollow: {fileID: 0}
-  _trace: {fileID: 0}
+  _skin2: {fileID: 318345143}
+  _skin1: {fileID: 2063946730}
+  _swipeFollow: {fileID: 1489426569}
+  _trace: {fileID: 510159134}
 --- !u!1 &1515676963
 GameObject:
   m_ObjectHideFlags: 0
@@ -2398,7 +2379,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonDeactivates
   stateToSwitch: 2
-  _originPos: {x: 0, y: 0, z: 0}
 --- !u!114 &1549714958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2834,3 +2814,4 @@ SceneRoots:
   - {fileID: 957443505}
   - {fileID: 839156475}
   - {fileID: 685081507}
+  - {fileID: 1288811060}

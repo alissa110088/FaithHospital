@@ -8,6 +8,9 @@ public class PatientManager : MonoBehaviour
     void Start()
     {
         State[] lObjects = FindObjectsByType<State>(FindObjectsSortMode.None);
+        _layers.Add(new List<State>());
+        _layers.Add(new List<State>());
+        _layers.Add(new List<State>());
         foreach (State lObject in lObjects)
         {
             switch (lObject.tag)
@@ -23,6 +26,7 @@ public class PatientManager : MonoBehaviour
                    break;
             }
         }
+        UpdateLayers();
         
         Controller.OnInputValidate += UnlockNextLayer;
     }
@@ -40,7 +44,7 @@ public class PatientManager : MonoBehaviour
 
     private void UnlockNextLayer(State _state)
     {
-        _currentLayer = _state._nextLayer; //TODO mettre dans drawshape??????!!?!?!
+        _currentLayer = _state._drawShape._nextLayer; 
         UpdateLayers();
     }
 }

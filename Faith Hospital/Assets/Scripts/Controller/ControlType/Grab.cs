@@ -16,11 +16,14 @@ public class Grab : State
 
     private void OnDisable()
     {
+        unlockState -= OnStart;
         if (inputManager != null)
         {
             inputManager.onToucheStart -= TouchStarted;
             inputManager.onTouchingPos -= GetFirstPos;
             inputManager.onToucheEnd -= TouchEnded;
+            inputManager = null;
+            
         }
     }
 
@@ -43,6 +46,7 @@ public class Grab : State
             inputManager.onToucheStart -= TouchStarted;
             inputManager.onTouchingPos -= GetFirstPos;
             inputManager.onToucheEnd -= TouchEnded;
+            inputManager = null;
         }
     }
 

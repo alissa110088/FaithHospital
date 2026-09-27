@@ -1,25 +1,33 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DrawShape : MonoBehaviour
 {
     [SerializeField] ControlState _stateControl;
+    public SpriteRenderer[] visualFeedBack;
     public List<Vector2> points;
-
+    [HideInInspector] public State _state;
+    public int _nextLayer;
+    
     private void OnEnable()
     {
         switch (_stateControl)
         {
             case ControlState.SwipeFollow:
-                gameObject.AddComponent<SwipeFollow>();
+                _state = gameObject.AddComponent<SwipeFollow>();
+                _state._drawShape = this;
                 break;
             case ControlState.trace:
-                gameObject.AddComponent<Trace>();
+                _state = gameObject.AddComponent<Trace>();
+                _state._drawShape = this;
                 break;
             case ControlState.touch:
-                gameObject.AddComponent<TouchInput>();
+                _state = gameObject.AddComponent<TouchInput>();
+                _state._drawShape = this;
                 break;
         }
+
     }
     private void OnDrawGizmos()
     {
