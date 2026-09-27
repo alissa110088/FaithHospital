@@ -53,7 +53,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "Feature/VictoryCondition",
+    "git-widget-placeholder": "Feature/Patient0",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -134,7 +134,7 @@
       <workItem from="1790326003634" duration="24722000" />
       <workItem from="1790428639718" duration="649000" />
       <workItem from="1790430388740" duration="5611000" />
-      <workItem from="1790515530879" duration="9127000" />
+      <workItem from="1790515530879" duration="13237000" />
     </task>
     <servers />
   </component>
