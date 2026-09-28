@@ -163,7 +163,6 @@ public class Trace : State
             }
         }
 
-        Debug.Log("MOVING");
         Vector2 direction = new Vector2(_currentPoint.x - transform.position.x, _currentPoint.y - transform.position.y)
             .normalized;
         Vector3 dirV3 = new Vector3(direction.x, direction.y, 0f);

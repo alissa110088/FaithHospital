@@ -97,7 +97,7 @@ public class TouchInput : State
         {
             if (CheckIfInRange(worldPos3, pos))
             {
-                Debug.Log("WTF");
+                Controller.OnInputStepFinished.Invoke(this, pPosition);
                 _points.Remove(pos);
                 if (_points.Count == 0)
                 {

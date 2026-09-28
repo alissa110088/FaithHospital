@@ -11,11 +11,12 @@ TagManager:
   - Layer2
   - Layer3
   - Attrapable
+  - Cotes
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Attrapable
   - Water
   - UI
   - 

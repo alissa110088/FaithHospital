@@ -7,7 +7,8 @@ public class Grab : State
     private bool _touchStarted;
     private bool _firtPos;
     private GameObject _grabbed;
-    private Rigidbody rb;
+    private Rigidbody _rb;
+    private Vector3 _targetPos;
 
     private void OnEnable()
     {
@@ -27,6 +28,14 @@ public class Grab : State
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (_rb == null) return;
+
+        Vector3 toTarget = _targetPos - _rb.position;
+        _rb.linearVelocity = toTarget * 4f;  
+    }
+    
     private void OnStart(InputManager pInputManager, ControlState controlState)
     {
         if (controlState == _state)
@@ -60,10 +69,11 @@ public class Grab : State
         _touchStarted = false;
         _firtPos = false;
         _grabbed = null;
-        if (rb != null)
+        if (_rb != null)
         {
-            rb.isKinematic = false;
-            rb = null;
+            _rb.useGravity = true;
+            _rb.linearDamping = 0f;          
+            _rb = null;
         }
         
     }
@@ -80,14 +90,14 @@ public class Grab : State
             {
                 GameObject clicked = hit.collider.gameObject;
 
-                if (!clicked.CompareTag("Attrapable"))
+                if (clicked.layer != LayerMask.NameToLayer("Attrapable"))
                     return;
                 
                 _grabbed = clicked;
-                rb = _grabbed.GetComponent<Rigidbody>();
-                rb.isKinematic = true;
-                _firtPos = true;
-            }
+                _rb = _grabbed.GetComponent<Rigidbody>();
+                _rb.useGravity = false;       
+                _rb.linearDamping = 10f;    
+                _firtPos = true; }
         }
         
         if(_grabbed == null)
@@ -99,8 +109,7 @@ public class Grab : State
             new Vector3(pPosition.x, pPosition.y, distance)
         );
 
-
-        _grabbed.transform.position = Vector3.Lerp(_grabbed.transform.position, new Vector3(worldPos3.x, worldPos3.y, -4f),
-            Time.deltaTime * 10);
+        _targetPos = new Vector3(worldPos3.x, worldPos3.y, -4f);
+        _rb.MovePosition( Vector3.Lerp(_grabbed.transform.position, new Vector3(worldPos3.x, worldPos3.y, -4f), Time.deltaTime * 5));
     }
 }

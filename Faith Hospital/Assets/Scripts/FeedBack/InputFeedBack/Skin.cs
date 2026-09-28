@@ -29,9 +29,9 @@ public class Skin : Organs
 
     private void OpenSkin(State _state)
     {
-        _skin2.transform.DOMoveX(_skin2.transform.position.x - 0.3f, 0.5f);
+        _skin2.transform.DOMoveX(_skin2.transform.position.x - 3f, 0.5f);
 
-        _skin1.transform.DOMoveX(_skin1.transform.position.x + 0.3f, 0.5f);
+        _skin1.transform.DOMoveX(_skin1.transform.position.x + 3f, 0.5f);
 
         _state.enabled = false;
     }
