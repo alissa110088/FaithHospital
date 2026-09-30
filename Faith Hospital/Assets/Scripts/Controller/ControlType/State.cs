@@ -20,7 +20,7 @@ public abstract class State : MonoBehaviour
 
     protected List<Vector2> _points;
 
-    protected float _range = 0.5f; 
+    protected float _range = 1f; 
     
     
     protected bool CheckIfInRange(Vector3 pPosition, Vector3 pPoint)

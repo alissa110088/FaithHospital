@@ -93,14 +93,21 @@ public class TouchInput : State
 
         _firtPos = true;
 
+        int[] countPoints = new int[_points.Count];
+        
         foreach (Vector2 pos in _points)
         {
             if (CheckIfInRange(worldPos3, pos))
             {
                 Controller.OnInputStepFinished.Invoke(this, pPosition);
-                _points.Remove(pos);
-                if (_points.Count == 0)
+                countPoints[_points.IndexOf(pos)]++;
+                //_points.Remove(pos);
+                foreach (int value in countPoints)
                 {
+                    if (value == 0)
+                    {
+                        return;
+                    }
                 }
 
                 return;
