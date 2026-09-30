@@ -4,7 +4,24 @@ using UnityEngine;
 public class PatientManager : MonoBehaviour
 {
     private List<List<State>> _layers =  new List<List<State>>();
-    [SerializeField] private int _currentLayer = 1;
+    public int _currentLayer = 1;
+    
+    public static PatientManager Instance { get; private set; }
+    void Awake()
+    {
+        if (Instance != null)
+        {
+            if (Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            return;
+        }
+
+        Instance = this;
+    }
     void Start()
     {
         State[] lObjects = FindObjectsByType<State>(FindObjectsSortMode.None);
@@ -23,6 +40,18 @@ public class PatientManager : MonoBehaviour
                    break;
                case "Layer3":
                    _layers[2].Add(lObject);
+                   break;
+               case "Layer4":
+                   _layers[3].Add(lObject);
+                   break;
+               case "Layer5":
+                   _layers[4].Add(lObject);
+                   break;
+               case "Layer6":
+                   _layers[5].Add(lObject);
+                   break;
+               case "layer7":
+                   _layers[6].Add(lObject);
                    break;
             }
         }

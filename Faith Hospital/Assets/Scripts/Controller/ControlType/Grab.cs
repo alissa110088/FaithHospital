@@ -90,7 +90,8 @@ public class Grab : State
             {
                 GameObject clicked = hit.collider.gameObject;
 
-                if (clicked.layer != LayerMask.NameToLayer("Attrapable"))
+                //hardcoder c moche
+                if (clicked.layer != LayerMask.NameToLayer("Attrapable")|| clicked.tag != "Layer" + PatientManager.Instance._currentLayer)
                     return;
                 
                 _grabbed = clicked;

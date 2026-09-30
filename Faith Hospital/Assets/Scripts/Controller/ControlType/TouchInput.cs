@@ -6,7 +6,7 @@ public class TouchInput : State
 
     private bool _touchStarted;
     private bool _firtPos;
-
+    int[] countPoints;
     private void OnEnable()
     {
         unlockState += OnStart;
@@ -57,6 +57,7 @@ public class TouchInput : State
                 return;
 
             _points = _drawShape.points;
+            countPoints = new int[_points.Count];
         }
         else if (inputManager != null)
         {
@@ -93,7 +94,7 @@ public class TouchInput : State
 
         _firtPos = true;
 
-        int[] countPoints = new int[_points.Count];
+        
         
         foreach (Vector2 pos in _points)
         {
@@ -109,7 +110,7 @@ public class TouchInput : State
                         return;
                     }
                 }
-
+                Controller.OnInputValidate.Invoke(this);
                 return;
             }
         }
