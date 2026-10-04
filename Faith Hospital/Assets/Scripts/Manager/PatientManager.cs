@@ -5,7 +5,9 @@ public class PatientManager : MonoBehaviour
 {
     private List<List<State>> _layers =  new List<List<State>>();
     public int _currentLayer = 1;
-    
+
+    [SerializeField] private OrgansSO _organsToPut;
+    [SerializeField] private OrganCollector _organCollector;
     public static PatientManager Instance { get; private set; }
     void Awake()
     {
@@ -68,6 +70,16 @@ public class PatientManager : MonoBehaviour
             foreach (State lObject in _layers[i])
             {
                 lObject.enabled = i == _currentLayer -1;
+            }
+        }
+
+        foreach (OrganLayerPairing organs in _organsToPut.organLayerPairings)
+        {
+            if (organs.layer == _currentLayer)
+            {
+                Instantiate(organs.organ, _organCollector.transform.position, Quaternion.identity);
+                _organCollector.OpenWithOrgan(organs.organ);
+                return;
             }
         }
     }

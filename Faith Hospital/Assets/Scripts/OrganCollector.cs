@@ -27,4 +27,12 @@ public class OrganCollector : MonoBehaviour
         transform.DOMoveX(transform.position.x + 7.5f, 0.5f);
         pOrgan.DOMoveX(transform.position.x + 7.5f, 0.5f);
     }
+
+    public void OpenWithOrgan(GameObject pOrgan)
+    {
+        Rigidbody rb = pOrgan.GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+        transform.DOMoveX(transform.position.x + 7.5f, 0.5f);
+        pOrgan.transform.DOMoveX(transform.position.x + 7.5f, 0.5f).OnComplete(() => { rb.isKinematic = false; });
+    }
 }
