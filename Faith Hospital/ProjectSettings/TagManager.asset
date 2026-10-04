@@ -12,6 +12,10 @@ TagManager:
   - Layer3
   - Attrapable
   - Cotes
+  - Layer4
+  - Layer5
+  - Layer6
+  - Layer7
   layers:
   - Default
   - TransparentFX

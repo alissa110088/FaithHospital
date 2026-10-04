@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Grab : State
 {
+    [SerializeField] private OrganCollector _organCollector;
+    
     private ControlState _state = ControlState.none;
 
     private bool _touchStarted;
@@ -98,7 +100,9 @@ public class Grab : State
                 _rb = _grabbed.GetComponent<Rigidbody>();
                 _rb.useGravity = false;       
                 _rb.linearDamping = 10f;    
-                _firtPos = true; }
+                _firtPos = true; 
+                _organCollector.Appear();
+            }
         }
         
         if(_grabbed == null)

@@ -2718,7 +2718,7 @@ GameObject:
   - component: {fileID: 1326820124}
   m_Layer: 3
   m_Name: Sphere
-  m_TagString: Attrapable
+  m_TagString: Layer4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3549,7 +3549,7 @@ MonoBehaviour:
   - {x: -0.85140324, y: 3.3416352}
   - {x: -1.007858, y: 4.7011385}
   _state: {fileID: 0}
-  _nextLayer: 0
+  _nextLayer: 4
 --- !u!114 &1984483335
 MonoBehaviour:
   m_ObjectHideFlags: 0

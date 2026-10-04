@@ -58,6 +58,7 @@ public class PatientManager : MonoBehaviour
         UpdateLayers();
         
         Controller.OnInputValidate += UnlockNextLayer;
+        Controller.OnInputValidateOrgan += UnlockNextLayer;
     }
 
     private void UpdateLayers()
@@ -74,6 +75,12 @@ public class PatientManager : MonoBehaviour
     private void UnlockNextLayer(State _state)
     {
         _currentLayer = _state._drawShape._nextLayer; 
+        UpdateLayers();
+    }
+    
+    private void UnlockNextLayer(int pNextLayer)
+    {
+        _currentLayer = pNextLayer; 
         UpdateLayers();
     }
 }

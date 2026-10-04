@@ -6,7 +6,7 @@ public class TouchInput : State
 
     private bool _touchStarted;
     private bool _firtPos;
-    int[] countPoints;
+    public int[] countPoints;
     private void OnEnable()
     {
         unlockState += OnStart;
@@ -93,27 +93,25 @@ public class TouchInput : State
         );
 
         _firtPos = true;
-
         
-        
-        foreach (Vector2 pos in _points)
+        int hitIndex = -1;
+        for (int i = 0; i < _points.Count; i++)
         {
-            if (CheckIfInRange(worldPos3, pos))
-            {
-                Controller.OnInputStepFinished.Invoke(this, pPosition);
-                countPoints[_points.IndexOf(pos)]++;
-                //_points.Remove(pos);
-                foreach (int value in countPoints)
-                {
-                    if (value == 0)
-                    {
-                        return;
-                    }
-                }
-                Controller.OnInputValidate.Invoke(this);
-                return;
-            }
+            if (!CheckIfInRange(worldPos3, _points[i])) continue;
+
+            if (countPoints[i] == 0) { hitIndex = i; break; } 
+            if (hitIndex == -1) hitIndex = i;                 
         }
+
+        if (hitIndex == -1) return;
+
+        Controller.OnInputStepFinished.Invoke(this, pPosition);
+        countPoints[hitIndex]++;
+
+        foreach (int value in countPoints)
+            if (value == 0) return;
+
+        Controller.OnInputValidate.Invoke(this);
     }
 
     private void DisableImage(State state)

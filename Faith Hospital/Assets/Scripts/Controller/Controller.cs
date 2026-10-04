@@ -12,6 +12,7 @@ public class Controller : MonoBehaviour
     public InputManager inputManager;
 
     public static Action<State> OnInputValidate; 
+    public static Action<int> OnInputValidateOrgan; 
     public static Action OnInputNotValidate;
     public static Action<State, Vector2> OnInputStepFinished;
     public static Controller Instance { get; private set; }
