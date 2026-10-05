@@ -1,9 +1,14 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class OrganCollector : MonoBehaviour
 {
+    public bool isNew = false;
+
     public void Appear()
     {
         transform.DOMoveX(transform.position.x - 7.5f, 0.5f);
@@ -11,28 +16,31 @@ public class OrganCollector : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Attrapable"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Attrapable") && isNew == false)
         {
-            Debug.Log("detetcted");
+            Debug.Log("detetcted " + other.gameObject.name);
             NextLayerOrgan _nextLayer = other.gameObject.GetComponent<NextLayerOrgan>();
-            Controller.OnInputValidateOrgan.Invoke(_nextLayer.nextLayer);
             Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
             rb.isKinematic = true;
-            Close(other.transform);
+            StartCoroutine(Close(other.transform, _nextLayer));
         }
     }
 
-    private void Close(Transform pOrgan)
+    private IEnumerator Close(Transform pOrgan, NextLayerOrgan pNextLayer)
     {
         transform.DOMoveX(transform.position.x + 7.5f, 0.5f);
         pOrgan.DOMoveX(transform.position.x + 7.5f, 0.5f);
+        Destroy(pOrgan.gameObject);
+        yield return new WaitForSeconds(0.5f);
+        Controller.OnInputValidateOrgan.Invoke(pNextLayer.nextLayer);
     }
 
     public void OpenWithOrgan(GameObject pOrgan)
     {
         Rigidbody rb = pOrgan.GetComponent<Rigidbody>();
         rb.isKinematic = true;
-        transform.DOMoveX(transform.position.x + 7.5f, 0.5f);
-        pOrgan.transform.DOMoveX(transform.position.x + 7.5f, 0.5f).OnComplete(() => { rb.isKinematic = false; });
+        float targetX = transform.position.x - 7.5f;
+        transform.DOMoveX(targetX, 0.5f);
+        pOrgan.transform.DOMoveX(targetX, 0.5f).OnComplete(() => { rb.isKinematic = false; });
     }
 }

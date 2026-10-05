@@ -45,8 +45,6 @@ public class Controller : MonoBehaviour
     public void SwitchState(ControlState pState)
     {
         _currentState = pState;
-
-
         State.unlockState.Invoke(inputManager, pState);
         
     }

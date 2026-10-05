@@ -84,12 +84,13 @@ public class Grab : State
     {
         if (!_touchStarted || float.IsInfinity(pPosition.x) || float.IsInfinity(pPosition.y))
             return;
-
         if (!_firtPos)
         {
+            
             Ray ray = Camera.main.ScreenPointToRay(pPosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
+                
                 GameObject clicked = hit.collider.gameObject;
 
                 //hardcoder c moche

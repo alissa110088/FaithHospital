@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a8773e93c068f40ac9d9436ecf22c3, type: 3}
   m_Name: test
   m_EditorClassIdentifier: Assembly-CSharp::OrgansSO
-  organLayerPairings: []
+  organLayerPairings:
+  - layer: 5
+    Nextlayer: 1
+    organ: {fileID: 7030554108396703288, guid: 261293806ba327a479c012b01be4fd6f, type: 3}

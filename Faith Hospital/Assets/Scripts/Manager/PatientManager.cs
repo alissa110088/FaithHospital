@@ -30,6 +30,11 @@ public class PatientManager : MonoBehaviour
         _layers.Add(new List<State>());
         _layers.Add(new List<State>());
         _layers.Add(new List<State>());
+        _layers.Add(new List<State>());
+        _layers.Add(new List<State>());
+        _layers.Add(new List<State>());
+        _layers.Add(new List<State>());
+        _layers.Add(new List<State>());
         foreach (State lObject in lObjects)
         {
             switch (lObject.tag)
@@ -77,11 +82,16 @@ public class PatientManager : MonoBehaviour
         {
             if (organs.layer == _currentLayer)
             {
-                Instantiate(organs.organ, _organCollector.transform.position, Quaternion.identity);
-                _organCollector.OpenWithOrgan(organs.organ);
+                Vector3 startPos = new Vector3(_organCollector.transform.position.x, _organCollector.transform.position.y, _organCollector.transform.position.z - 2f);
+                GameObject organ = Instantiate(organs.organ, startPos, Quaternion.identity);
+                organ.tag = "Layer" + _currentLayer;
+                _organCollector.isNew = true;
+                _organCollector.OpenWithOrgan(organ);
                 return;
             }
         }
+
+        _organCollector.isNew = false;
     }
 
     private void UnlockNextLayer(State _state)
