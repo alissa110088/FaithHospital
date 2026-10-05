@@ -3,43 +3,41 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlaceOrgan : State
+public class OrganMagnet: MonoBehaviour
 {
+    [SerializeField] private string _organeName;
     private GameObject _gameObjectToMove;
-    private float _timer;
-    private List<GameObject> placedObjects = new List<GameObject>();
-    private bool stopLerp;
+    private Coroutine _lerpRoutine;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Attrapable"))
+        if (other.gameObject.layer != LayerMask.NameToLayer("Attrapable")) return;
+        if (_lerpRoutine != null) return; 
+
+        _gameObjectToMove = other.gameObject;
+
+        if (_gameObjectToMove.TryGetComponent(out Rigidbody rb))
         {
-            _gameObjectToMove = other.gameObject;
-            _timer = 0;
-            StartCoroutine(lerpOrgan());
+            rb.linearVelocity = Vector3.zero; 
+            rb.useGravity = false;
         }
+
+        _lerpRoutine = StartCoroutine(LerpOrgan());
     }
 
-    private void Update()
+    private IEnumerator LerpOrgan()
     {
-        _timer += Time.deltaTime;
-        if (_timer > 3)
-        {
-            _gameObjectToMove = null;
-        }
-    }
+        Vector3 target = new Vector3(transform.position.x
+            , transform.position.y, 2.1f);
+        Transform t = _gameObjectToMove.transform;
 
-    private IEnumerator lerpOrgan()
-    {
-        while (true)
+        while (Vector3.Distance(t.position, target) > 0.01f)
         {
-            _gameObjectToMove.transform.position = Vector3.Lerp(_gameObjectToMove.transform.position,
-                        _drawShape.points[0], Time.deltaTime * 10);
-                    yield return new WaitForEndOfFrame();
-            if(Vector3.Distance(_gameObjectToMove.transform.position, _drawShape.points[0]) < 1f)
-                yield break;
+            t.position = Vector3.MoveTowards(t.position, target, 10f * Time.deltaTime);
+            yield return null;
         }
-        
-        
+
+        t.position = target;
+        _lerpRoutine = null;
     }
 }

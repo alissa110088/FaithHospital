@@ -19,20 +19,20 @@ public class OrganCollector : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Attrapable") && isNew == false)
         {
             Debug.Log("detetcted " + other.gameObject.name);
-            NextLayerOrgan _nextLayer = other.gameObject.GetComponent<NextLayerOrgan>();
+            Organ _nextLayer = other.gameObject.GetComponent<Organ>();
             Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
             rb.isKinematic = true;
             StartCoroutine(Close(other.transform, _nextLayer));
         }
     }
 
-    private IEnumerator Close(Transform pOrgan, NextLayerOrgan pNextLayer)
+    private IEnumerator Close(Transform pOrgan, Organ p)
     {
         transform.DOMoveX(transform.position.x + 7.5f, 0.5f);
         pOrgan.DOMoveX(transform.position.x + 7.5f, 0.5f);
         Destroy(pOrgan.gameObject);
         yield return new WaitForSeconds(0.5f);
-        Controller.OnInputValidateOrgan.Invoke(pNextLayer.nextLayer);
+        Controller.OnInputValidateOrgan.Invoke(p.nextLayer);
     }
 
     public void OpenWithOrgan(GameObject pOrgan)

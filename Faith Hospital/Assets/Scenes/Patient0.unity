@@ -242,8 +242,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 38865452}
-  - component: {fileID: 38865451}
   - component: {fileID: 38865450}
+  - component: {fileID: 38865453}
   m_Layer: 2
   m_Name: CoeurPosition
   m_TagString: Layer5
@@ -272,24 +272,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.549974, y: 1.7259775, z: 1}
   m_Center: {x: -0.27498698, y: 0.032331407, z: 0}
---- !u!114 &38865451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 38865449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c09c0c6f448b01e4da2e7cbe2896a6a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DrawShape
-  _stateControl: 3
-  visualFeedBack: []
-  points:
-  - {x: 0.13552855, y: 3.4206138}
-  _state: {fileID: 0}
-  _nextLayer: 5
 --- !u!4 &38865452
 Transform:
   m_ObjectHideFlags: 0
@@ -305,6 +287,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &38865453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38865449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4deb5730895058f4ca2db6e255d709d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaceOrgane
+  _organeName: 
 --- !u!1 &42231259
 GameObject:
   m_ObjectHideFlags: 0

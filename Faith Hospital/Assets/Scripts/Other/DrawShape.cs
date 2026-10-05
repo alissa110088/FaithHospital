@@ -26,10 +26,6 @@ public class DrawShape : MonoBehaviour
                 _state = gameObject.AddComponent<TouchInput>();
                 _state._drawShape = this;
                 break;
-            case ControlState.place:
-                _state = gameObject.AddComponent<PlaceOrgan>();
-                _state._drawShape = this;
-                break;
         }
 
     }
