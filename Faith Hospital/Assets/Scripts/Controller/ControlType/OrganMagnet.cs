@@ -36,7 +36,16 @@ public class OrganMagnet: MonoBehaviour
             t.position = Vector3.MoveTowards(t.position, target, 10f * Time.deltaTime);
             yield return null;
         }
-
+        if (_gameObjectToMove.TryGetComponent(out OrganPickUp organ))
+        {
+            if (organ.newOrgan)
+            {
+                Debug.Log("here");
+                Controller.OnInputValidateOrgan.Invoke(organ.nextLayer);
+                organ.newOrgan = false;
+            }
+        }
+        
         t.position = target;
         _lerpRoutine = null;
     }

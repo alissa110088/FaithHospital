@@ -19,14 +19,14 @@ public class OrganCollector : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Attrapable") && isNew == false)
         {
             Debug.Log("detetcted " + other.gameObject.name);
-            Organ _nextLayer = other.gameObject.GetComponent<Organ>();
+            OrganPickUp _nextLayer = other.gameObject.GetComponent<OrganPickUp>();
             Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
             rb.isKinematic = true;
             StartCoroutine(Close(other.transform, _nextLayer));
         }
     }
 
-    private IEnumerator Close(Transform pOrgan, Organ p)
+    private IEnumerator Close(Transform pOrgan, OrganPickUp p)
     {
         transform.DOMoveX(transform.position.x + 7.5f, 0.5f);
         pOrgan.DOMoveX(transform.position.x + 7.5f, 0.5f);

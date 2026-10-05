@@ -13,5 +13,5 @@ public class OrganLayerPairing
 {
     public int layer;
     public int Nextlayer;
-    public GameObject organ;
+    public OrganPickUp organPickUp;
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Organ : MonoBehaviour
+public class OrganPickUp : MonoBehaviour
 {
     public int nextLayer;
     public bool newOrgan;

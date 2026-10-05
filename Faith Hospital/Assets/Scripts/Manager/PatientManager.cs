@@ -8,6 +8,7 @@ public class PatientManager : MonoBehaviour
 
     [SerializeField] private OrgansSO _organsToPut;
     [SerializeField] private OrganCollector _organCollector;
+    [SerializeField] private int _layerCount = 7;
     public static PatientManager Instance { get; private set; }
     void Awake()
     {
@@ -26,15 +27,11 @@ public class PatientManager : MonoBehaviour
     }
     void Start()
     {
+        for (int i = 0; i < _layerCount; i++)
+            _layers.Add(new List<State>());
+        
         State[] lObjects = FindObjectsByType<State>(FindObjectsSortMode.None);
-        _layers.Add(new List<State>());
-        _layers.Add(new List<State>());
-        _layers.Add(new List<State>());
-        _layers.Add(new List<State>());
-        _layers.Add(new List<State>());
-        _layers.Add(new List<State>());
-        _layers.Add(new List<State>());
-        _layers.Add(new List<State>());
+
         foreach (State lObject in lObjects)
         {
             switch (lObject.tag)
@@ -83,10 +80,13 @@ public class PatientManager : MonoBehaviour
             if (organs.layer == _currentLayer)
             {
                 Vector3 startPos = new Vector3(_organCollector.transform.position.x, _organCollector.transform.position.y, _organCollector.transform.position.z - 2f);
-                GameObject organ = Instantiate(organs.organ, startPos, Quaternion.identity);
-                organ.tag = "Layer" + _currentLayer;
+                OrganPickUp organPickUp = Instantiate(organs.organPickUp, startPos, Quaternion.identity);
+                organPickUp.newOrgan = true;
+                organPickUp.tag = "Layer" + _currentLayer;
+                organPickUp.nextLayer = organs.Nextlayer;
+                
                 _organCollector.isNew = true;
-                _organCollector.OpenWithOrgan(organ);
+                _organCollector.OpenWithOrgan(organPickUp.gameObject);
                 return;
             }
         }
@@ -94,7 +94,7 @@ public class PatientManager : MonoBehaviour
         _organCollector.isNew = false;
     }
 
-    private void UnlockNextLayer(State _state)
+    private void UnlockNextLayer(State _state = null)
     {
         _currentLayer = _state._drawShape._nextLayer; 
         UpdateLayers();
