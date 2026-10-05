@@ -63,10 +63,12 @@ public class Trace : State
 
             inputManager.onTouchingPos += OnTouchingScreen;
             inputManager.onToucheStart += OnTouchedScreen;
+            inputManager.onToucheEnd += OnEndTouch;
+                
             if (!_drawShape.isActiveAndEnabled)
                 return;
 
-            if (_points.Count < 1)
+            if (_points.Count > 1)
                 _currentPoint = _points[1];
             transform.position = new Vector3(_points[0].x, _points[0].y, -1);
         }
@@ -74,6 +76,7 @@ public class Trace : State
         {
             inputManager.onTouchingPos -= OnTouchingScreen;
             inputManager.onToucheStart -= OnTouchedScreen;
+            inputManager.onToucheEnd -= OnEndTouch;
 
             _currentPoint = Vector2.zero;
             inputManager = null;
@@ -99,10 +102,17 @@ public class Trace : State
 
     private void OnTouchedScreen() => _start = true;
 
-
     private void OnTouchingScreen(Vector2 pCurrentPos)
     {
         _currentPos = pCurrentPos;
+    }
+
+    private void OnEndTouch()
+    {
+        _currentPoint = _points[1];
+        transform.position = new Vector3(_points[0].x, _points[0].y, -1);
+        _currentErrorMargin = 0;
+        _currentPos = Vector3.positiveInfinity;
     }
 
     private void OnTouchingScnreen(Vector2 pPosition)

@@ -66,7 +66,6 @@ public class SwipeFollow : State
                 return;
             }
 
-            Debug.Log("ON START");
 
             inputManager = pInputManager;
             inputManager.onToucheStart += TouchStarted;
@@ -75,8 +74,8 @@ public class SwipeFollow : State
 
             if (_drawShape.isActiveAndEnabled)
                 _points = _drawShape.points;
-
-
+            
+            
             TouchStarted();
         }
         else if (inputManager != null)
