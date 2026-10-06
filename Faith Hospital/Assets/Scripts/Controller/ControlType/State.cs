@@ -7,6 +7,8 @@ public abstract class State : MonoBehaviour
 {
     public static Action<InputManager, ControlState> unlockState;
 
+    protected static int _countGrouped = 0;
+
     public InputManager inputManager;
     public DrawShape _drawShape;
     

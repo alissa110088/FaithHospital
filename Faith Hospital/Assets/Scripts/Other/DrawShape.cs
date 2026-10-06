@@ -5,9 +5,12 @@ using UnityEngine.UI;
 public class DrawShape : MonoBehaviour
 {
     [SerializeField] ControlState _stateControl;
+    [SerializeField] private bool _groupped;
+    
+    [HideInInspector] public State _state;
+    
     public SpriteRenderer[] visualFeedBack;
     public List<Vector2> points;
-    [HideInInspector] public State _state;
     public int _nextLayer;
     
     private void OnEnable()
