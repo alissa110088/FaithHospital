@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class DrawShape : MonoBehaviour
 {
     [SerializeField] ControlState _stateControl;
-    [SerializeField] private bool _groupped;
+    public bool _groupped;
     
     [HideInInspector] public State _state;
     
@@ -30,6 +30,8 @@ public class DrawShape : MonoBehaviour
                 _state._drawShape = this;
                 break;
         }
+
+        _state.enabled = false;
 
     }
     private void OnDrawGizmos()

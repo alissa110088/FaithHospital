@@ -838,7 +838,7 @@ GameObject:
   - component: {fileID: 510159133}
   m_Layer: 0
   m_Name: Trace
-  m_TagString: Layer1
+  m_TagString: Layer2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -915,7 +915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
   _stateControl: 1
-  _groupped: 1
+  _groupped: 0
   _state: {fileID: 0}
   visualFeedBack:
   - {fileID: 510159133}
@@ -2918,7 +2918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
   _stateControl: 0
-  _groupped: 1
+  _groupped: 0
   _state: {fileID: 0}
   visualFeedBack:
   - {fileID: 789862795}
@@ -2926,7 +2926,7 @@ MonoBehaviour:
   points:
   - {x: -0.17, y: 5.74}
   - {x: -0.12, y: -1.13}
-  _nextLayer: 3
+  _nextLayer: 2
 --- !u!114 &1489426570
 MonoBehaviour:
   m_ObjectHideFlags: 0

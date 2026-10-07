@@ -18,6 +18,9 @@ public class TouchInput : State
         {
             i.enabled = true;
         }
+        
+        if (_drawShape._groupped)
+            _countGrouped++;
     }
 
     private void OnDisable()
@@ -32,11 +35,12 @@ public class TouchInput : State
             inputManager = null;
         }
         
-        DisableImage(this);
+        DisableImage(false, this);
     }
 
     private void Start()
     {
+        
         Controller.OnInputValidate += DisableImage;
     }
 
@@ -48,7 +52,7 @@ public class TouchInput : State
             {
                 return;
             }
-
+            
             inputManager = pInputManager;
             inputManager.onToucheStart += TouchStarted;
             inputManager.onTouchingPos += GetFirstPos;
@@ -111,10 +115,22 @@ public class TouchInput : State
         foreach (int value in countPoints)
             if (value == 0) return;
 
-        Controller.OnInputValidate.Invoke(this);
+        if (_drawShape._groupped)
+        {
+            _countGrouped--;
+            if (_countGrouped > 0)
+            {
+                Controller.OnInputValidate.Invoke(true,this);
+                _patternValidated = true;
+                Debug.Log("finishhhh");
+                return;
+            }
+        }
+        
+        Controller.OnInputValidate.Invoke(false, this);
     }
 
-    private void DisableImage(State state)
+    private void DisableImage(bool pBool, State state)
     {
         if (state != this)
             return;

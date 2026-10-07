@@ -94,8 +94,11 @@ public class PatientManager : MonoBehaviour
         _organCollector.isNew = false;
     }
 
-    private void UnlockNextLayer(State _state = null)
+    private void UnlockNextLayer( bool pIsGrouped, State _state = null)
     {
+        if (pIsGrouped)
+            return;
+        
         _currentLayer = _state._drawShape._nextLayer; 
         UpdateLayers();
     }

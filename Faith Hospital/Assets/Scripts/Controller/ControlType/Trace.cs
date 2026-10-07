@@ -24,6 +24,9 @@ public class Trace : State
         {
             i.enabled = true;
         }
+        
+        if (_drawShape._groupped)
+            _countGrouped++;
     }
 
     private void OnDisable()
@@ -60,7 +63,6 @@ public class Trace : State
             }
 
             inputManager = pInputManager;
-
             inputManager.onTouchingPos += OnTouchingScreen;
             inputManager.onToucheStart += OnTouchedScreen;
             inputManager.onToucheEnd += OnEndTouch;
@@ -162,7 +164,19 @@ public class Trace : State
         {
             if (_currentPoint == _points[^1])
             {
-                Controller.OnInputValidate.Invoke(this);
+                if (_drawShape._groupped)
+                {
+                    _countGrouped--;
+                    if (_countGrouped > 0)
+                    {
+                        Controller.OnInputValidate.Invoke(true,this);
+                        _patternValidated = true;
+                        Debug.Log("finishhhh");
+                        return;
+                    }
+                }
+                
+                Controller.OnInputValidate.Invoke(false, this);
                 _patternValidated = true;
                 Debug.Log("finishhhh");
             }

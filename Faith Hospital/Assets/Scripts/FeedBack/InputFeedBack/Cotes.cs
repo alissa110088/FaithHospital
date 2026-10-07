@@ -26,10 +26,10 @@ public class Cotes : Organs
         Vector3[] direction = new[]
         {
             Vector3.zero,
-            right,
-            -right, 
-            up, 
-            -up, 
+            // right,
+            // -right, 
+            // up, 
+            // -up, 
         };
 
         for (int i = 0; i < direction.Length; i++)

@@ -35,6 +35,9 @@ public class SwipeFollow : State
         {
             i.enabled = true;
         }
+        
+        if (_drawShape._groupped)
+            _countGrouped++;
     }
 
     private void OnDisable()
@@ -48,13 +51,12 @@ public class SwipeFollow : State
             
             inputManager = null;
         }
-        DisableImage(this);
+        DisableImage(false, this);
     }
 
     private void Start()
     {
         Controller.OnInputValidate += DisableImage;
-
     }
 
     private void OnStart(InputManager pInputManager, ControlState controlState)
@@ -65,7 +67,6 @@ public class SwipeFollow : State
             {
                 return;
             }
-
 
             inputManager = pInputManager;
             inputManager.onToucheStart += TouchStarted;
@@ -175,8 +176,20 @@ public class SwipeFollow : State
         {
             if (_currentPoint == _points[^2])
             {
+                if (_drawShape._groupped)
+                {
+                    _countGrouped--;
+                    if (_countGrouped > 0)
+                    {
+                        Controller.OnInputValidate.Invoke(true,this);
+                        _patternValidated = true;
+                        Debug.Log("finishhhh");
+                        return;
+                    }
+                }
+                
                 Debug.Log("VALIDATED");
-                Controller.OnInputValidate.Invoke(this);
+                Controller.OnInputValidate.Invoke(false, this);
                 _patternValidated = true;
             }
             else
@@ -205,7 +218,7 @@ public class SwipeFollow : State
         }
     }
 
-    private void DisableImage(State state)
+    private void DisableImage(bool pBool, State state)
     {
         if (state != this)
             return;
