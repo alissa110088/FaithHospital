@@ -30,12 +30,12 @@ public class SwipeFollow : State
         unlockState += OnStart;
         if (_drawShape == null)
             return;
-        
+
         foreach (SpriteRenderer i in _drawShape.visualFeedBack)
         {
             i.enabled = true;
         }
-        
+
         if (_drawShape._groupped)
             _countGrouped++;
     }
@@ -48,9 +48,10 @@ public class SwipeFollow : State
             inputManager.onToucheStart -= TouchStarted;
             inputManager.onToucheEnd -= TouchEnded;
             inputManager.onTouchingPos -= OnSwipeStarted;
-            
+
             inputManager = null;
         }
+
         DisableImage(false, this);
     }
 
@@ -75,8 +76,8 @@ public class SwipeFollow : State
 
             if (_drawShape.isActiveAndEnabled)
                 _points = _drawShape.points;
-            
-            
+
+
             TouchStarted();
         }
         else if (inputManager != null)
@@ -181,13 +182,13 @@ public class SwipeFollow : State
                     _countGrouped--;
                     if (_countGrouped > 0)
                     {
-                        Controller.OnInputValidate.Invoke(true,this);
+                        Controller.OnInputValidate.Invoke(true, this);
                         _patternValidated = true;
                         Debug.Log("finishhhh");
                         return;
                     }
                 }
-                
+
                 Debug.Log("VALIDATED");
                 Controller.OnInputValidate.Invoke(false, this);
                 _patternValidated = true;
@@ -225,7 +226,8 @@ public class SwipeFollow : State
 
         foreach (SpriteRenderer i in _drawShape.visualFeedBack)
         {
-            i.enabled = false;
+            if (i != null)
+                i.enabled = false;
         }
     }
 }

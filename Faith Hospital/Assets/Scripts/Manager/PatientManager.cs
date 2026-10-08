@@ -71,6 +71,8 @@ public class PatientManager : MonoBehaviour
         {
             foreach (State lObject in _layers[i])
             {
+                if (lObject == null)
+                    continue;
                 lObject.enabled = i == _currentLayer -1;
             }
         }
@@ -80,13 +82,13 @@ public class PatientManager : MonoBehaviour
             if (organs.layer == _currentLayer)
             {
                 Vector3 startPos = new Vector3(_organCollector.transform.position.x, _organCollector.transform.position.y, _organCollector.transform.position.z - 2f);
-                OrganPickUp organPickUp = Instantiate(organs.organPickUp, startPos, Quaternion.identity);
-                organPickUp.newOrgan = true;
-                organPickUp.tag = "Layer" + _currentLayer;
-                organPickUp.nextLayer = organs.Nextlayer;
+                Heart heart = Instantiate(organs.heart, startPos, Quaternion.identity);
+                heart.newOrgan = true;
+                heart.tag = "Layer" + _currentLayer;
+                heart.nextLayer = organs.Nextlayer;
                 
                 _organCollector.isNew = true;
-                _organCollector.OpenWithOrgan(organPickUp.gameObject);
+                _organCollector.OpenWithOrgan(heart.gameObject);
                 return;
             }
         }

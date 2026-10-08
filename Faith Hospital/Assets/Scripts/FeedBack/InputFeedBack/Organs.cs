@@ -15,8 +15,8 @@ public abstract class Organs : MonoBehaviour
     
     protected virtual void OnInputFinished(bool pBool= false, State _state = null)
     {
-        if(!_anims.ContainsKey(_state))
-            Debug.LogError("State envoyer apres la fin de l'input inexistant");
+        if (!_anims.ContainsKey(_state))
+            return;
         
         if (_anims.TryGetValue(_state, out var effect))
             effect.Invoke();

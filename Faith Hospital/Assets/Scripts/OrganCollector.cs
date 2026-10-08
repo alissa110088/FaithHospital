@@ -37,14 +37,14 @@ public class OrganCollector : MonoBehaviour
         {
             if (!isOpen)
                 return;
-            OrganPickUp _nextLayer = other.gameObject.GetComponent<OrganPickUp>();
+            Heart _nextLayer = other.gameObject.GetComponent<Heart>();
             Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
             rb.isKinematic = true;
             StartCoroutine(Close(other.transform, _nextLayer));
         }
     }
 
-    private IEnumerator Close(Transform pOrgan, OrganPickUp p)
+    private IEnumerator Close(Transform pOrgan, Heart p)
     {
         if (!isOpen)
             yield break;

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: test
   m_EditorClassIdentifier: Assembly-CSharp::OrgansSO
   organLayerPairings:
-  - layer: 5
+  - layer: 6
     Nextlayer: 1
-    organPickUp: {fileID: 6774716724400453221, guid: 261293806ba327a479c012b01be4fd6f, type: 3}
+    heart: {fileID: 6774716724400453221, guid: 261293806ba327a479c012b01be4fd6f, type: 3}
