@@ -28,8 +28,6 @@ public class OrganCollector : MonoBehaviour
         transform.DOMoveX(transform.position.x + 7.5f, 0.5f).OnComplete(() =>
         {
             isOpen = false;
-            if (isNew)
-                isNew = false;
         });
     }
 

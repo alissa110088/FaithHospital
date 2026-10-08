@@ -97,13 +97,16 @@ public class Grab : State
                 {
                     _organCollector.Close();
                 }
+                else
+                {
+                    _organCollector.Appear();
+                }
                 
                 _grabbed = clicked;
                 _rb = _grabbed.GetComponent<Rigidbody>();
                 _rb.useGravity = false;
                 _rb.linearDamping = 10f;
                 _firtPos = true;
-                _organCollector.Appear();
             }
         }
 
