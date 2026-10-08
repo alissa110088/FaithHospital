@@ -8,17 +8,37 @@ using UnityEngine;
 public class OrganCollector : MonoBehaviour
 {
     public bool isNew = false;
+    public bool isOpen;
 
     public void Appear()
     {
+        if (isOpen)
+        {
+            return;
+        }
+
+        isOpen = true;
         transform.DOMoveX(transform.position.x - 7.5f, 0.5f);
+    }
+
+    public void Close()
+    {
+        if (!isOpen)
+            return;
+        transform.DOMoveX(transform.position.x + 7.5f, 0.5f).OnComplete(() =>
+        {
+            isOpen = false;
+            if (isNew)
+                isNew = false;
+        });
     }
 
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Attrapable") && isNew == false)
         {
-            Debug.Log("detetcted " + other.gameObject.name);
+            if (!isOpen)
+                return;
             OrganPickUp _nextLayer = other.gameObject.GetComponent<OrganPickUp>();
             Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
             rb.isKinematic = true;
@@ -28,6 +48,9 @@ public class OrganCollector : MonoBehaviour
 
     private IEnumerator Close(Transform pOrgan, OrganPickUp p)
     {
+        if (!isOpen)
+            yield break;
+        isOpen = false;
         transform.DOMoveX(transform.position.x + 7.5f, 0.5f);
         pOrgan.DOMoveX(transform.position.x + 7.5f, 0.5f);
         Destroy(pOrgan.gameObject);
@@ -37,6 +60,9 @@ public class OrganCollector : MonoBehaviour
 
     public void OpenWithOrgan(GameObject pOrgan)
     {
+        if (isOpen)
+            return;
+        isOpen = true;
         Rigidbody rb = pOrgan.GetComponent<Rigidbody>();
         rb.isKinematic = true;
         float targetX = transform.position.x - 7.5f;

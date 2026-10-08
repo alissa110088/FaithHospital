@@ -3,7 +3,7 @@ using UnityEngine;
 public class Grab : State
 {
     [SerializeField] private OrganCollector _organCollector;
-    
+
     private ControlState _state = ControlState.none;
 
     private bool _touchStarted;
@@ -26,7 +26,6 @@ public class Grab : State
             inputManager.onTouchingPos -= GetFirstPos;
             inputManager.onToucheEnd -= TouchEnded;
             inputManager = null;
-            
         }
     }
 
@@ -35,9 +34,9 @@ public class Grab : State
         if (_rb == null) return;
 
         Vector3 toTarget = _targetPos - _rb.position;
-        _rb.linearVelocity = toTarget * 4f;  
+        _rb.linearVelocity = toTarget * 4f;
     }
-    
+
     private void OnStart(InputManager pInputManager, ControlState controlState)
     {
         if (controlState == _state)
@@ -46,7 +45,7 @@ public class Grab : State
             {
                 return;
             }
-            
+
             inputManager = pInputManager;
             inputManager.onToucheStart += TouchStarted;
             inputManager.onTouchingPos += GetFirstPos;
@@ -74,10 +73,9 @@ public class Grab : State
         if (_rb != null)
         {
             _rb.useGravity = true;
-            _rb.linearDamping = 0f;          
+            _rb.linearDamping = 0f;
             _rb = null;
         }
-        
     }
 
     private void GetFirstPos(Vector2 pPosition)
@@ -86,27 +84,31 @@ public class Grab : State
             return;
         if (!_firtPos)
         {
-            
             Ray ray = Camera.main.ScreenPointToRay(pPosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                
                 GameObject clicked = hit.collider.gameObject;
 
                 //hardcoder c moche
-                if (clicked.layer != LayerMask.NameToLayer("Attrapable")|| clicked.tag != "Layer" + PatientManager.Instance._currentLayer)
+                if (clicked.layer != LayerMask.NameToLayer("Attrapable") || clicked.tag != "Layer" + PatientManager.Instance._currentLayer)
                     return;
+
+                if (_organCollector.isNew)
+                {
+                    _organCollector.Close();
+                    return;
+                }
                 
                 _grabbed = clicked;
                 _rb = _grabbed.GetComponent<Rigidbody>();
-                _rb.useGravity = false;       
-                _rb.linearDamping = 10f;    
-                _firtPos = true; 
+                _rb.useGravity = false;
+                _rb.linearDamping = 10f;
+                _firtPos = true;
                 _organCollector.Appear();
             }
         }
-        
-        if(_grabbed == null)
+
+        if (_grabbed == null)
             return;
 
         float distance = -Camera.main.transform.position.z;
@@ -116,6 +118,7 @@ public class Grab : State
         );
 
         _targetPos = new Vector3(worldPos3.x, worldPos3.y, -4f);
-        _rb.MovePosition( Vector3.Lerp(_grabbed.transform.position, new Vector3(worldPos3.x, worldPos3.y, -4f), Time.deltaTime * 5));
+        _rb.MovePosition(Vector3.Lerp(_grabbed.transform.position, new Vector3(worldPos3.x, worldPos3.y, -4f),
+            Time.deltaTime * 5));
     }
 }

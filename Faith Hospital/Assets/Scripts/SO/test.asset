@@ -15,4 +15,4 @@ MonoBehaviour:
   organLayerPairings:
   - layer: 5
     Nextlayer: 1
-    organ: {fileID: 7030554108396703288, guid: 261293806ba327a479c012b01be4fd6f, type: 3}
+    organPickUp: {fileID: 6774716724400453221, guid: 261293806ba327a479c012b01be4fd6f, type: 3}
