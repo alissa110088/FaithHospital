@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OrgansSO
   organLayerPairings:
   - layer: 6
-    Nextlayer: 1
+    Nextlayer: 7
     heart: {fileID: 6774716724400453221, guid: 261293806ba327a479c012b01be4fd6f, type: 3}

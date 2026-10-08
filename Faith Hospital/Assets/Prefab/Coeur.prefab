@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 484320469689428490}
   m_Layer: 0
   m_Name: Artere (2)
-  m_TagString: Layer4
+  m_TagString: Layer7
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8dfaf858965e2554785df93562b599b8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 6332949400469985497}
   m_Layer: 0
   m_Name: Artere (1)
-  m_TagString: Layer4
+  m_TagString: Layer7
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,7 +204,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8dfaf858965e2554785df93562b599b8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -414,7 +414,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &6774716724400453221
 MonoBehaviour:
@@ -433,8 +433,10 @@ MonoBehaviour:
   _Artere1: {fileID: 5595596741209272003}
   _Artere2: {fileID: 7670419271072528490}
   _Artere3: {fileID: 3235754028743153662}
-  _Trace: {fileID: 6332949400469985497}
-  _Trace2: {fileID: 484320469689428490}
+  _Trace: {fileID: 0}
+  _Trace2: {fileID: 0}
+  _Trace3: {fileID: 6332949400469985497}
+  _Trace4: {fileID: 484320469689428490}
 --- !u!1 &9177051265916321571
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,7 +504,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8dfaf858965e2554785df93562b599b8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
