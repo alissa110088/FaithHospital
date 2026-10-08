@@ -11,7 +11,7 @@ public class OrganMagnet: MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer != LayerMask.NameToLayer("Attrapable")) return;
+        if (other.gameObject.layer != LayerMask.NameToLayer("Attrapable")|| other.gameObject.name != _organeName) return;
         if (_lerpRoutine != null) return; 
 
         _gameObjectToMove = other.gameObject;
@@ -28,7 +28,7 @@ public class OrganMagnet: MonoBehaviour
     private IEnumerator LerpOrgan()
     {
         Vector3 target = new Vector3(transform.position.x
-            , transform.position.y, 2.1f);
+            , transform.position.y,transform.position.z);
         Transform t = _gameObjectToMove.transform;
 
         while (Vector3.Distance(t.position, target) > 0.01f)

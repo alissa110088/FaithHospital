@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[DefaultExecutionOrder(-100)]
 public class PatientManager : MonoBehaviour
 {
-    private List<List<State>> _layers =  new List<List<State>>();
+    public List<List<State>> _layers =  new List<List<State>>();
     public int _currentLayer = 1;
 
     [SerializeField] private OrgansSO _organsToPut;
@@ -12,57 +14,31 @@ public class PatientManager : MonoBehaviour
     public static PatientManager Instance { get; private set; }
     void Awake()
     {
-        if (Instance != null)
+        if (Instance != null && Instance != this)
         {
-            if (Instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
+            Destroy(gameObject);
             return;
         }
-
         Instance = this;
+
+        for (int i = 0; i < _layerCount; i++)
+            _layers.Add(new List<State>());
     }
     void Start()
     {
-        for (int i = 0; i < _layerCount; i++)
-            _layers.Add(new List<State>());
-        
-        State[] lObjects = FindObjectsByType<State>(FindObjectsSortMode.None);
-
-        foreach (State lObject in lObjects)
-        {
-            switch (lObject.tag)
-            {
-               case "Layer1":
-                   _layers[0].Add(lObject);
-                   break;
-               case "Layer2":
-                   _layers[1].Add(lObject);
-                   break;
-               case "Layer3":
-                   _layers[2].Add(lObject);
-                   break;
-               case "Layer4":
-                   _layers[3].Add(lObject);
-                   break;
-               case "Layer5":
-                   _layers[4].Add(lObject);
-                   break;
-               case "Layer6":
-                   _layers[5].Add(lObject);
-                   break;
-               case "layer7":
-                   _layers[6].Add(lObject);
-                   break;
-            }
-        }
         UpdateLayers();
         
         Controller.OnInputValidate += UnlockNextLayer;
         Controller.OnInputValidateOrgan += UnlockNextLayer;
+    }
+
+    public void AddLayer(int pIndex, State pState)
+    {
+        if (pIndex < 0 || pIndex >= _layers.Count) return;
+        if (_layers[pIndex].Contains(pState)) return;
+
+        _layers[pIndex].Add(pState);
+        pState.enabled = pIndex == _currentLayer - 1;
     }
 
     private void UpdateLayers()

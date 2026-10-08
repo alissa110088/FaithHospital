@@ -13,8 +13,9 @@ public class Trace : State
 
     private bool _start;
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         unlockState += OnStart;
 
         if (_drawShape == null)

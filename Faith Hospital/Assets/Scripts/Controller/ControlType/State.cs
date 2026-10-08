@@ -14,6 +14,7 @@ public abstract class State : MonoBehaviour
     
     protected bool _patternValidated;
     protected bool _canStart;
+    private bool _registered;
 
     protected int _errorMargin = 25;
     protected int _currentErrorMargin = 0;
@@ -22,9 +23,13 @@ public abstract class State : MonoBehaviour
 
     protected List<Vector2> _points;
 
-    protected float _range = 1f; 
-    
-    
+    protected float _range = 1f;
+
+    protected virtual void OnEnable()
+    {
+        
+    }
+
     protected bool CheckIfInRange(Vector3 pPosition, Vector3 pPoint)
     {
         if (Mathf.Abs((pPosition.x - pPoint.x)) < _range && Mathf.Abs((pPosition.y - pPoint.y)) < _range)

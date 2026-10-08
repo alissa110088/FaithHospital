@@ -7,8 +7,11 @@ public class TouchInput : State
     private bool _touchStarted;
     private bool _firtPos;
     public int[] countPoints;
-    private void OnEnable()
+    
+    
+    protected override void OnEnable()
     {
+        base.OnEnable();
         unlockState += OnStart;
         
         if (_drawShape == null)

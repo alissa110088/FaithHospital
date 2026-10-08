@@ -25,10 +25,14 @@ public class SwipeFollow : State
         }
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         unlockState += OnStart;
         if (_drawShape == null)
+            return;
+
+        if (_drawShape.visualFeedBack.Length > 1)
             return;
 
         foreach (SpriteRenderer i in _drawShape.visualFeedBack)

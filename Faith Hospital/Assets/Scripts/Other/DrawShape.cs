@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +19,7 @@ public class DrawShape : MonoBehaviour
         switch (_stateControl)
         {
             case ControlState.SwipeFollow:
+                Debug.Log(PatientManager.Instance);
                 _state = gameObject.AddComponent<SwipeFollow>();
                 _state._drawShape = this;
                 break;
@@ -31,9 +33,20 @@ public class DrawShape : MonoBehaviour
                 break;
         }
 
-        _state.enabled = false;
+        // _state.enabled = false;
 
     }
+
+    private void Start()
+    {
+        if (char.IsDigit(gameObject.tag[^1]))
+        {
+            int layer;
+            layer = gameObject.tag[^1] - '0';
+            PatientManager.Instance.AddLayer(layer - 1, _state);
+        }
+    }
+
     private void OnDrawGizmos()
     {
         if (!(points.Count > 1))

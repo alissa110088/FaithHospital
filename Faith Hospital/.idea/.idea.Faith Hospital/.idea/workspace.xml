@@ -12,9 +12,15 @@
   <component name="ChangeListManager">
     <list default="true" id="006f48b2-230d-49c6-ad1f-c1054c25bbaa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Faith Hospital/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Faith Hospital/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Coeur.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Coeur.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Patient0.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Patient0.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/OrganMagnet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/OrganMagnet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/State.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/State.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/SwipeFollow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/SwipeFollow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/TouchInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/TouchInput.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/Trace.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/Trace.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Tool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Tool.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/PatientManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/PatientManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Other/DrawShape.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Other/DrawShape.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,9 +81,10 @@
       <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;C:\Users\a.delattre\FaithHospital\Faith Hospital&quot; -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\a.delattre\FaithHospital\Faith Hospital" />
       <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
       <option name="REDIRECT_INPUT_PATH" value="" />
-      <option name="MIXED_MODE_DEBUG" value="0" />
+      <option name="PTY_MODE" value="Auto" />
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
@@ -85,12 +92,13 @@
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;C:\Users\a.delattre\FaithHospital\Faith Hospital&quot; -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\a.delattre\FaithHospital\Faith Hospital" />
       <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
       <option name="REDIRECT_INPUT_PATH" value="" />
-      <option name="MIXED_MODE_DEBUG" value="0" />
+      <option name="PTY_MODE" value="Auto" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" useMixedMode="false">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
@@ -101,9 +109,10 @@
       <option name="selectedOptions">
         <list />
       </option>
+      <option name="useMixedMode" value="false" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" useMixedMode="false">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
@@ -114,6 +123,7 @@
       <option name="selectedOptions">
         <list />
       </option>
+      <option name="useMixedMode" value="false" />
       <method v="2" />
     </configuration>
     <configuration name="Attach to" type="UnityDevicePlayer" factoryName="UnityAttachToDevicePlayer">
@@ -146,6 +156,7 @@
       <workItem from="1791299836702" duration="4832000" />
       <workItem from="1791361556418" duration="10943000" />
       <workItem from="1791447748562" duration="22615000" />
+      <workItem from="1791481287779" duration="3957000" />
     </task>
     <servers />
   </component>
