@@ -96,7 +96,6 @@ public class Grab : State
                 if (_organCollector.isNew)
                 {
                     _organCollector.Close();
-                    return;
                 }
                 
                 _grabbed = clicked;
