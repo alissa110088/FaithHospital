@@ -5,13 +5,17 @@ using UnityEngine;
 [DefaultExecutionOrder(-100)]
 public class PatientManager : MonoBehaviour
 {
-    public List<List<State>> _layers =  new List<List<State>>();
+    public List<List<State>> _layers = new List<List<State>>();
     public int _currentLayer = 1;
 
     [SerializeField] private OrgansSO _organsToPut;
     [SerializeField] private OrganCollector _organCollector;
     [SerializeField] private int _layerCount = 7;
+
+    private OrganLayerPairing currentLayerPairing;
+    private int _numToInstantiate;
     public static PatientManager Instance { get; private set; }
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -19,15 +23,17 @@ public class PatientManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
 
         for (int i = 0; i < _layerCount; i++)
             _layers.Add(new List<State>());
     }
+
     void Start()
     {
         UpdateLayers();
-        
+
         Controller.OnInputValidate += UnlockNextLayer;
         Controller.OnInputValidateOrgan += UnlockNextLayer;
     }
@@ -49,7 +55,7 @@ public class PatientManager : MonoBehaviour
             {
                 if (lObject == null)
                     continue;
-                lObject.enabled = i == _currentLayer -1;
+                lObject.enabled = i == _currentLayer - 1;
             }
         }
 
@@ -57,14 +63,9 @@ public class PatientManager : MonoBehaviour
         {
             if (organs.layer == _currentLayer)
             {
-                Vector3 startPos = new Vector3(_organCollector.transform.position.x, _organCollector.transform.position.y, _organCollector.transform.position.z - 2f);
-                Heart heart = Instantiate(organs.heart, startPos, Quaternion.identity);
-                heart.newOrgan = true;
-                heart.tag = "Layer" + _currentLayer;
-                heart.nextLayer = organs.Nextlayer;
-                
-                _organCollector.isNew = true;
-                _organCollector.OpenWithOrgan(heart.gameObject);
+                currentLayerPairing = organs;
+                _numToInstantiate = organs.num;
+                _organCollector.InstantiateOrgan(organs.organ, organs.nameOrgan, organs.Nextlayer);
                 return;
             }
         }
@@ -72,18 +73,30 @@ public class PatientManager : MonoBehaviour
         _organCollector.isNew = false;
     }
 
-    private void UnlockNextLayer( bool pIsGrouped, State _state = null)
+    private void UnlockNextLayer(bool pIsGrouped, State _state = null)
     {
         if (pIsGrouped)
             return;
-        
-        _currentLayer = _state._drawShape._nextLayer; 
+
+        currentLayerPairing = null;
+        _currentLayer = _state._drawShape._nextLayer;
         UpdateLayers();
     }
-    
+
     private void UnlockNextLayer(int pNextLayer)
     {
-        _currentLayer = pNextLayer; 
+        if (currentLayerPairing != null)
+            Debug.Log(currentLayerPairing.num);
+        if (currentLayerPairing != null && _numToInstantiate > 0)
+        {
+            _numToInstantiate--;
+            _organCollector.InstantiateOrgan(currentLayerPairing.organ, currentLayerPairing.nameOrgan,
+                currentLayerPairing.Nextlayer);
+            return;
+        }
+        
+        currentLayerPairing = null;
+        _currentLayer = pNextLayer;
         UpdateLayers();
     }
 }

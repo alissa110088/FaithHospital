@@ -179,12 +179,10 @@ public class Trace : State
                 
                 Controller.OnInputValidate.Invoke(false, this);
                 _patternValidated = true;
-                Debug.Log("finishhhh");
             }
             else
             {
                 _currentPoint = _points[_points.IndexOf(_currentPoint) + 1];
-                Debug.Log("NEXT POINT");
             }
         }
 

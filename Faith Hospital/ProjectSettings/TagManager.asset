@@ -16,6 +16,7 @@ TagManager:
   - Layer5
   - Layer6
   - Layer7
+  - Layer8
   layers:
   - Default
   - TransparentFX

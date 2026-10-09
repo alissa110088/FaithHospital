@@ -19,7 +19,6 @@ public class DrawShape : MonoBehaviour
         switch (_stateControl)
         {
             case ControlState.SwipeFollow:
-                Debug.Log(PatientManager.Instance);
                 _state = gameObject.AddComponent<SwipeFollow>();
                 _state._drawShape = this;
                 break;

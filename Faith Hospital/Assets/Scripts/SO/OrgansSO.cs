@@ -13,5 +13,7 @@ public class OrganLayerPairing
 {
     public int layer;
     public int Nextlayer;
-    public Heart heart;
+    public Organs organ;
+    public string nameOrgan;
+    public int num;
 }

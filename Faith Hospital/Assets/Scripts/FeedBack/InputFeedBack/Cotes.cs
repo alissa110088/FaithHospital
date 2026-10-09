@@ -25,10 +25,6 @@ public class Cotes : Organs
         Vector3[] direction = new[]
         {
             Vector3.zero,
-            // right,
-            // -right, 
-            // up, 
-            // -up, 
         };
 
         for (int i = 0; i < direction.Length; i++)
@@ -38,7 +34,6 @@ public class Cotes : Organs
             {
                 if (hit.collider.gameObject.CompareTag("Cotes") && hit.collider.gameObject.layer != LayerMask.NameToLayer("Attrapable"))
                 {
-                    Debug.Log("Toucher cote");
                     hit.collider.gameObject.layer = LayerMask.NameToLayer("Attrapable");
                     Rigidbody rb = hit.collider.gameObject.AddComponent<Rigidbody>();
                     rb.useGravity = false;

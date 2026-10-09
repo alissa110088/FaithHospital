@@ -125,7 +125,6 @@ public class TouchInput : State
             {
                 Controller.OnInputValidate.Invoke(true,this);
                 _patternValidated = true;
-                Debug.Log("finishhhh");
                 return;
             }
         }

@@ -97,11 +97,9 @@ public class SwipeFollow : State
 
     public void TouchStarted()
     {
-        Debug.Log("HUH");
         if (!_drawShape.isActiveAndEnabled)
             return;
 
-        Debug.Log("WHAT");
         _currentPoint = _points[0];
         _touching = true;
     }
@@ -188,37 +186,28 @@ public class SwipeFollow : State
                     {
                         Controller.OnInputValidate.Invoke(true, this);
                         _patternValidated = true;
-                        Debug.Log("finishhhh");
                         return;
                     }
                 }
 
-                Debug.Log("VALIDATED");
                 Controller.OnInputValidate.Invoke(false, this);
                 _patternValidated = true;
             }
             else
             {
-                Debug.Log("VALIDATED GOING NEXT POINT");
                 _currentPoint = _points[_points.IndexOf(_currentPoint) + 1];
             }
-        }
-        else if (sameDirection && distancePointToSegment < marginHowFarCanGoFromLine)
-        {
-            Debug.Log("CONTINUE");
         }
         //Checks if goes to the wrong direction 
         else if (_currentErrorMargin == _errorMargin)
         {
             Controller.OnInputNotValidate.Invoke();
-            Debug.Log("NOT VALIDATED RESET");
             _currentPoint = _points[0];
             _currentErrorMargin = 0;
         }
         else
         {
             Controller.OnInputNotValidate.Invoke();
-            Debug.Log("NOT VALIDATED " + sameDirection);
             _currentErrorMargin++;
         }
     }

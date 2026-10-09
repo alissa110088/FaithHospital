@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class Heart : Organs
 {
-    public int nextLayer;
-    [HideInInspector]  public bool newOrgan;
-    
     [SerializeField] private MeshRenderer _Artere1;
     [SerializeField] private MeshRenderer _Artere2;
     [SerializeField] private MeshRenderer _Artere3;

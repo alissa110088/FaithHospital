@@ -7,8 +7,10 @@ using UnityEngine;
 
 public class OrganCollector : MonoBehaviour
 {
-    public bool isNew = false;
-    public bool isOpen;
+    [SerializeField] private Transform[] anchors;
+    
+    [HideInInspector] public bool isNew = false;
+    [HideInInspector] public bool isOpen;
 
     public void Appear()
     {
@@ -18,14 +20,14 @@ public class OrganCollector : MonoBehaviour
         }
 
         isOpen = true;
-        transform.DOMoveX(transform.position.x - 7.5f, 0.5f);
+        transform.DOMoveX(anchors[0].position.x, 0.5f);
     }
 
     public void Close()
     {
         if (!isOpen)
             return;
-        transform.DOMoveX(transform.position.x + 7.5f, 0.5f).OnComplete(() =>
+        transform.DOMoveX(anchors[1].position.x, 0.5f).OnComplete(() =>
         {
             isOpen = false;
         });
@@ -33,38 +35,65 @@ public class OrganCollector : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Attrapable") && isNew == false)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Attrapable") && !isNew)
         {
             if (!isOpen)
                 return;
-            Heart _nextLayer = other.gameObject.GetComponent<Heart>();
+            Organs _nextLayer = other.gameObject.GetComponent<Organs>();
             Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
             rb.isKinematic = true;
             StartCoroutine(Close(other.transform, _nextLayer));
         }
     }
 
-    private IEnumerator Close(Transform pOrgan, Heart p)
+    private IEnumerator Close(Transform pOrgan, Organs p)
     {
         if (!isOpen)
             yield break;
         isOpen = false;
-        transform.DOMoveX(transform.position.x + 7.5f, 0.5f);
-        pOrgan.DOMoveX(transform.position.x + 7.5f, 0.5f);
-        Destroy(pOrgan.gameObject);
+        transform.DOMoveX(anchors[1].position.x, 0.5f);
+        pOrgan.DOMoveX(anchors[1].position.x, 0.5f);
+        
         yield return new WaitForSeconds(0.5f);
-        Controller.OnInputValidateOrgan.Invoke(p.nextLayer);
+        
+        if (p.groupped)
+        {
+            if (p.UpdateGrouped())
+            {
+                Controller.OnInputValidateOrgan.Invoke(p.nextLayer);
+            };
+        }
+        else
+        {
+            Controller.OnInputValidateOrgan.Invoke(p.nextLayer);
+        }
+            
+        Destroy(pOrgan.gameObject);
     }
 
+    public void InstantiateOrgan(Organs pOrgan, string pName, int pNextLayer)
+    {
+        isNew = true;
+        Vector3 startPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 2f);
+        Organs organ = Instantiate(pOrgan, startPos, pOrgan.transform.rotation);
+              
+        organ.newOrgan = true;
+        organ.gameObject.name = pName;  
+        organ.newOrgan = true;
+        organ.tag = "Layer" + PatientManager.Instance._currentLayer;
+        organ.nextLayer = pNextLayer;
+        OpenWithOrgan(organ.gameObject);
+    }
+    
     public void OpenWithOrgan(GameObject pOrgan)
     {
         if (isOpen)
             return;
         isOpen = true;
+        
         Rigidbody rb = pOrgan.GetComponent<Rigidbody>();
         rb.isKinematic = true;
-        float targetX = transform.position.x - 7.5f;
-        transform.DOMoveX(targetX, 0.5f);
-        pOrgan.transform.DOMoveX(targetX, 0.5f).OnComplete(() => { rb.isKinematic = false; });
+        transform.DOMoveX(anchors[0].position.x, 0.5f);
+        pOrgan.transform.DOMoveX(anchors[0].position.x, 0.5f).OnComplete(() => { rb.isKinematic = false; });
     }
 }
