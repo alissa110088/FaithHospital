@@ -8,13 +8,16 @@ public class CameraShake : MonoBehaviour
     private Coroutine _shakeCoroutine;
     [SerializeField] private float shakeIntensity = 1f;
 
+    private void Start()
+    {
+        _posOrigin = Camera.main.transform.position;
+    }
     
     public void StartShake()
     {
-        _posOrigin = Camera.main.transform.position;
+        Camera.main.transform.position = _posOrigin;
         if (_shakeCoroutine != null)
         {
-            Camera.main.transform.position = _posOrigin;
             StopCoroutine(_shakeCoroutine);
             _shakeCoroutine = null;
         }
