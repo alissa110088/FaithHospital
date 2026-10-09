@@ -9,7 +9,14 @@ public class OrganMagnet: MonoBehaviour
     private GameObject _gameObjectToMove;
     private Coroutine _lerpRoutine;
     private bool taken = false;
+    private Collider _collider;
+    private Rigidbody _rb;
 
+    private void Start()
+    {
+        _collider = GetComponent<Collider>();
+    }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer != LayerMask.NameToLayer("Attrapable")|| other.gameObject.name != _organeName || taken) return;
@@ -17,10 +24,10 @@ public class OrganMagnet: MonoBehaviour
 
         _gameObjectToMove = other.gameObject;
 
-        if (_gameObjectToMove.TryGetComponent(out Rigidbody rb))
+        if (_gameObjectToMove.TryGetComponent(out _rb))
         {
-            rb.linearVelocity = Vector3.zero; 
-            rb.useGravity = false;
+            _rb.linearVelocity = Vector3.zero; 
+            _rb.useGravity = false;
         }
 
         taken = true;
@@ -31,7 +38,7 @@ public class OrganMagnet: MonoBehaviour
     {
         if (other.gameObject == _gameObjectToMove)
         {
-            taken = false;
+            Release();
         }
     }
 
@@ -41,24 +48,37 @@ public class OrganMagnet: MonoBehaviour
             , transform.position.y,transform.position.z);
         Transform t = _gameObjectToMove.transform;
 
+        if (_gameObjectToMove == null)
+        {
+            taken = false;
+            _gameObjectToMove = null;
+        }
+        
         while (Vector3.Distance(t.position, target) > 0.01f)
         {
             t.position = Vector3.MoveTowards(t.position, target, 10f * Time.deltaTime);
             yield return null;
         }
-        Debug.Log("huh");
         if (_gameObjectToMove.TryGetComponent(out Organs organ))
         {
-            Debug.Log(organ.newOrgan);
             if (organ.newOrgan)
             {
-                Debug.Log("huh");
                 Controller.OnInputValidateOrgan.Invoke(organ.nextLayer);
                 organ.newOrgan = false;
             }
         }
         
         t.position = target;
+        _lerpRoutine = null;
+    }
+    
+    private void Release()
+    {
+        if (_lerpRoutine != null) StopCoroutine(_lerpRoutine);
+        if (_rb != null) _rb.useGravity = true;
+        _gameObjectToMove = null;
+        taken = false;
+        _rb = null;
         _lerpRoutine = null;
     }
 }

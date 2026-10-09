@@ -19,7 +19,7 @@ MonoBehaviour:
     nameOrgan: Coeur
     num: 0
   - layer: 9
-    Nextlayer: 1
+    Nextlayer: 10
     organ: {fileID: 572020032668186079, guid: 01f23f91b1ac89c49a3cf565324b1b72, type: 3}
     nameOrgan: Cotes
-    num: 8
+    num: 7

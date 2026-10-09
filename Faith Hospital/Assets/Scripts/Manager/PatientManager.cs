@@ -44,6 +44,8 @@ public class PatientManager : MonoBehaviour
         if (_layers[pIndex].Contains(pState)) return;
 
         _layers[pIndex].Add(pState);
+        
+         Debug. Log(pState.gameObject.name + _layers[pIndex].Contains(pState));
         pState.enabled = pIndex == _currentLayer - 1;
     }
 

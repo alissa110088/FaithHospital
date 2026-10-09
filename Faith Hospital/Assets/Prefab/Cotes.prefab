@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cote
   groupped: 0
-  nextLayer: 1
+  nextLayer: 10
   newOrgan: 0
   _touch: {fileID: 0}
+  _hitIndex: 0

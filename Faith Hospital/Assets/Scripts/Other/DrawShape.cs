@@ -38,10 +38,11 @@ public class DrawShape : MonoBehaviour
 
     private void Start()
     {
-        if (char.IsDigit(gameObject.tag[^1]))
+        const string prefix = "Layer";
+        string tag = gameObject.tag;
+
+        if (tag.StartsWith(prefix) && int.TryParse(tag.Substring(prefix.Length), out int layer))
         {
-            int layer;
-            layer = gameObject.tag[^1] - '0';
             PatientManager.Instance.AddLayer(layer - 1, _state);
         }
     }
