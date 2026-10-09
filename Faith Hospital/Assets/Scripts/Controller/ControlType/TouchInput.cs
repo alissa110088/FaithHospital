@@ -7,13 +7,13 @@ public class TouchInput : State
     private bool _touchStarted;
     private bool _firtPos;
     public int[] countPoints;
-    
-    
+
+
     protected override void OnEnable()
     {
         base.OnEnable();
         unlockState += OnStart;
-        
+
         if (_drawShape == null)
             return;
 
@@ -21,7 +21,7 @@ public class TouchInput : State
         {
             i.enabled = true;
         }
-        
+
         if (_drawShape._groupped)
             _countGrouped++;
     }
@@ -34,16 +34,15 @@ public class TouchInput : State
             inputManager.onToucheStart -= TouchStarted;
             inputManager.onTouchingPos -= GetFirstPos;
             inputManager.onToucheEnd -= TouchEnded;
-            
+
             inputManager = null;
         }
-        
+
         DisableImage(false, this);
     }
 
     private void Start()
     {
-        
         Controller.OnInputValidate += DisableImage;
     }
 
@@ -55,7 +54,7 @@ public class TouchInput : State
             {
                 return;
             }
-            
+
             inputManager = pInputManager;
             inputManager.onToucheStart += TouchStarted;
             inputManager.onTouchingPos += GetFirstPos;
@@ -64,7 +63,9 @@ public class TouchInput : State
                 return;
 
             _points = _drawShape.points;
-            countPoints = new int[_points.Count];
+
+            if (countPoints == null || countPoints.Length < _points.Count)
+                countPoints = new int[_points.Count];
         }
         else if (inputManager != null)
         {
@@ -100,35 +101,41 @@ public class TouchInput : State
         );
 
         _firtPos = true;
-        
+
         int hitIndex = -1;
         for (int i = 0; i < _points.Count; i++)
         {
             if (!CheckIfInRange(worldPos3, _points[i])) continue;
 
-            if (countPoints[i] == 0) { hitIndex = i; break; } 
-            if (hitIndex == -1) hitIndex = i;                 
+            if (countPoints[i] == 0)
+            {
+                hitIndex = i;
+                break;
+            }
+
+            if (hitIndex == -1) hitIndex = i;
         }
 
         if (hitIndex == -1) return;
 
-        Controller.OnInputStepFinished.Invoke(this, pPosition);
+        Controller.OnInputStepFinished.Invoke(this, pPosition, hitIndex);
         countPoints[hitIndex]++;
 
         foreach (int value in countPoints)
-            if (value == 0) return;
+            if (value == 0)
+                return;
 
         if (_drawShape._groupped)
         {
             _countGrouped--;
             if (_countGrouped > 0)
             {
-                Controller.OnInputValidate.Invoke(true,this);
+                Controller.OnInputValidate.Invoke(true, this);
                 _patternValidated = true;
                 return;
             }
         }
-        
+
         Controller.OnInputValidate.Invoke(false, this);
     }
 

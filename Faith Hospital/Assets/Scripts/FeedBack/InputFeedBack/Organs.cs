@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Organs : MonoBehaviour
 {
     protected Dictionary<State, Action> _anims = new Dictionary<State, Action>();
-    protected Dictionary<State, Action<Vector2>> _animsStep = new Dictionary<State, Action<Vector2>>();
+    protected Dictionary<State, Action<Vector2, int>> _animsStep = new Dictionary<State, Action<Vector2, int>>();
 
     public static int _countGrouped = 0;
     public bool groupped;
@@ -47,13 +47,13 @@ public abstract class Organs : MonoBehaviour
         return true;
     }
 
-    protected virtual void OnInputStepFinished(State _state, Vector2 _position)
+    protected virtual void OnInputStepFinished(State _state, Vector2 _position, int _hitIndex)
     {
         if (!_animsStep.ContainsKey(_state))
             Debug.LogError("State envoyer apres la fin de l'input inexistant");
 
         if (_animsStep.TryGetValue(_state, out var effect))
-            effect.Invoke(_position);
+            effect.Invoke(_position, _hitIndex);
     }
 
     private void OnDisable()
