@@ -216,7 +216,7 @@ public class SwipeFollow : State
     {
         if (state != this)
             return;
-
+    
         foreach (SpriteRenderer i in _drawShape.visualFeedBack)
         {
             if (i != null)
