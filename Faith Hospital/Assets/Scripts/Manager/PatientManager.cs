@@ -38,6 +38,12 @@ public class PatientManager : MonoBehaviour
         Controller.OnInputValidateOrgan += UnlockNextLayer;
     }
 
+    private void OnDisable()
+    {
+        Controller.OnInputValidate -= UnlockNextLayer;
+        Controller.OnInputValidateOrgan -= UnlockNextLayer;
+    }
+    
     public void AddLayer(int pIndex, State pState)
     {
         if (pIndex < 0 || pIndex >= _layers.Count) return;
@@ -45,7 +51,6 @@ public class PatientManager : MonoBehaviour
 
         _layers[pIndex].Add(pState);
         
-         Debug. Log(pState.gameObject.name + _layers[pIndex].Contains(pState));
         pState.enabled = pIndex == _currentLayer - 1;
     }
 
