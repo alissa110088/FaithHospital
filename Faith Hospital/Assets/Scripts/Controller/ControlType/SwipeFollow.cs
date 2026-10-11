@@ -32,7 +32,7 @@ public class SwipeFollow : State
         if (_drawShape == null)
             return;
 
-        if (_drawShape.visualFeedBack.Length > 1)
+        if (_drawShape.visualFeedBack.Length < 1)
             return;
 
         foreach (SpriteRenderer i in _drawShape.visualFeedBack)
@@ -109,6 +109,7 @@ public class SwipeFollow : State
         if (!_drawShape.isActiveAndEnabled)
             return;
         _touching = false;
+        _canStart = false;
         _currentPoint = _points[0];
     }
 
@@ -217,6 +218,7 @@ public class SwipeFollow : State
         if (state != this)
             return;
     
+        Debug.Log("here" + gameObject.name);
         foreach (SpriteRenderer i in _drawShape.visualFeedBack)
         {
             if (i != null)
