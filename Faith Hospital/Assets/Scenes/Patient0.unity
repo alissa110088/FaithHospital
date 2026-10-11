@@ -1270,6 +1270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
   _stateControl: 1
+  inputSettings: {fileID: 11400000, guid: 80c6f29178545204699e1ddf8ed16289, type: 2}
   _groupped: 0
   _state: {fileID: 0}
   visualFeedBack:
@@ -2314,6 +2315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
   _stateControl: 0
+  inputSettings: {fileID: 11400000, guid: 0c77dbabb5afe6a4e95a3be7a81da396, type: 2}
   _groupped: 0
   _state: {fileID: 0}
   visualFeedBack:
@@ -3942,6 +3944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
   _stateControl: 0
+  inputSettings: {fileID: 11400000, guid: 0c77dbabb5afe6a4e95a3be7a81da396, type: 2}
   _groupped: 0
   _state: {fileID: 0}
   visualFeedBack:
@@ -4583,6 +4586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
   _stateControl: 1
+  inputSettings: {fileID: 11400000, guid: 80c6f29178545204699e1ddf8ed16289, type: 2}
   _groupped: 0
   _state: {fileID: 0}
   visualFeedBack:
@@ -4662,6 +4666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
   _stateControl: 2
+  inputSettings: {fileID: 11400000, guid: 382263ad72b44174aae6791558bb6477, type: 2}
   _groupped: 0
   _state: {fileID: 0}
   visualFeedBack: []
@@ -5269,6 +5274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
   _stateControl: 0
+  inputSettings: {fileID: 11400000, guid: 0c77dbabb5afe6a4e95a3be7a81da396, type: 2}
   _groupped: 1
   _state: {fileID: 0}
   visualFeedBack:
@@ -5439,6 +5445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
   _stateControl: 0
+  inputSettings: {fileID: 11400000, guid: 0c77dbabb5afe6a4e95a3be7a81da396, type: 2}
   _groupped: 1
   _state: {fileID: 0}
   visualFeedBack:

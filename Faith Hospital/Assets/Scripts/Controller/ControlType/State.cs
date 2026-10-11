@@ -11,7 +11,7 @@ public abstract class State : MonoBehaviour
 
     public InputManager inputManager;
     public DrawShape _drawShape;
-    
+
     protected bool _patternValidated;
     protected bool _canStart;
     private bool _registered;
@@ -25,9 +25,15 @@ public abstract class State : MonoBehaviour
 
     protected float _range = 1f;
 
-    protected virtual void OnEnable()
+    protected InputSettings _inputSettings;
+
+    protected virtual void Start()
     {
-        
+        if (_drawShape != null)
+        {
+            _inputSettings = _drawShape.inputSettings;
+            _range = _inputSettings.MaxDistanceFromPoint;
+        }
     }
 
     protected bool CheckIfInRange(Vector3 pPosition, Vector3 pPoint)

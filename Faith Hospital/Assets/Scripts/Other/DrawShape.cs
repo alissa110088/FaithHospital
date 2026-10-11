@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class DrawShape : MonoBehaviour
 {
     [SerializeField] ControlState _stateControl;
+    public InputSettings inputSettings;
     public bool _groupped;
     
     [HideInInspector] public State _state;
@@ -31,9 +32,6 @@ public class DrawShape : MonoBehaviour
                 _state._drawShape = this;
                 break;
         }
-
-        // _state.enabled = false;
-
     }
 
     private void Start()

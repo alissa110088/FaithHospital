@@ -5,17 +5,16 @@ using UnityEngine.UI;
 
 public class Trace : State
 {
-    [SerializeField] private float speedTrace = 0.75f;
-
     private Vector2 _currentPos = Vector2.zero;
 
     private ControlState _state = ControlState.trace;
 
     private bool _start;
 
-    protected override void OnEnable()
+    private TraceSettings _traceSettings;
+
+    private void OnEnable()
     {
-        base.OnEnable();
         unlockState += OnStart;
 
         if (_drawShape == null)
@@ -45,12 +44,14 @@ public class Trace : State
         }
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         if (!_drawShape.isActiveAndEnabled)
             return;
         _points = _drawShape.points;
         transform.position = new Vector3(_points[0].x, _points[0].y, -1);
+        _traceSettings = _inputSettings as TraceSettings;
     }
 
 
@@ -189,7 +190,7 @@ public class Trace : State
         Vector2 direction = new Vector2(_currentPoint.x - transform.position.x, _currentPoint.y - transform.position.y)
             .normalized;
         Vector3 dirV3 = new Vector3(direction.x, direction.y, 0f);
-        transform.position += dirV3 * Time.deltaTime * speedTrace;
+        transform.position += dirV3 * Time.deltaTime * _traceSettings.speedMoving;
     }
 
     private void DisableImage(State state)
