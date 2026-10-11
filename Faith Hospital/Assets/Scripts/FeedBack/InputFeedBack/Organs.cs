@@ -49,9 +49,6 @@ public abstract class Organs : MonoBehaviour
 
     protected virtual void OnInputStepFinished(State _state, Vector2 _position, int _hitIndex)
     {
-        if (!_animsStep.ContainsKey(_state))
-            Debug.LogError("State envoyer apres la fin de l'input inexistant");
-
         if (_animsStep.TryGetValue(_state, out var effect))
             effect.Invoke(_position, _hitIndex);
     }

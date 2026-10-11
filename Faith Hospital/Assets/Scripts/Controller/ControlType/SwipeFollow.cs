@@ -1,11 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEditor;
+using Debug = UnityEngine.Debug;
 
 public class SwipeFollow : State
 {
-    [Header("GD")] [SerializeField] private float marginHowCloseeToPointToMoveOn = 0.3f;
-    [SerializeField] private float marginHowFarCanGoFromLine = 1.5f;
 
     private bool _touching = false;
 
@@ -14,6 +14,7 @@ public class SwipeFollow : State
     private Vector2 _lastPos = Vector2.zero;
     private Vector2 _pos;
 
+    private SwipeSettings _swipeSettings;
 
     public Vector2 pos
     {
@@ -25,9 +26,8 @@ public class SwipeFollow : State
         }
     }
 
-    protected override void OnEnable()
+    private void OnEnable()
     {
-        base.OnEnable();
         unlockState += OnStart;
         if (_drawShape == null)
             return;
@@ -59,9 +59,12 @@ public class SwipeFollow : State
         DisableImage(false, this);
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         Controller.OnInputValidate += DisableImage;
+        
+        _swipeSettings = _inputSettings as SwipeSettings;
     }
 
     private void OnStart(InputManager pInputManager, ControlState controlState)
@@ -170,13 +173,15 @@ public class SwipeFollow : State
         dirPoints = new Vector2(Mathf.Abs(dirPoints.x), Mathf.Abs(dirPoints.y));
 
         float dot = Vector2.Dot(dir, dirPoints);
-        bool sameDirection = dot > 0.9f;
+        bool sameDirection = dot > _swipeSettings.DirectionRange;
         float distancePointToSegment =
             DistancePointToSegment(_points[_points.IndexOf(_currentPoint) + 1], _currentPoint, pos);
 
         //Checks if went to first point
-        if (sameDirection && (worldPos - _points[1]).magnitude < marginHowCloseeToPointToMoveOn &&
-            distancePointToSegment < 10f)
+
+        
+        if (sameDirection && (worldPos - _points[1]).magnitude < 0.3f &&
+            distancePointToSegment < _swipeSettings.howFarFromSegmentMax)
         {
             if (_currentPoint == _points[^2])
             {
@@ -198,6 +203,10 @@ public class SwipeFollow : State
             {
                 _currentPoint = _points[_points.IndexOf(_currentPoint) + 1];
             }
+        }
+        else if (sameDirection && distancePointToSegment < _swipeSettings.howFarFromSegmentMax)
+        {
+            return;
         }
         //Checks if goes to the wrong direction 
         else if (_currentErrorMargin == _errorMargin)

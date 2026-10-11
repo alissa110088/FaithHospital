@@ -9,9 +9,8 @@ public class TouchInput : State
     public int[] countPoints;
 
 
-    protected override void OnEnable()
+    private void OnEnable()
     {
-        base.OnEnable();
         unlockState += OnStart;
 
         if (_drawShape == null)
@@ -41,8 +40,9 @@ public class TouchInput : State
         DisableImage(false, this);
     }
 
-    private void Start()
+    protected override  void Start()
     {
+        base.Start();
         Controller.OnInputValidate += DisableImage;
     }
 
