@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Organs : MonoBehaviour
+public class Organs : MonoBehaviour
 {
     protected Dictionary<State, Action> _anims = new Dictionary<State, Action>();
     protected Dictionary<State, Action<Vector2, int>> _animsStep = new Dictionary<State, Action<Vector2, int>>();
