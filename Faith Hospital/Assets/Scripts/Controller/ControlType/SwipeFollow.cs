@@ -9,8 +9,6 @@ public class SwipeFollow : State
 
     private bool _touching = false;
 
-    private ControlState _state = ControlState.SwipeFollow;
-
     private Vector2 _lastPos = Vector2.zero;
     private Vector2 _pos;
 
@@ -26,6 +24,11 @@ public class SwipeFollow : State
         }
     }
 
+    private void Awake()
+    {
+        _state =  ControlState.SwipeFollow;
+    }
+    
     private void OnEnable()
     {
         unlockState += OnStart;
@@ -67,8 +70,9 @@ public class SwipeFollow : State
         _swipeSettings = _inputSettings as SwipeSettings;
     }
 
-    private void OnStart(InputManager pInputManager, ControlState controlState)
+    protected override void OnStart(InputManager pInputManager, ControlState controlState)
     {
+        base.OnStart(pInputManager, controlState);
         if (controlState == _state)
         {
             if (inputManager != null)
@@ -227,7 +231,6 @@ public class SwipeFollow : State
         if (state != this)
             return;
     
-        Debug.Log("here" + gameObject.name);
         foreach (SpriteRenderer i in _drawShape.visualFeedBack)
         {
             if (i != null)

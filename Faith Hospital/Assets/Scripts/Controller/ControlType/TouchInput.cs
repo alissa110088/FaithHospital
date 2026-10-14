@@ -2,13 +2,15 @@ using UnityEngine;
 
 public class TouchInput : State
 {
-    private ControlState _state = ControlState.touch;
 
     private bool _touchStarted;
     private bool _firtPos;
     public int[] countPoints;
 
-
+    private void Awake()
+    {
+        _state =  ControlState.trace;
+    }
     private void OnEnable()
     {
         unlockState += OnStart;
@@ -46,8 +48,9 @@ public class TouchInput : State
         Controller.OnInputValidate += DisableImage;
     }
 
-    private void OnStart(InputManager pInputManager, ControlState controlState)
+    protected override void OnStart(InputManager pInputManager, ControlState controlState)
     {
+        base.OnStart(pInputManager, controlState);
         if (controlState == _state)
         {
             if (inputManager != null)

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 
@@ -8,12 +9,15 @@ public class PatientManager : MonoBehaviour
     public List<List<State>> _layers = new List<List<State>>();
     public int _currentLayer = 1;
 
+    [SerializeField] private List<CameraSettings> _cameraSettings;
     [SerializeField] private OrgansSO _organsToPut;
     [SerializeField] private OrganCollector _organCollector;
     [SerializeField] private int _layerCount = 7;
 
     private OrganLayerPairing currentLayerPairing;
     private int _numToInstantiate;
+    private bool CameraWellPlaced = true;
+    private CameraSettings _currentCameraSettings;
     public static PatientManager Instance { get; private set; }
 
     void Awake()
@@ -36,6 +40,24 @@ public class PatientManager : MonoBehaviour
 
         Controller.OnInputValidate += UnlockNextLayer;
         Controller.OnInputValidateOrgan += UnlockNextLayer;
+    }
+
+    private void Update()
+    {
+        if (!CameraWellPlaced && _currentCameraSettings != null)
+        {
+            Debug.LogWarning("CameraWellPlaced");
+            while (Vector3.Distance(Camera.main.transform.position, _currentCameraSettings.Position) > 0.1f)
+            {
+                Debug.Log("EAH");
+                Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, _currentCameraSettings.Position, Time.deltaTime * 5);
+                Camera.main.DOFieldOfView(_currentCameraSettings.fieldOfView, 1f);
+            }
+                
+            
+
+            CameraWellPlaced = true;
+        }
     }
 
     private void OnDisable()
@@ -63,6 +85,16 @@ public class PatientManager : MonoBehaviour
                 if (lObject == null)
                     continue;
                 lObject.enabled = i == _currentLayer - 1;
+            }
+        }
+
+        foreach (CameraSettings camSettings in _cameraSettings)
+        {
+            if (camSettings.layer == _currentLayer)
+            {
+                _currentCameraSettings = camSettings;
+                CameraWellPlaced = false;
+                return;
             }
         }
 

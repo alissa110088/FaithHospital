@@ -3184,6 +3184,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PatientManager
   _currentLayer: 1
+  _cameraSettings:
+  - {fileID: 11400000, guid: 6425dbaa914886143aa9b141ecdc90ef, type: 2}
   _organsToPut: {fileID: 11400000, guid: 0292d70331099234db5864e782eb7352, type: 2}
   _organCollector: {fileID: 2080173407}
   _layerCount: 15

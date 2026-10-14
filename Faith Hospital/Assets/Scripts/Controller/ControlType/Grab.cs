@@ -4,14 +4,16 @@ public class Grab : State
 {
     [SerializeField] private OrganCollector _organCollector;
 
-    private ControlState _state = ControlState.none;
-
     private bool _touchStarted;
     private bool _firtPos;
     private GameObject _grabbed;
     private Rigidbody _rb;
     private Vector3 _targetPos;
 
+    private void Awake()
+    {
+        _state =  ControlState.trace;
+    }
     private void OnEnable()
     {
         unlockState += OnStart;

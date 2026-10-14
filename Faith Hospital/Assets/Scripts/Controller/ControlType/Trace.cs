@@ -7,12 +7,14 @@ public class Trace : State
 {
     private Vector2 _currentPos = Vector2.zero;
 
-    private ControlState _state = ControlState.trace;
-
     private bool _start;
 
     private TraceSettings _traceSettings;
 
+    private void Awake()
+    {
+        _state =  ControlState.trace;
+    }
     private void OnEnable()
     {
         unlockState += OnStart;
@@ -55,8 +57,9 @@ public class Trace : State
     }
 
 
-    private void OnStart(InputManager pInputManager, ControlState controlState)
+    protected override void OnStart(InputManager pInputManager, ControlState controlState)
     {
+        base.OnStart(pInputManager, controlState);
         if (controlState == _state)
         {
             if (inputManager != null)
@@ -98,8 +101,9 @@ public class Trace : State
         }
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if (_start)
             OnTouchingScnreen(_currentPos);
     }

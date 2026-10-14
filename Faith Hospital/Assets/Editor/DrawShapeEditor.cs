@@ -15,7 +15,7 @@ public class DrawShapeEditor : Editor
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
-
+        
         EditorGUILayout.Space();
         EditorGUILayout.HelpBox(
             "Ctrl+Clic dans la Scene view : ajoute un point.\n",
