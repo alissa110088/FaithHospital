@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Tool : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
-    [SerializeField] private ControlState stateToSwitch;
+    [SerializeField] private ToolsEnum _toolsEnum;
 
     public static Tool activeTool;
     private Vector3 _originPos;
@@ -28,10 +28,10 @@ public class Tool : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
         }
 
         activeTool = this;
-        Controller.Instance.SwitchState(stateToSwitch);
+        Controller.Instance.SwitchState(_toolsEnum);
         _icon.raycastTarget = false;
         
-        if (stateToSwitch != ControlState.none)
+        if (_toolsEnum != ToolsEnum.none)
         {
             transform.position = eventData.position;
             Controller.Instance.inputManager.onTouchingPos += PlaceAtTouch;

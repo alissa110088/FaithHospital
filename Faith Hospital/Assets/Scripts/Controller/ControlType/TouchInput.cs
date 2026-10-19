@@ -6,11 +6,8 @@ public class TouchInput : State
     private bool _touchStarted;
     private bool _firtPos;
     public int[] countPoints;
-
-    private void Awake()
-    {
-        _state =  ControlState.trace;
-    }
+    
+    
     private void OnEnable()
     {
         unlockState += OnStart;
@@ -46,12 +43,13 @@ public class TouchInput : State
     {
         base.Start();
         Controller.OnInputValidate += DisableImage;
+        
     }
 
-    protected override void OnStart(InputManager pInputManager, ControlState controlState)
+    protected override void OnStart(InputManager pInputManager, ToolsEnum pTool)
     {
-        base.OnStart(pInputManager, controlState);
-        if (controlState == _state)
+        base.OnStart(pInputManager, pTool);
+        if (pTool == _tool)
         {
             if (inputManager != null)
             {

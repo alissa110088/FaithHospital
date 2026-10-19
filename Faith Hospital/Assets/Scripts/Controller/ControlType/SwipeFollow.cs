@@ -23,11 +23,6 @@ public class SwipeFollow : State
             _pos = value;
         }
     }
-
-    private void Awake()
-    {
-        _state =  ControlState.SwipeFollow;
-    }
     
     private void OnEnable()
     {
@@ -50,6 +45,7 @@ public class SwipeFollow : State
     private void OnDisable()
     {
         unlockState -= OnStart;
+        _canStart = false;
         if (inputManager != null)
         {
             inputManager.onToucheStart -= TouchStarted;
@@ -70,10 +66,10 @@ public class SwipeFollow : State
         _swipeSettings = _inputSettings as SwipeSettings;
     }
 
-    protected override void OnStart(InputManager pInputManager, ControlState controlState)
+    protected override void OnStart(InputManager pInputManager, ToolsEnum pTool)
     {
-        base.OnStart(pInputManager, controlState);
-        if (controlState == _state)
+        base.OnStart(pInputManager, pTool);
+        if (pTool == _tool)
         {
             if (inputManager != null)
             {
@@ -93,6 +89,7 @@ public class SwipeFollow : State
         }
         else if (inputManager != null)
         {
+            _canStart = false;
             inputManager.onToucheStart -= TouchStarted;
             inputManager.onToucheEnd -= TouchEnded;
             inputManager.onTouchingPos -= OnSwipeStarted;

@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public abstract class State : MonoBehaviour
 {
-    public static Action<InputManager, ControlState> unlockState;
+    public static Action<InputManager, ToolsEnum> unlockState;
 
-    protected ControlState _state = ControlState.none;
+    protected ToolsEnum _tool = ToolsEnum.none;
     
     protected static int _countGrouped = 0;
 
@@ -34,6 +34,7 @@ public abstract class State : MonoBehaviour
     {
         if (_drawShape != null)
         {
+            _tool = _drawShape._toolUsed;
             _inputSettings = _drawShape.inputSettings;
             _range = _inputSettings.MaxDistanceFromPoint;
         }
@@ -55,7 +56,7 @@ public abstract class State : MonoBehaviour
     }
 
     //A faire un truc
-    protected virtual void OnStart(InputManager pInputManager, ControlState controlState)
+    protected virtual void OnStart(InputManager pInputManager, ToolsEnum pTool)
     {
        
     }

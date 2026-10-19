@@ -8,3 +8,12 @@ public enum ControlState
     place,
     none
 }
+public enum ToolsEnum
+{
+    hammer,
+    scalpel,
+    touch,
+    needle,
+    ecarteur,
+    none
+}

@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class DrawShape : MonoBehaviour
 {
-    [SerializeField] ControlState _stateControl;
+    public ToolsEnum _toolUsed;
+    [SerializeField] private ControlState _controlState;
     public InputSettings inputSettings;
     public bool _groupped;
     
@@ -17,7 +19,7 @@ public class DrawShape : MonoBehaviour
     
     private void OnEnable()
     {
-        switch (_stateControl)
+        switch (_controlState)
         {
             case ControlState.SwipeFollow:
                 _state = gameObject.AddComponent<SwipeFollow>();

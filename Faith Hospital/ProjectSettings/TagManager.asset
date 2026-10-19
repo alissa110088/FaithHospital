@@ -20,6 +20,8 @@ TagManager:
   - Layer9
   - Layer10
   - Layer11
+  - Aiguille
+  - Marteau
   layers:
   - Default
   - TransparentFX

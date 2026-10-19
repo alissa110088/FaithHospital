@@ -10,11 +10,6 @@ public class Trace : State
     private bool _start;
 
     private TraceSettings _traceSettings;
-
-    private void Awake()
-    {
-        _state =  ControlState.trace;
-    }
     private void OnEnable()
     {
         unlockState += OnStart;
@@ -35,7 +30,7 @@ public class Trace : State
     {
         DisableImage(this);
         unlockState -= OnStart;
-        
+        _canStart = false;
         if (inputManager != null)
         {
             inputManager.onTouchingPos -= OnTouchingScreen;
@@ -57,10 +52,10 @@ public class Trace : State
     }
 
 
-    protected override void OnStart(InputManager pInputManager, ControlState controlState)
+    protected override void OnStart(InputManager pInputManager, ToolsEnum pTool)
     {
-        base.OnStart(pInputManager, controlState);
-        if (controlState == _state)
+        base.OnStart(pInputManager, pTool);
+        if (pTool == _tool)
         {
             if (inputManager != null)
             {
@@ -81,6 +76,7 @@ public class Trace : State
         }
         else if (inputManager != null)
         {
+            _canStart = false;
             inputManager.onTouchingPos -= OnTouchingScreen;
             inputManager.onToucheStart -= OnTouchedScreen;
             inputManager.onToucheEnd -= OnEndTouch;

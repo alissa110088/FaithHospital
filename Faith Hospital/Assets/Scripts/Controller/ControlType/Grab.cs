@@ -9,11 +9,7 @@ public class Grab : State
     private GameObject _grabbed;
     private Rigidbody _rb;
     private Vector3 _targetPos;
-
-    private void Awake()
-    {
-        _state =  ControlState.trace;
-    }
+    
     private void OnEnable()
     {
         unlockState += OnStart;
@@ -39,9 +35,9 @@ public class Grab : State
         _rb.linearVelocity = toTarget * 4f;
     }
 
-    private void OnStart(InputManager pInputManager, ControlState controlState)
+    private void OnStart(InputManager pInputManager, ToolsEnum pTool)
     {
-        if (controlState == _state)
+        if (pTool == _tool)
         {
             if (inputManager != null)
             {

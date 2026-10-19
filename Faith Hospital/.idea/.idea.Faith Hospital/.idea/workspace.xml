@@ -64,7 +64,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "Feature/Camera",
+    "git-widget-placeholder": "Feature/outilAiguille",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -155,6 +155,7 @@
       <workItem from="1791534818504" duration="21052000" />
       <workItem from="1791736455729" duration="5606000" />
       <workItem from="1791993188645" duration="3856000" />
+      <workItem from="1792399583958" duration="4297000" />
     </task>
     <servers />
   </component>

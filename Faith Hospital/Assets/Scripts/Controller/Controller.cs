@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class Controller : MonoBehaviour
 {
-    [SerializeField] private ControlState _currentState = ControlState.SwipeFollow;
+    [SerializeField] private ToolsEnum _currentTool;
 
     private SwipeFollow _swipeFollow;
 
@@ -42,10 +42,10 @@ public class Controller : MonoBehaviour
         Application.targetFrameRate = Mathf.RoundToInt((float)Screen.currentResolution.refreshRateRatio.value);
     }
 
-    public void SwitchState(ControlState pState)
+    public void SwitchState(ToolsEnum pTool)
     {
-        _currentState = pState;
-        State.unlockState.Invoke(inputManager, pState);
+        _currentTool = pTool;
+        State.unlockState.Invoke(inputManager, pTool);
         
     }
 }
