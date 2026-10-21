@@ -218,9 +218,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c09c0c6f448b01e4da2e7cbe2896a6a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
-  _toolUsed: 1
+  _toolUsed: 3
   _controlState: 0
-  inputSettings: {fileID: 11400000, guid: 0c77dbabb5afe6a4e95a3be7a81da396, type: 2}
+  inputSettings: {fileID: 11400000, guid: 3e5856bb71c6c1142875e9725103b7d6, type: 2}
   _groupped: 1
   _state: {fileID: 0}
   visualFeedBack:
@@ -356,9 +356,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c09c0c6f448b01e4da2e7cbe2896a6a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
-  _toolUsed: 1
+  _toolUsed: 3
   _controlState: 0
-  inputSettings: {fileID: 11400000, guid: 0c77dbabb5afe6a4e95a3be7a81da396, type: 2}
+  inputSettings: {fileID: 11400000, guid: 3e5856bb71c6c1142875e9725103b7d6, type: 2}
   _groupped: 1
   _state: {fileID: 0}
   visualFeedBack:
