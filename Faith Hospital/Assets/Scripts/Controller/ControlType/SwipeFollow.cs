@@ -24,19 +24,16 @@ public class SwipeFollow : State
         }
     }
     
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         unlockState += OnStart;
         if (_drawShape == null)
             return;
 
         if (_drawShape.visualFeedBack.Length < 1)
             return;
-
-        foreach (SpriteRenderer i in _drawShape.visualFeedBack)
-        {
-            i.enabled = true;
-        }
+        
 
         if (_drawShape._groupped)
             _countGrouped++;
@@ -75,6 +72,8 @@ public class SwipeFollow : State
             {
                 return;
             }
+
+            _patternValidated = false;
 
             inputManager = pInputManager;
             inputManager.onToucheStart += TouchStarted;
@@ -179,8 +178,6 @@ public class SwipeFollow : State
             DistancePointToSegment(_points[_points.IndexOf(_currentPoint) + 1], _currentPoint, pos);
 
         //Checks if went to first point
-
-        
         if (sameDirection && (worldPos - _points[1]).magnitude < 0.3f &&
             distancePointToSegment < _swipeSettings.howFarFromSegmentMax)
         {

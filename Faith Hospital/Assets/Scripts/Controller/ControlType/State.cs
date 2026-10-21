@@ -41,6 +41,18 @@ public abstract class State : MonoBehaviour
     }
 
     //TODO jsp
+    protected virtual void OnEnable()
+    {
+        if (_drawShape == null)
+            return;
+        
+        Debug.Log("HERE");
+        foreach (SpriteRenderer i in _drawShape.visualFeedBack)
+        {
+            i.enabled = true;
+        }
+    }
+    
     protected virtual void Update()
     {
     }
@@ -58,6 +70,5 @@ public abstract class State : MonoBehaviour
     //A faire un truc
     protected virtual void OnStart(InputManager pInputManager, ToolsEnum pTool)
     {
-       
     }
 }

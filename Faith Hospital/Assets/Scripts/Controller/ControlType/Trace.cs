@@ -10,17 +10,13 @@ public class Trace : State
     private bool _start;
 
     private TraceSettings _traceSettings;
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         unlockState += OnStart;
 
         if (_drawShape == null)
             return;
-
-        foreach (SpriteRenderer i in _drawShape.visualFeedBack)
-        {
-            i.enabled = true;
-        }
         
         if (_drawShape._groupped)
             _countGrouped++;
@@ -61,6 +57,8 @@ public class Trace : State
             {
                 return;
             }
+            
+            _patternValidated = false;
 
             inputManager = pInputManager;
             inputManager.onTouchingPos += OnTouchingScreen;
@@ -150,12 +148,10 @@ public class Trace : State
             {
                 _currentErrorMargin++;
                 Controller.OnInputNotValidate.Invoke();
-                Debug.Log("NOT VALIDATED ");
             }
             else
             {
                 Controller.OnInputNotValidate.Invoke();
-                Debug.Log("NOT VALIDATED RESET");
                 _currentPoint = _points[1];
                 transform.position = new Vector3(_points[0].x, _points[0].y, -1);
                 _currentErrorMargin = 0;
@@ -173,7 +169,6 @@ public class Trace : State
                     {
                         Controller.OnInputValidate.Invoke(true,this);
                         _patternValidated = true;
-                        Debug.Log("finishhhh");
                         return;
                     }
                 }

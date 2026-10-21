@@ -9,13 +9,16 @@ public class DrawShape : MonoBehaviour
     public ToolsEnum _toolUsed;
     [SerializeField] private ControlState _controlState;
     public InputSettings inputSettings;
-    public bool _groupped;
     
     [HideInInspector] public State _state;
     
     public SpriteRenderer[] visualFeedBack;
     public List<Vector2> points;
+    public bool isAffliction;
+    [Header("ne remplir que si ce n'est pas une affliction")]
+    public bool _groupped;
     public int _nextLayer;
+    
     
     private void OnEnable()
     {
@@ -34,6 +37,9 @@ public class DrawShape : MonoBehaviour
                 _state._drawShape = this;
                 break;
         }
+        
+        if(isAffliction)
+            _nextLayer = -1;
     }
 
     private void Start()

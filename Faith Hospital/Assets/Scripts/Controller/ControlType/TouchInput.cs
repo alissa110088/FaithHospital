@@ -8,18 +8,14 @@ public class TouchInput : State
     public int[] countPoints;
     
     
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         unlockState += OnStart;
 
         if (_drawShape == null)
             return;
-
-        foreach (SpriteRenderer i in _drawShape.visualFeedBack)
-        {
-            i.enabled = true;
-        }
-
+        
         if (_drawShape._groupped)
             _countGrouped++;
     }

@@ -46,10 +46,8 @@ public class PatientManager : MonoBehaviour
     {
         if (!CameraWellPlaced && _currentCameraSettings != null)
         {
-            Debug.LogWarning("CameraWellPlaced");
             while (Vector3.Distance(Camera.main.transform.position, _currentCameraSettings.Position) > 0.1f)
             {
-                Debug.Log("EAH");
                 Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, _currentCameraSettings.Position, Time.deltaTime * 5);
                 Camera.main.DOFieldOfView(_currentCameraSettings.fieldOfView, 1f);
             }
@@ -112,11 +110,32 @@ public class PatientManager : MonoBehaviour
         _organCollector.isNew = false;
     }
 
+    public void AfflictionInterruption(DrawShape drawShape)
+    {
+        for (int i = 0; i < _layers.Count; i++)
+        {
+            foreach (State lObject in _layers[i])
+            {
+                if (lObject == null)
+                    continue;
+                lObject.enabled = false;
+            }
+        }
+        
+        drawShape._state.enabled = true;
+    }
+
     private void UnlockNextLayer(bool pIsGrouped, State _state = null)
     {
         if (pIsGrouped)
             return;
 
+        if (_state._drawShape._nextLayer == -1)
+        {
+            _state.enabled = false;
+            UpdateLayers();
+            return;
+        }   
         currentLayerPairing = null;
         _currentLayer = _state._drawShape._nextLayer;
         UpdateLayers();
@@ -124,8 +143,6 @@ public class PatientManager : MonoBehaviour
 
     private void UnlockNextLayer(int pNextLayer)
     {
-        if (currentLayerPairing != null)
-            Debug.Log(currentLayerPairing.num);
         if (currentLayerPairing != null && _numToInstantiate > 0)
         {
             _numToInstantiate--;
