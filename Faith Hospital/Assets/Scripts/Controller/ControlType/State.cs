@@ -46,7 +46,6 @@ public abstract class State : MonoBehaviour
         if (_drawShape == null)
             return;
         
-        Debug.Log("HERE");
         foreach (SpriteRenderer i in _drawShape.visualFeedBack)
         {
             i.enabled = true;
@@ -70,5 +69,17 @@ public abstract class State : MonoBehaviour
     //A faire un truc
     protected virtual void OnStart(InputManager pInputManager, ToolsEnum pTool)
     {
+    }
+
+    protected bool CheckOperationEnded()
+    {
+        if (_drawShape.isLast)
+        {
+            Debug.Log("Operation Ended");
+            StartCoroutine(PatientManager.Instance.OnSurgeryOver());
+            return true;
+        }
+
+        return false;
     }
 }

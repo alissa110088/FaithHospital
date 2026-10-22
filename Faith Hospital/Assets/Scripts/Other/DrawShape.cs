@@ -18,6 +18,7 @@ public class DrawShape : MonoBehaviour
     [Header("ne remplir que si ce n'est pas une affliction")]
     public bool _groupped;
     public int _nextLayer;
+    public bool isLast;
     
     
     private void OnEnable()

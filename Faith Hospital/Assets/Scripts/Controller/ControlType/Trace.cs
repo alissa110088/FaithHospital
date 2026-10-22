@@ -162,6 +162,11 @@ public class Trace : State
         {
             if (_currentPoint == _points[^1])
             {
+                if (CheckOperationEnded())
+                {
+                    _patternValidated = true;
+                    return;
+                }
                 if (_drawShape._groupped)
                 {
                     _countGrouped--;

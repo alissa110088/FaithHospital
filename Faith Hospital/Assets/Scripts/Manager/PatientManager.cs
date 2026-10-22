@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -13,12 +15,17 @@ public class PatientManager : MonoBehaviour
     [SerializeField] private OrgansSO _organsToPut;
     [SerializeField] private OrganCollector _organCollector;
     [SerializeField] private int _layerCount = 7;
-
+    [SerializeField] private EndScreen endScreen;
+    
     private OrganLayerPairing currentLayerPairing;
     private int _numToInstantiate;
     private bool CameraWellPlaced = true;
     private CameraSettings _currentCameraSettings;
+    
+    public Func<int> OnOperationFinished;
+    
     public static PatientManager Instance { get; private set; }
+    
 
     void Awake()
     {
@@ -154,5 +161,13 @@ public class PatientManager : MonoBehaviour
         currentLayerPairing = null;
         _currentLayer = pNextLayer;
         UpdateLayers();
+    }
+
+    public IEnumerator OnSurgeryOver()
+    {
+        int toLoose = OnOperationFinished.Invoke();
+        endScreen.gameObject.SetActive(true);
+        yield return endScreen.Open(toLoose);
+        GameManager.Instance.OperationEnded(toLoose);
     }
 }

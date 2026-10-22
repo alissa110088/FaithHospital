@@ -15,9 +15,11 @@ public class FailedInputFeedback
     public List<int> afflictionStage = new List<int>();
     private CameraShake cam;
     private bool isInAfflictionStage = false;
+    private int energyLostFromStart = 0;
 
     private void Start()
     {
+        PatientManager.Instance.OnOperationFinished += OnOperationEnded;
         Controller.OnInputValidate += OnAfflictionFinished;
         
         for (int i = 0; i < numEventDuringGame; i++)
@@ -49,9 +51,13 @@ public class FailedInputFeedback
     {
         if (isInAfflictionStage)
             return;
-        
-        if(failedSlider.value != failedSlider.maxValue)
+
+        if (failedSlider.value != failedSlider.maxValue)
+        {
             failedSlider.value ++;
+            energyLostFromStart++;
+        }
+            
         else
         {
             cam.StartShake();
@@ -64,5 +70,10 @@ public class FailedInputFeedback
             PatientManager.Instance.AfflictionInterruption(affliction);
             isInAfflictionStage = true;
         }
+    }
+
+    private int OnOperationEnded()
+    {
+        return energyLostFromStart;
     }
 }

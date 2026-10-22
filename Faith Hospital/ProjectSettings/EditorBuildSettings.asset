@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Patient0.unity
     guid: a4717d16048fb0a4a9b7dfe1fce56707
+  - enabled: 1
+    path: Assets/Scenes/MetaGame.unity
+    guid: 12ec37630ce40b04bbee36f5b6d25b3c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

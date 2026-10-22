@@ -122,6 +122,12 @@ public class TouchInput : State
             if (value == 0)
                 return;
 
+        if (CheckOperationEnded())
+        {
+            _patternValidated = true;
+            return;
+        }
+
         if (_drawShape._groupped)
         {
             _countGrouped--;

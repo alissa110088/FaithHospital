@@ -183,6 +183,12 @@ public class SwipeFollow : State
         {
             if (_currentPoint == _points[^2])
             {
+                
+                if (CheckOperationEnded())
+                {
+                    _patternValidated = true;
+                    return;
+                }
                 if (_drawShape._groupped)
                 {
                     _countGrouped--;
