@@ -31,6 +31,7 @@ public class Trace : State
         {
             inputManager.onTouchingPos -= OnTouchingScreen;
             inputManager.onToucheStart -= OnTouchedScreen;
+            inputManager.onToucheEnd -= OnEndTouch;
 
             _currentPoint = Vector2.zero;
             inputManager = null;

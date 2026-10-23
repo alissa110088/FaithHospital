@@ -2419,7 +2419,7 @@ MonoBehaviour:
   isAffliction: 0
   _groupped: 0
   _nextLayer: 2
-  isLast: 0
+  isLast: 1
 --- !u!4 &875514167
 Transform:
   m_ObjectHideFlags: 0
@@ -4133,7 +4133,7 @@ MonoBehaviour:
   isAffliction: 0
   _groupped: 0
   _nextLayer: 2
-  isLast: 1
+  isLast: 0
 --- !u!114 &1489426570
 MonoBehaviour:
   m_ObjectHideFlags: 0

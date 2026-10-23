@@ -53,6 +53,12 @@ public class Organs : MonoBehaviour
             effect.Invoke(_position, _hitIndex);
     }
 
+    private void OnDestroy()
+    {
+        Controller.OnInputValidate -= OnInputFinished;
+        Controller.OnInputStepFinished -= OnInputStepFinished;
+    }
+    
     private void OnDisable()
     {
         if(groupped)

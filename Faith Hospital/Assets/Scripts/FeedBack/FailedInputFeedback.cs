@@ -39,6 +39,13 @@ public class FailedInputFeedback
             Debug.Log("NO CAMERE SHAKE FOUND");
     }
 
+    private void OnDestroy()
+    {
+        PatientManager.Instance.OnOperationFinished -= OnOperationEnded;
+        Controller.OnInputValidate -= OnAfflictionFinished;
+        Controller.OnInputNotValidate -= OnFailed;
+    }
+
     private void OnAfflictionFinished(bool pIsGrouped, State _state = null)
     {
         if (_state._drawShape._nextLayer == -1)

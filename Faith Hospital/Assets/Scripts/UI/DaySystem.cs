@@ -10,7 +10,6 @@ public class DaySystem : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.daySystem = this;
         dayText = GetComponentInChildren<TextMeshProUGUI>();
         canvasGroup = GetComponent<CanvasGroup>();
     }

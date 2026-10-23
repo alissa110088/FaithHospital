@@ -6,12 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private MetaManager MetaManager;
     [HideInInspector] public int energyToLoose;
-    [HideInInspector] public EnergyBar energyManager;
-    [HideInInspector] public DaySystem daySystem;
-    private int currentDay = 1;
-    
-    
+    [HideInInspector] public MetaManager metaManager;
+
+
     public static GameManager Instance { get; private set; }
 
     private void Awake()
@@ -22,13 +21,13 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
-        StartCoroutine(daySystem.ShowCurrentDay(currentDay));
     }
 
     public void OperationEnded(int pToLoose)
@@ -38,7 +37,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadScene("MetaGame"));
     }
 
-    private IEnumerator LoadScene(string pSceneName)
+    public IEnumerator LoadScene(string pSceneName)
     {
         AsyncOperation metaLoader = SceneManager.LoadSceneAsync(pSceneName);
 
@@ -46,12 +45,6 @@ public class GameManager : MonoBehaviour
         {
             yield return null;
         }
-    }
-
-    public void OnEndDayOrEnergyFinish()
-    {
-        currentDay++;
-        StartCoroutine(daySystem.ShowCurrentDay(currentDay));
     }
     
 }

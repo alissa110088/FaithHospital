@@ -10,15 +10,9 @@ public class EnergyBar : MonoBehaviour
     [SerializeField] private int totalEnergy = 350;
     private static int currentEnergy = 350;
 
-    private void Start()
+    public bool OperationEnded(int pEnergyLost)
     {
-        GameManager.Instance.energyManager = this;
-        OperationEnded(GameManager.Instance.energyToLoose);
-    }
-
-    private void OperationEnded(int pEnergyLost)
-    {
-        currentEnergy -= pEnergyLost;
+        currentEnergy = Mathf.Max(0, currentEnergy - pEnergyLost);
 
         int barsRemaining = Mathf.CeilToInt(
             (float)currentEnergy / totalEnergy * energyBar.Length);
@@ -33,9 +27,11 @@ public class EnergyBar : MonoBehaviour
 
         if (energyBar.Length - barsRemaining >= 6)
         {
-            GameManager.Instance.OnEndDayOrEnergyFinish();
             StartCoroutine(ShowEnergyBar());
+            return true;
         }
+        
+        return false;
     }
 
     private IEnumerator ShowEnergyBar()
