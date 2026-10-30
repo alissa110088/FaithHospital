@@ -221,14 +221,16 @@ MonoBehaviour:
   _toolUsed: 3
   _controlState: 0
   inputSettings: {fileID: 11400000, guid: 3e5856bb71c6c1142875e9725103b7d6, type: 2}
-  _groupped: 1
   _state: {fileID: 0}
   visualFeedBack:
   - {fileID: 1051817089097921423}
   points:
   - {x: -0.2010646, y: 2.2214801}
   - {x: 1.2812153, y: 2.0993786}
+  isAffliction: 0
+  _groupped: 1
   _nextLayer: 9
+  isLast: 0
 --- !u!1 &5073214289809060733
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,14 +361,16 @@ MonoBehaviour:
   _toolUsed: 3
   _controlState: 0
   inputSettings: {fileID: 11400000, guid: 3e5856bb71c6c1142875e9725103b7d6, type: 2}
-  _groupped: 1
   _state: {fileID: 0}
   visualFeedBack:
   - {fileID: 1415914683970170441}
   points:
   - {x: 0.018462764, y: 4.214268}
   - {x: 1.0943607, y: 3.186479}
+  isAffliction: 0
+  _groupped: 1
   _nextLayer: 9
+  isLast: 0
 --- !u!1 &7030554108396703288
 GameObject:
   m_ObjectHideFlags: 0
