@@ -81,9 +81,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6442298374534657108, guid: 3f23a58fd58edd0469853a94c1fc0b1e, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -6442298374534657108, guid: 3f23a58fd58edd0469853a94c1fc0b1e, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 9f076aaa5e9f80c4a9304fc8ef38a001, type: 2}
+    - target: {fileID: -6442298374534657108, guid: 3f23a58fd58edd0469853a94c1fc0b1e, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7c8a5fecf10f17e4c9ea0a6f9f6a1c9f, type: 2}
     - target: {fileID: 919132149155446097, guid: 3f23a58fd58edd0469853a94c1fc0b1e, type: 3}
       propertyPath: m_Name
       value: Oragne_Mutant_Poumons_05
