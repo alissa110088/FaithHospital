@@ -38,13 +38,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BeatSharpness: 1
+    - _BeatSharpness: 5
     - _OutlineThickness: 0.0008
-    - _PulseIntensity: 0.003
-    - _PulseSpeed: 2.5
+    - _PulseIntensity: 0.001
+    - _PulseSpeed: 5
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _WaveFrequency: 20
+    - _WaveFrequency: 30
     m_Colors:
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
