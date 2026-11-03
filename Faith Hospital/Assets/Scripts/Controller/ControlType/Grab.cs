@@ -86,17 +86,11 @@ public class Grab : State
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 GameObject clicked = hit.collider.gameObject;
-                
-                Debug.Log(clicked.name);
-                Debug.Log(clicked.tag);
-                Debug.Log(PatientManager.Instance._currentLayer);
-                Debug.Log(clicked.layer != LayerMask.NameToLayer("Attrapable") );
-                Debug.Log(clicked.tag != "Layer" + PatientManager.Instance._currentLayer);
+
                 //hardcoder c moche
                 if (clicked.layer != LayerMask.NameToLayer("Attrapable") || clicked.tag != "Layer" + PatientManager.Instance._currentLayer)
                     return;
 
-                Debug.Log("here");
                 if (_organCollector.isNew)
                 {
                     _organCollector.Close();
