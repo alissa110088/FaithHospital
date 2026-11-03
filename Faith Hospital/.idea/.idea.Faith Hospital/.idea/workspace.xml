@@ -65,7 +65,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "Feature/intemetaGame",
+    "git-widget-placeholder": "Feature/inteOrganePatient0",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -161,6 +161,7 @@
       <workItem from="1792676057958" duration="31000" />
       <workItem from="1792676168388" duration="10723000" />
       <workItem from="1793643206463" duration="2700000" />
+      <workItem from="1793730678317" duration="2455000" />
     </task>
     <servers />
   </component>
