@@ -5,8 +5,8 @@ using DG.Tweening;
 
 public class Skin : Organs
 {
-    [SerializeField] private GameObject _skin2;
-    [SerializeField] private GameObject _skin1;
+    [SerializeField] private GameObject _closed;
+    [SerializeField] private GameObject _opened;
     
     [SerializeField] private DrawShape _swipeFollow;
     [SerializeField] private DrawShape _Close;
@@ -24,36 +24,36 @@ public class Skin : Organs
     
     private void CutSkin(State _state)
     {
-        _skin2.transform.DOMoveX(_skin2.transform.position.x - 0.13f, 0.2f);
+        _closed.SetActive(false);
 
-        _skin1.transform.DOMoveX(_skin1.transform.position.x + 0.13f, 0.2f);
+        _opened.SetActive(true);
 
         _state.enabled = false;
     }
     
     private void StitchSkin(State _state)
     {
-        _skin2.transform.DOMoveX(_skin2.transform.position.x + 0.13f, 0.2f);
+        _closed.transform.DOMoveX(_closed.transform.position.x + 0.13f, 0.2f);
 
-        _skin1.transform.DOMoveX(_skin1.transform.position.x - 0.13f, 0.2f);
+        _opened.transform.DOMoveX(_opened.transform.position.x - 0.13f, 0.2f);
 
         _state.enabled = false;
     }
 
     private void OpenSkin(State _state)
     {
-        _skin2.transform.DOMoveX(_skin2.transform.position.x - 3f, 0.5f);
+        _closed.transform.DOMoveX(_closed.transform.position.x - 3f, 0.5f);
 
-        _skin1.transform.DOMoveX(_skin1.transform.position.x + 3f, 0.5f);
+        _opened.transform.DOMoveX(_opened.transform.position.x + 3f, 0.5f);
 
         _state.enabled = false;
     }
     
     private void CloseSkin(State _state)
     {
-        _skin2.transform.DOMoveX(_skin2.transform.position.x + 3f, 0.5f);
+        _closed.transform.DOMoveX(_closed.transform.position.x + 3f, 0.5f);
 
-        _skin1.transform.DOMoveX(_skin1.transform.position.x - 3f, 0.5f);
+        _opened.transform.DOMoveX(_opened.transform.position.x - 3f, 0.5f);
 
         _state.enabled = false;
     }
