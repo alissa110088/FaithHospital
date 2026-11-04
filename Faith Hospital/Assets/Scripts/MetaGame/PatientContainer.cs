@@ -7,18 +7,26 @@ using UnityEngine.UI;
 public class PatientContainer : MonoBehaviour
 {
     private TextMeshProUGUI textContainer;
-    private RawImage image;
-    private Button button;
+    [SerializeField] private RawImage imagePatients;
+    [SerializeField] private Button[] buttonsPatientsChoice;
+    [SerializeField] private Button buttonChoiceOperation;
     private void OnEnable()
     {
         textContainer = GetComponentInChildren<TextMeshProUGUI>();
-        image = GetComponentInChildren<RawImage>();
-        button = GetComponentInChildren<Button>();
     }
 
-    public void LinkButtons(UnityAction<PatientContainer> pMyFunc)
+    public void LinkButtonOperation(UnityAction pMyFunc)
     {
-        button.onClick.AddListener(() => pMyFunc(this));
+        buttonChoiceOperation.onClick.AddListener(() => pMyFunc());
+    }
+
+    public void LinkButtonsChoice(UnityAction<int> pMyFunc)
+    {
+        for (int i = 0; i < buttonsPatientsChoice.Length; i++)
+        {
+            int index = i;
+            buttonsPatientsChoice[i].onClick.AddListener(() => pMyFunc(index));
+        }
     }
     public void SetText(string text)
     {
@@ -27,6 +35,6 @@ public class PatientContainer : MonoBehaviour
 
     public void SetPicture(Texture sprite)
     {
-        image.texture = sprite;
+        imagePatients.texture = sprite;
     }
 }

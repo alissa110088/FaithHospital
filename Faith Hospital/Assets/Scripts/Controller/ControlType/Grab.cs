@@ -100,6 +100,7 @@ public class Grab : State
                     _organCollector.Appear();
                 }
                 
+                
                 _grabbed = clicked;
                 _rb = _grabbed.GetComponent<Rigidbody>();
                 _rb.useGravity = false;

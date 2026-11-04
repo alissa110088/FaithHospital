@@ -10,8 +10,8 @@ public class ChoicePatient : MonoBehaviour
 
     [SerializeField] private PatientContainer patientContainer;
     [SerializeField] private OperationDay operationPerDay;
-    [SerializeField] private Transform layerGroup;
-    
+
+    private PatientContainer currentActive;
     private List<PatientContainer> patientContainerInstance = new List<PatientContainer>();
 
     public void OnClick()
@@ -30,22 +30,36 @@ public class ChoicePatient : MonoBehaviour
         if (currentDayPairing == null)
             return;
 
-        Debug.Log(pairing.operationsSO.Count);
         for (int i = 0; i < pairing.operationsSO.Count; i++)
         {
-            PatientContainer current = Instantiate(patientContainer, layerGroup);
+            PatientContainer current = Instantiate(patientContainer, transform);
             current.SetPicture(pairing.operationsSO[i].operationsImage);
             current.SetText(pairing.operationsSO[i].operationsText);
-            current.LinkButtons(PatientChosen);
+            current.LinkButtonOperation(PatientChosen);
+            current.LinkButtonsChoice(ChangePatient);
             patientContainerInstance.Add(current);
+            current.gameObject.SetActive(false);
         }
+        
+        currentActive = patientContainerInstance[0];
+        
+        currentActive.gameObject.SetActive(true);
     }
 
-    public void PatientChosen(PatientContainer patient)
+    public void PatientChosen()
     {
-        int indexOp = patientContainerInstance.IndexOf(patient);
+        int indexOp = patientContainerInstance.IndexOf(currentActive);
         string sceneName = MetaManager.remainingSurgery.operationsSO[indexOp].operationsSceneName;
         MetaManager.remainingSurgery.operationsSO.RemoveAt(indexOp);
         StartCoroutine(GameManager.Instance.LoadScene(sceneName));
+    }
+    
+    public void ChangePatient(int pIndex)
+    {
+        if (pIndex > patientContainerInstance.Count - 1)
+            return;
+        currentActive.gameObject.SetActive(false);
+        currentActive =  patientContainerInstance[pIndex];
+        currentActive.gameObject.SetActive(true);
     }
 }
