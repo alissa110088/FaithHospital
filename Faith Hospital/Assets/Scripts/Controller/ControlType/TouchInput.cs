@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class TouchInput : State
 {
+    private const float RayLength = 100f;
+
+    [Header("Debug Raycast")]
+    [SerializeField] private bool _drawTouchRay = true;
+    [SerializeField] private float _touchRayDuration = 0.5f;
 
     private bool _touchStarted;
     private bool _firtPos;
@@ -85,8 +90,28 @@ public class TouchInput : State
         _firtPos = false;
     }
 
+    private void DrawTouchRay(Vector2 screenPos)
+    {
+        if (!_drawTouchRay || float.IsInfinity(screenPos.x) || float.IsInfinity(screenPos.y))
+            return;
+
+        Ray ray = Camera.main.ScreenPointToRay(screenPos);
+        bool hit = Physics.Raycast(ray, out RaycastHit hitInfo, RayLength);
+        Vector3 end = hit ? hitInfo.point : ray.origin + ray.direction * RayLength;
+
+        Debug.DrawLine(ray.origin, end, hit ? Color.green : Color.red, _touchRayDuration);
+
+        if (hit)
+        {
+            Debug.DrawLine(end + Vector3.left * 0.2f, end + Vector3.right * 0.2f, Color.yellow, _touchRayDuration);
+            Debug.DrawLine(end + Vector3.up * 0.2f, end + Vector3.down * 0.2f, Color.yellow, _touchRayDuration);
+        }
+    }
+
     private void GetFirstPos(Vector2 pPosition)
     {
+        DrawTouchRay(pPosition);
+
         if (!_touchStarted || _firtPos || float.IsInfinity(pPosition.x) || float.IsInfinity(pPosition.y) ||
             !_drawShape.isActiveAndEnabled || _points.Count < 1)
             return;
@@ -100,6 +125,7 @@ public class TouchInput : State
         _firtPos = true;
 
         int hitIndex = -1;
+        
         for (int i = 0; i < _points.Count; i++)
         {
             if (!CheckIfInRange(worldPos3, _points[i])) continue;

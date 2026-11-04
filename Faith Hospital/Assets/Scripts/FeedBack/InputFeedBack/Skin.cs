@@ -24,9 +24,9 @@ public class Skin : Organs
     
     private void CutSkin(State _state)
     {
-        _closed.SetActive(false);
-
-        _opened.SetActive(true);
+        // _closed.SetActive(false);
+        //
+        // _opened.SetActive(true);
 
         _state.enabled = false;
     }
@@ -42,10 +42,9 @@ public class Skin : Organs
 
     private void OpenSkin(State _state)
     {
-        _closed.transform.DOMoveX(_closed.transform.position.x - 3f, 0.5f);
+        _closed.SetActive(false);
 
-        _opened.transform.DOMoveX(_opened.transform.position.x + 3f, 0.5f);
-
+        _opened.SetActive(true);
         _state.enabled = false;
     }
     

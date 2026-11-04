@@ -118,8 +118,8 @@ public class Grab : State
             new Vector3(pPosition.x, pPosition.y, distance)
         );
 
-        _targetPos = new Vector3(worldPos3.x, worldPos3.y, -4f);
-        _rb.MovePosition(Vector3.Lerp(_grabbed.transform.position, new Vector3(worldPos3.x, worldPos3.y, -4f),
+        _targetPos = new Vector3(worldPos3.x, worldPos3.y, -5f);
+        _rb.MovePosition(Vector3.Lerp(_grabbed.transform.position, new Vector3(worldPos3.x, worldPos3.y, -5f),
             Time.deltaTime * 5));
     }
 }

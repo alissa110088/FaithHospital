@@ -5,11 +5,25 @@ using UnityEngine.UI;
 
 public class Trace : State
 {
-    private Vector2 _currentPos = Vector2.zero;
+    private const float ReachThreshold = 0.1f; 
 
+    private Vector2 _currentPos = Vector2.zero;
     private bool _start;
+    private int _currentIndex = 1;
 
     private TraceSettings _traceSettings;
+    private Camera _cam;
+
+    private Camera Cam
+    {
+        get
+        {
+            if (_cam == null)
+                _cam = Camera.main;
+            return _cam;
+        }
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -17,7 +31,7 @@ public class Trace : State
 
         if (_drawShape == null)
             return;
-        
+
         if (_drawShape._groupped)
             _countGrouped++;
     }
@@ -27,181 +41,186 @@ public class Trace : State
         DisableImage(this);
         unlockState -= OnStart;
         _canStart = false;
-        if (inputManager != null)
-        {
-            inputManager.onTouchingPos -= OnTouchingScreen;
-            inputManager.onToucheStart -= OnTouchedScreen;
-            inputManager.onToucheEnd -= OnEndTouch;
-
-            _currentPoint = Vector2.zero;
-            inputManager = null;
-        }
+        _start = false;
+        Unsubscribe();
     }
 
     protected override void Start()
     {
         base.Start();
+        _cam = Camera.main;
+
         if (!_drawShape.isActiveAndEnabled)
             return;
+
         _points = _drawShape.points;
-        transform.position = new Vector3(_points[0].x, _points[0].y, -1);
+        SetPosition(_points[0]);
         _traceSettings = _inputSettings as TraceSettings;
     }
-
 
     protected override void OnStart(InputManager pInputManager, ToolsEnum pTool)
     {
         base.OnStart(pInputManager, pTool);
+
         if (pTool == _tool)
         {
             if (inputManager != null)
-            {
                 return;
-            }
-            
+
             _patternValidated = false;
 
             inputManager = pInputManager;
             inputManager.onTouchingPos += OnTouchingScreen;
             inputManager.onToucheStart += OnTouchedScreen;
             inputManager.onToucheEnd += OnEndTouch;
-                
+
             if (!_drawShape.isActiveAndEnabled)
                 return;
 
-            if (_points.Count > 1)
-                _currentPoint = _points[1];
-            transform.position = new Vector3(_points[0].x, _points[0].y, -1);
+            ResetToStart();
         }
         else if (inputManager != null)
         {
             _canStart = false;
-            inputManager.onTouchingPos -= OnTouchingScreen;
-            inputManager.onToucheStart -= OnTouchedScreen;
-            inputManager.onToucheEnd -= OnEndTouch;
-
-            _currentPoint = Vector2.zero;
-            inputManager = null;
+            _start = false;
+            Unsubscribe();
         }
     }
 
-
     private void OnDestroy()
     {
-        if (inputManager != null)
-        {
-            inputManager.onTouchingPos -= OnTouchingScnreen;
-            inputManager.onToucheStart -= OnTouchedScreen;
-            inputManager = null;
-        }
+        Unsubscribe();
+    }
+
+    private void Unsubscribe()
+    {
+        if (inputManager == null)
+            return;
+
+        inputManager.onTouchingPos -= OnTouchingScreen;
+        inputManager.onToucheStart -= OnTouchedScreen;
+        inputManager.onToucheEnd -= OnEndTouch;
+
+        _currentPoint = Vector2.zero;
+        inputManager = null;
     }
 
     protected override void Update()
     {
         base.Update();
         if (_start)
-            OnTouchingScnreen(_currentPos);
+            FollowPattern(_currentPos);
     }
+
 
     private void OnTouchedScreen() => _start = true;
 
-    private void OnTouchingScreen(Vector2 pCurrentPos)
-    {
-        _currentPos = pCurrentPos;
-    }
+    private void OnTouchingScreen(Vector2 pCurrentPos) => _currentPos = pCurrentPos;
 
     private void OnEndTouch()
     {
-        _currentPoint = _points[1];
-        transform.position = new Vector3(_points[0].x, _points[0].y, -1);
+        _start = false;
+        _canStart = false;
+        _currentPos = Vector2.positiveInfinity;
         _currentErrorMargin = 0;
-        _currentPos = Vector3.positiveInfinity;
+        ResetToStart();
     }
 
-    private void OnTouchingScnreen(Vector2 pPosition)
+
+    private Vector2 ScreenToCursorPlane(Vector2 screenPos)
+    {
+        float depth = Cam.WorldToScreenPoint(transform.position).z;
+        Vector3 w = Cam.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, depth));
+        return new Vector2(w.x, w.y);
+    }
+
+
+    private void FollowPattern(Vector2 pPosition)
     {
         if (_patternValidated || float.IsInfinity(pPosition.x) || float.IsInfinity(pPosition.y) ||
             !_drawShape.isActiveAndEnabled)
             return;
 
-        float distance = -Camera.main.transform.position.z;
+        Vector2 worldPos = ScreenToCursorPlane(pPosition);
+        Vector2 pos2D = transform.position;
 
-        //Converte to world point 
-        Vector3 worldPos3 = Camera.main.ScreenToWorldPoint(
-            new Vector3(pPosition.x, pPosition.y, distance)
-        );
-
-        Vector2 worldPos = new Vector2(worldPos3.x, worldPos3.y);
-
-        if (!_canStart && CheckIfInRange(worldPos, transform.position) &&
-            new Vector2(transform.position.x, transform.position.y) == _points[0])
-        {
+        if (!_canStart && CheckIfInRange(worldPos, pos2D) && pos2D == _points[0])
             _canStart = true;
-        }
 
         if (!_canStart)
             return;
 
-
-        if (!CheckIfInRange(worldPos, transform.position))
+        if (!CheckIfInRange(worldPos, pos2D))
         {
-            if (_currentErrorMargin != _errorMargin)
+            Controller.OnInputNotValidate.Invoke();
+
+            if (_currentErrorMargin < _errorMargin)
             {
                 _currentErrorMargin++;
-                Controller.OnInputNotValidate.Invoke();
             }
             else
             {
-                Controller.OnInputNotValidate.Invoke();
-                _currentPoint = _points[1];
-                transform.position = new Vector3(_points[0].x, _points[0].y, -1);
                 _currentErrorMargin = 0;
+                ResetToStart();
+                return;
             }
         }
 
-        if (Vector3.Distance(transform.position, _currentPoint) < 1.1f)
+        if (Vector2.Distance(pos2D, _points[_currentIndex]) < ReachThreshold)
         {
-            if (_currentPoint == _points[^1])
+            if (_currentIndex >= _points.Count - 1)
             {
-                if (CheckOperationEnded())
-                {
-                    _patternValidated = true;
-                    return;
-                }
-                if (_drawShape._groupped)
-                {
-                    _countGrouped--;
-                    if (_countGrouped > 0)
-                    {
-                        Controller.OnInputValidate.Invoke(true,this);
-                        _patternValidated = true;
-                        return;
-                    }
-                }
-                
-                Controller.OnInputValidate.Invoke(false, this);
-                _patternValidated = true;
+                EndPattern();
+                return;
             }
-            else
+
+            _currentIndex++;
+            _currentPoint = _points[_currentIndex];
+        }
+
+        Vector3 target = new Vector3(_points[_currentIndex].x, _points[_currentIndex].y, transform.position.z);
+        transform.position = Vector3.MoveTowards(
+            transform.position, target, _traceSettings.speedMoving * Time.deltaTime);
+    }
+
+    private void EndPattern()
+    {
+        _patternValidated = true;
+
+        if (CheckOperationEnded())
+            return;
+
+        if (_drawShape._groupped)
+        {
+            _countGrouped--;
+            if (_countGrouped > 0)
             {
-                _currentPoint = _points[_points.IndexOf(_currentPoint) + 1];
+                Controller.OnInputValidate.Invoke(true, this);
+                return;
             }
         }
 
-        Vector2 direction = new Vector2(_currentPoint.x - transform.position.x, _currentPoint.y - transform.position.y)
-            .normalized;
-        Vector3 dirV3 = new Vector3(direction.x, direction.y, 0f);
-        transform.position += dirV3 * Time.deltaTime * _traceSettings.speedMoving;
+        Controller.OnInputValidate.Invoke(false, this);
+    }
+
+    private void ResetToStart()
+    {
+        _currentIndex = _points.Count > 1 ? 1 : 0;
+        _currentPoint = _points[_currentIndex];
+        SetPosition(_points[0]);
+    }
+
+    private void SetPosition(Vector2 p)
+    {
+        transform.position = new Vector3(p.x, p.y, transform.position.z);
     }
 
     private void DisableImage(State state)
     {
-        if (state != this)
+        if (state != this || _drawShape == null)
             return;
 
         foreach (SpriteRenderer i in _drawShape.visualFeedBack)
-        {
             i.enabled = false;
-        }
     }
 }

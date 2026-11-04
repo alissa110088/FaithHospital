@@ -15,11 +15,11 @@ MonoBehaviour:
   organLayerPairings:
   - layer: 7
     Nextlayer: 8
-    organ: {fileID: 8204207228925532639, guid: a729e6cf289c1bf4580525f74697307d, type: 3}
+    organ: {fileID: 7341495390695852280, guid: a729e6cf289c1bf4580525f74697307d, type: 3}
     nameOrgan: Coeur
     num: 0
   - layer: 9
     Nextlayer: 10
-    organ: {fileID: 572020032668186079, guid: 01f23f91b1ac89c49a3cf565324b1b72, type: 3}
+    organ: {fileID: 9158101634394681521, guid: a59ed9637f0c6c14c8eece2450481a38, type: 3}
     nameOrgan: Cotes
     num: 7
