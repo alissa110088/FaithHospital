@@ -81,9 +81,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: b670e135aaa829341b670f6a0711a40b, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b670e135aaa829341b670f6a0711a40b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: bb6661db36024a743a59dd0351809498, type: 2}
+    - target: {fileID: -7511558181221131132, guid: b670e135aaa829341b670f6a0711a40b, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6d69ad72d0a924c4d9633bebd45ee09d, type: 2}
     - target: {fileID: 919132149155446097, guid: b670e135aaa829341b670f6a0711a40b, type: 3}
       propertyPath: m_Name
       value: Organe_Mutant_Foie_04
