@@ -20,6 +20,6 @@ MonoBehaviour:
     num: 0
   - layer: 9
     Nextlayer: 10
-    organ: {fileID: 9158101634394681521, guid: a59ed9637f0c6c14c8eece2450481a38, type: 3}
+    organ: {fileID: 3054707494854548363, guid: 7fde1e6cd5a577f4990c89b4e53cdafc, type: 3}
     nameOrgan: Cotes
-    num: 7
+    num: 0

@@ -37,6 +37,7 @@ public class OrganMagnet: MonoBehaviour
 
         taken = true;
         _lerpRoutine = StartCoroutine(LerpOrgan());
+        
     }
 
     private void OnTriggerExit(Collider other)
@@ -44,36 +45,33 @@ public class OrganMagnet: MonoBehaviour
         if (other.gameObject == _gameObjectToMove)
         {
             Release();
+            var rb = other.attachedRigidbody;
         }
     }
-
     private IEnumerator LerpOrgan()
     {
-        Vector3 target = new Vector3(transform.position.x
-            , transform.position.y,transform.position.z);
-        Transform t = _gameObjectToMove.transform;
+        var obj = _gameObjectToMove;
+        if (obj == null) { taken = false; yield break; }
 
-        if (_gameObjectToMove == null)
-        {
-            taken = false;
-            _gameObjectToMove = null;
-        }
-        
-        while (Vector3.Distance(t.position, target) > 0.01f)
+        Transform t = obj.transform;
+        Vector3 target = _collider.bounds.center;
+
+        while (obj != null && Vector3.Distance(t.position, target) > 0.01f)
         {
             t.position = Vector3.MoveTowards(t.position, target, 10f * Time.deltaTime);
             yield return null;
         }
-        if (_gameObjectToMove.TryGetComponent(out Organs organ))
-        {
-            if (organ.newOrgan)
-            {
-                Controller.OnInputValidateOrgan.Invoke(organ.nextLayer);
-                organ.newOrgan = false;
-            }
-        }
-        
+        if (obj == null) yield break;
+
         t.position = target;
+
+        if (obj.TryGetComponent(out Organs organ) && organ.newOrgan)
+        {
+            Controller.OnInputValidateOrgan.Invoke(organ.nextLayer);
+            organ.newOrgan = false;
+        }
+
+        yield return null;   
         _lerpRoutine = null;
     }
 
