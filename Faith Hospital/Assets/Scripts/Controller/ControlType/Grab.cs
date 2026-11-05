@@ -101,8 +101,10 @@ public class Grab : State
                 }
                 
                 
+                OrganMagnet.ReleaseOrgan.Invoke(clicked);
                 _grabbed = clicked;
                 _rb = _grabbed.GetComponent<Rigidbody>();
+                _rb.isKinematic = false;
                 _rb.useGravity = false;
                 _rb.linearDamping = 10f;
                 _firtPos = true;

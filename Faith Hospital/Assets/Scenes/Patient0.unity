@@ -2588,8 +2588,8 @@ MonoBehaviour:
   - {fileID: 1432356990}
   - {fileID: 1559593679}
   points:
-  - {x: -0.12673357, y: 5.653373}
-  - {x: -0.115868084, y: -1.0644325}
+  - {x: -0.14757329, y: 4.100434}
+  - {x: -0.2152177, y: -2.4387023}
   isAffliction: 0
   _groupped: 0
   _nextLayer: 2
@@ -2789,6 +2789,10 @@ PrefabInstance:
     - target: {fileID: 6613665692467152164, guid: 3a498a6089de9d440afe2cc4bc09b656, type: 3}
       propertyPath: m_Name
       value: PF_Oragne_Mutant_Poumons_05 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613665692467152164, guid: 3a498a6089de9d440afe2cc4bc09b656, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6613665692467152164, guid: 3a498a6089de9d440afe2cc4bc09b656, type: 3}
       propertyPath: m_TagString
@@ -3654,6 +3658,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_Oragne_Mutant_Poumons_05 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6613665692467152164, guid: 3a498a6089de9d440afe2cc4bc09b656, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6688579997114818949, guid: 3a498a6089de9d440afe2cc4bc09b656, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4185,7 +4193,7 @@ Transform:
   m_GameObject: {fileID: 1432356989}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03125, y: 1.187595, z: 0.202245}
+  m_LocalPosition: {x: -0.007, y: 0.772, z: 0.019}
   m_LocalScale: {x: 0.024999999, y: 0.024999999, z: 0.024999999}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4734,7 +4742,7 @@ Transform:
   m_GameObject: {fileID: 1559593678}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03125, y: -0.12490499, z: 0.202245}
+  m_LocalPosition: {x: -0.03125, y: -0.422, z: 0.112}
   m_LocalScale: {x: 0.024999999, y: 0.024999999, z: 0.024999999}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5130,6 +5138,10 @@ PrefabInstance:
     - target: {fileID: 6613665692467152164, guid: 3a498a6089de9d440afe2cc4bc09b656, type: 3}
       propertyPath: m_Name
       value: PF_Oragne_Mutant_Poumons_05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613665692467152164, guid: 3a498a6089de9d440afe2cc4bc09b656, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6613665692467152164, guid: 3a498a6089de9d440afe2cc4bc09b656, type: 3}
       propertyPath: m_TagString
@@ -5635,21 +5647,6 @@ Transform:
   - {fileID: 5037650482881117252}
   m_Father: {fileID: 616892568}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &1139348209390670047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5666237245448021758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b590b480de2899e4e9b38e56ec25e8d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NextLayerOrgan
-  groupped: 0
-  nextLayer: 7
-  newOrgan: 0
 --- !u!33 &1586765730682473370
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5787,33 +5784,6 @@ MonoBehaviour:
   newOrgan: 0
   _touch: {fileID: 1984483334}
   _hitIndex: 0
---- !u!54 &2678426585148169973
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5666237245448021758}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!136 &3604664261595576380
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5875,27 +5845,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &4343252266543779334
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5666237245448021758}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.027716585, y: 0.076078415, z: 0.055168472}
-  m_Center: {x: 0, y: 0.000177823, z: 0.0015879646}
 --- !u!4 &4479844670800658849
 Transform:
   m_ObjectHideFlags: 0
@@ -5937,9 +5886,6 @@ GameObject:
   - component: {fileID: 5037650482881117252}
   - component: {fileID: 8234427268986516449}
   - component: {fileID: 6170627140026615595}
-  - component: {fileID: 2678426585148169973}
-  - component: {fileID: 4343252266543779334}
-  - component: {fileID: 1139348209390670047}
   m_Layer: 3
   m_Name: Coeur
   m_TagString: Layer6
@@ -6034,6 +5980,7 @@ GameObject:
   - component: {fileID: 833952353885575815}
   - component: {fileID: 6437566418212746356}
   - component: {fileID: 7271183450250471360}
+  - component: {fileID: 7271183450250471361}
   m_Layer: 3
   m_Name: Coeur
   m_TagString: Layer6
@@ -6056,6 +6003,27 @@ MonoBehaviour:
   groupped: 0
   nextLayer: 7
   newOrgan: 0
+--- !u!65 &7271183450250471361
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6875029162119794667}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.032815117, y: 0.05534955, z: 0.05518061}
+  m_Center: {x: -0.0010088045, y: -0.0072516077, z: -0.0012215395}
 --- !u!33 &8234427268986516449
 MeshFilter:
   m_ObjectHideFlags: 0

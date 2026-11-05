@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 6224875295179943653}
   - component: {fileID: 2508373003324754148}
   - component: {fileID: 3237547642540146195}
-  - component: {fileID: 2822884918684731337}
-  - component: {fileID: 5229774659453041151}
   - component: {fileID: 6976710208297693092}
   m_Layer: 3
   m_Name: Coeur
@@ -93,54 +91,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &2822884918684731337
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1716481283827990278}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &5229774659453041151
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1716481283827990278}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.027716585, y: 0.076078415, z: 0.055168472}
-  m_Center: {x: 0, y: 0.000177823, z: 0.0015879646}
 --- !u!114 &6976710208297693092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +132,7 @@ Transform:
   m_GameObject: {fileID: 1824726557877229845}
   serializedVersion: 2
   m_LocalRotation: {x: 0.022457425, y: -0.7067501, z: -0.022457425, w: 0.7067501}
-  m_LocalPosition: {x: 0.0589, y: 0.0581, z: 0.0299}
+  m_LocalPosition: {x: 0.1031, y: -0.0324, z: -0.0002}
   m_LocalScale: {x: 0.0033333332, y: 0.0033333336, z: 0.003333333}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -273,7 +223,7 @@ Transform:
   m_GameObject: {fileID: 7852356125814348483}
   serializedVersion: 2
   m_LocalRotation: {x: 0.25092545, y: -0.66108733, z: -0.25092545, w: 0.66108733}
-  m_LocalPosition: {x: 0.0577, y: 0.0981, z: 0.0296}
+  m_LocalPosition: {x: 0.0915, y: 0.0084, z: 0.0015}
   m_LocalScale: {x: 0.0033333325, y: 0.0033333334, z: 0.0033333322}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -347,8 +297,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8065497376791390847}
-  - component: {fileID: 3112510447948504146}
   - component: {fileID: 7341495390695852280}
+  - component: {fileID: 8512655658956191137}
+  - component: {fileID: 1853106953503723423}
   m_Layer: 3
   m_Name: Coeur
   m_TagString: Layer7
@@ -364,7 +315,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8650985334794746110}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.386, y: -0.254, z: -1.018}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_ConstrainProportionsScale: 1
@@ -376,7 +327,22 @@ Transform:
   - {fileID: 7856287779564207451}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!54 &3112510447948504146
+--- !u!114 &7341495390695852280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8650985334794746110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b590b480de2899e4e9b38e56ec25e8d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NextLayerOrgan
+  groupped: 0
+  nextLayer: 7
+  newOrgan: 0
+--- !u!54 &8512655658956191137
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -401,23 +367,29 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &7341495390695852280
-MonoBehaviour:
+--- !u!65 &1853106953503723423
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8650985334794746110}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b590b480de2899e4e9b38e56ec25e8d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NextLayerOrgan
-  groupped: 0
-  nextLayer: 7
-  newOrgan: 0
+  serializedVersion: 3
+  m_Size: {x: 0.030198464, y: 0.07393534, z: 0.06163306}
+  m_Center: {x: -0.0022328107, y: 0.00436623, z: 0.0000015060106}
 --- !u!1001 &4138702483651915821
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -529,13 +501,13 @@ MonoBehaviour:
   inputSettings: {fileID: 11400000, guid: 3e5856bb71c6c1142875e9725103b7d6, type: 2}
   _state: {fileID: 0}
   visualFeedBack:
-  - {fileID: 0}
+  - {fileID: 5592639653660279413}
   points:
-  - {x: -0.36122578, y: 1.5906788}
-  - {x: 1.3913004, y: 1.4752694}
+  - {x: -0.8797686, y: 1.3896986}
+  - {x: 0.90627986, y: 1.2511715}
   isAffliction: 0
   _groupped: 1
-  _nextLayer: 6
+  _nextLayer: 9
   isLast: 0
 --- !u!4 &7856287779564207451 stripped
 Transform:
@@ -653,13 +625,13 @@ MonoBehaviour:
   inputSettings: {fileID: 11400000, guid: 3e5856bb71c6c1142875e9725103b7d6, type: 2}
   _state: {fileID: 0}
   visualFeedBack:
-  - {fileID: 0}
+  - {fileID: 6677767510226578367}
   points:
-  - {x: -0.06506436, y: 3.8230813}
-  - {x: 1.2247443, y: 2.5863955}
+  - {x: -0.2519628, y: 3.8047357}
+  - {x: 0.9725958, y: 2.6617622}
   isAffliction: 0
   _groupped: 1
-  _nextLayer: 6
+  _nextLayer: 9
   isLast: 0
 --- !u!4 &7647550816991102904 stripped
 Transform:

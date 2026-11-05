@@ -91,6 +91,7 @@ public class OrganCollector : MonoBehaviour
             return;
         isOpen = true;
         
+        
         Rigidbody rb = pOrgan.GetComponent<Rigidbody>();
         rb.isKinematic = true;
         transform.DOMoveX(anchors[0].position.x, 0.5f);

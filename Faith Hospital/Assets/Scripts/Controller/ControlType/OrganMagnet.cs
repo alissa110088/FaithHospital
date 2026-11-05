@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -11,15 +12,18 @@ public class OrganMagnet: MonoBehaviour
     private bool taken = false;
     private Collider _collider;
     private Rigidbody _rb;
-
+    private GameObject _held;
+    public static Action<GameObject> ReleaseOrgan;
+    
     private void Start()
     {
         _collider = GetComponent<Collider>();
+        ReleaseOrgan += OnAskedReleased;
     }
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer != LayerMask.NameToLayer("Attrapable")|| other.gameObject.name != _organeName || taken) return;
+        if (other.gameObject.layer != LayerMask.NameToLayer("Attrapable")|| other.gameObject.name != _organeName || taken || other.gameObject == _held) return;
         if (_lerpRoutine != null) return; 
 
         _gameObjectToMove = other.gameObject;
@@ -28,6 +32,7 @@ public class OrganMagnet: MonoBehaviour
         {
             _rb.linearVelocity = Vector3.zero; 
             _rb.useGravity = false;
+            _rb.isKinematic = true;
         }
 
         taken = true;
@@ -71,11 +76,23 @@ public class OrganMagnet: MonoBehaviour
         t.position = target;
         _lerpRoutine = null;
     }
+
+    private void OnAskedReleased(GameObject pOrgan)
+    {
+        if (pOrgan != _gameObjectToMove)
+            return;
+        _held = pOrgan;
+        Release();
+    }
     
     private void Release()
     {
         if (_lerpRoutine != null) StopCoroutine(_lerpRoutine);
-        if (_rb != null) _rb.useGravity = true;
+        if (_rb != null)
+        {
+            _rb.isKinematic = false;
+            _rb.useGravity = true;
+        }
         _gameObjectToMove = null;
         taken = false;
         _rb = null;

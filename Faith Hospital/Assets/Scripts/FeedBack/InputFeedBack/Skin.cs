@@ -33,10 +33,6 @@ public class Skin : Organs
     
     private void StitchSkin(State _state)
     {
-        _closed.transform.DOMoveX(_closed.transform.position.x + 0.13f, 0.2f);
-
-        _opened.transform.DOMoveX(_opened.transform.position.x - 0.13f, 0.2f);
-
         _state.enabled = false;
     }
 
@@ -50,9 +46,9 @@ public class Skin : Organs
     
     private void CloseSkin(State _state)
     {
-        _closed.transform.DOMoveX(_closed.transform.position.x + 3f, 0.5f);
+        _closed.SetActive(true);
 
-        _opened.transform.DOMoveX(_opened.transform.position.x - 3f, 0.5f);
+        _opened.SetActive(false);
 
         _state.enabled = false;
     }
