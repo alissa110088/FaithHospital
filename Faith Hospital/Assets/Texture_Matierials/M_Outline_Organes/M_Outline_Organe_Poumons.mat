@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Outline_Organe_Mutant_Estomac
+  m_Name: M_Outline_Organe_Poumons
   m_Shader: {fileID: -6465566751694194690, guid: 8b8af3c4ca4ddca429da7078f18481e0, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -38,13 +38,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BeatSharpness: 5
+    - _BeatSharpness: 1
     - _OutlineThickness: 0.0008
-    - _PulseIntensity: 0.001
-    - _PulseSpeed: 5
+    - _PulseIntensity: 0.0005
+    - _PulseSpeed: 1.2
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _WaveFrequency: 30
+    - _WaveFrequency: 0
     m_Colors:
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
