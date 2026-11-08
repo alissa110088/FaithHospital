@@ -10,20 +10,7 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="006f48b2-230d-49c6-ad1f-c1054c25bbaa" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Faith Hospital/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Faith Hospital/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Editor/DrawShapeEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Editor/DrawShapeEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/PF_Operation0/Coeur.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/PF_Operation0/Coeur.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/PF_Operation0/Cotes.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/PF_Operation0/Cotes.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Patient0.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Patient0.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/Grab.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/Grab.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/State.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/State.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/SwipeFollow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/SwipeFollow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/Trace.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/Trace.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OrganCollector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OrganCollector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Other/DrawShape.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Other/DrawShape.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" afterDir="false" />
-    </list>
+    <list default="true" id="006f48b2-230d-49c6-ad1f-c1054c25bbaa" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,7 +58,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "Feature/GraviterGood",
+    "git-widget-placeholder": "Feature/PrefabGDTemplate",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -174,7 +161,7 @@
       <workItem from="1793730678317" duration="2455000" />
       <workItem from="1793813085853" duration="4175000" />
       <workItem from="1793900031399" duration="9979000" />
-      <workItem from="1794144554714" duration="4631000" />
+      <workItem from="1794144554714" duration="5229000" />
     </task>
     <servers />
   </component>
