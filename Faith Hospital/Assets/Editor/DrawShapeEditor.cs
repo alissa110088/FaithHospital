@@ -36,7 +36,7 @@ public class DrawShapeEditor : Editor
         {
             Ray ray = HandleUtility.GUIPointToWorldRay(m_Event.mousePosition);
 
-            Plane plane = new Plane(Vector3.forward, Vector3.zero);
+            Plane plane = new Plane(Vector3.up, Vector3.zero);
 
             if (plane.Raycast(ray, out float enter))
             {

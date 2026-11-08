@@ -13,7 +13,7 @@ public class DrawShape : MonoBehaviour
     [HideInInspector] public State _state;
     
     public SpriteRenderer[] visualFeedBack;
-    public List<Vector2> points;
+    public List<Vector3> points;
     public bool isAffliction;
     [Header("ne remplir que si ce n'est pas une affliction")]
     public bool _groupped;

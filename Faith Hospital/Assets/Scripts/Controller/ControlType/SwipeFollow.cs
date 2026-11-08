@@ -9,20 +9,12 @@ public class SwipeFollow : State
 
     private bool _touching = false;
 
-    private Vector2 _lastPos = Vector2.zero;
-    private Vector2 _pos;
+    private Vector3 _lastPos;
+    private Vector3 _pos;
 
     private SwipeSettings _swipeSettings;
 
-    public Vector2 pos
-    {
-        get => _pos;
-        set
-        {
-            _lastPos = _pos;
-            _pos = value;
-        }
-    }
+    public Vector3 pos { get => _pos; set { _lastPos = _pos; _pos = value; } }
     
     protected override void OnEnable()
     {
@@ -147,14 +139,12 @@ public class SwipeFollow : State
         if (!_touching || float.IsInfinity(pPos.x) || float.IsInfinity(pPos.y) || _patternValidated)
             return;
 
-        float distance = -Camera.main.transform.position.z;
+        Ray ray = Camera.main.ScreenPointToRay(pPos);
+        Plane plane = new Plane(Vector3.up, _drawShape.transform.position);
+        if (!plane.Raycast(ray, out float enter))
+            return;
 
-        //Converte to world point 
-        Vector3 worldPos3 = Camera.main.ScreenToWorldPoint(
-            new Vector3(pPos.x, pPos.y, distance)
-        );
-
-        Vector2 worldPos = new Vector2(worldPos3.x, worldPos3.y);
+        Vector3 worldPos3 = ray.GetPoint(enter);
 
         if (!_canStart && CheckIfInRange(worldPos3, _points[0]))
         {
@@ -163,22 +153,20 @@ public class SwipeFollow : State
         else if (!_canStart)
             return;
 
-        pos = worldPos;
-        Vector2 dir = (_lastPos - pos).normalized;
-        Vector2 dirPoints = (_points[_points.IndexOf(_currentPoint) + 1] - _currentPoint).normalized;
+        pos = worldPos3;
+        Vector3 dir = Flat(_lastPos - pos).normalized;
+        Vector3 dirPoints = Flat(_points[_points.IndexOf(_currentPoint) + 1] - _currentPoint).normalized;
 
-
-        //Turned positive to allow both side swipe
-        dir = new Vector2(Mathf.Abs(dir.x), Mathf.Abs(dir.y));
-        dirPoints = new Vector2(Mathf.Abs(dirPoints.x), Mathf.Abs(dirPoints.y));
-
-        float dot = Vector2.Dot(dir, dirPoints);
+        dir = new Vector3(Mathf.Abs(dir.x), 0f, Mathf.Abs(dir.z));
+        dirPoints = new Vector3(Mathf.Abs(dirPoints.x), 0f, Mathf.Abs(dirPoints.z));
+        
+        float dot = Vector3.Dot(dir, dirPoints);
         bool sameDirection = dot > _swipeSettings.DirectionRange;
         float distancePointToSegment =
-            DistancePointToSegment(_points[_points.IndexOf(_currentPoint) + 1], _currentPoint, pos);
+            DistancePointToSegment(Flat(_points[_points.IndexOf(_currentPoint) + 1]), Flat(_currentPoint), Flat(pos));
 
         //Checks if went to first point
-        if (sameDirection && (worldPos - _points[1]).magnitude < 0.3f &&
+        if (sameDirection && (Flat(worldPos3) - Flat(_points[_points.IndexOf(_currentPoint) + 1])).magnitude < 0.3f &&
             distancePointToSegment < _swipeSettings.howFarFromSegmentMax)
         {
             if (_currentPoint == _points[^2])
