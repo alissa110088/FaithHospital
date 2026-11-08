@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 6930407566091495042}
   - component: {fileID: 8836482342715073948}
   - component: {fileID: 8336005317576879210}
+  - component: {fileID: 3167498926278340395}
   m_Layer: 5
   m_Name: PatientContainer 1
   m_TagString: Untagged
@@ -158,10 +159,10 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1289375932656208419}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0.65294164, y: -0.15566488, z: 0.13962106, w: 0.72797096}
+  m_LocalPosition: {x: 0, y: 0, z: -3.1}
+  m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3666110535463953933}
   - {fileID: 6323859994654393466}
@@ -176,7 +177,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -540.4, y: -1195.75}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6930407566091495042
@@ -236,6 +237,18 @@ MonoBehaviour:
   - {fileID: 6006792242300229552}
   - {fileID: 1292524202501089810}
   buttonChoiceOperation: {fileID: 7553353212376217985}
+--- !u!225 &3167498926278340395
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289375932656208419}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &3968761955054337782
 GameObject:
   m_ObjectHideFlags: 0

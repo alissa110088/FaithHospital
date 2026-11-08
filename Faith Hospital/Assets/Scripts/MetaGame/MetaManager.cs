@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MetaManager : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class MetaManager : MonoBehaviour
     [SerializeField] private DaySystem daySystem;
     [SerializeField] private ChoicePatient choicePatient;
     [SerializeField] private OperationDay operationDaySource;
+    [SerializeField] private Animation cameraAnim;
     [HideInInspector] public OperationDay operationDay; 
     private static int currentDay = 1;
     public static DayOrganPairing remainingSurgery;
@@ -37,6 +39,13 @@ public class MetaManager : MonoBehaviour
             StartCoroutine(daySystem.ShowCurrentDay(currentDay));
         }
         choicePatient.UpdatePanel(remainingSurgery);
-        choicePatient.gameObject.SetActive(false);
+        // choicePatient.gameObject.SetActive(false);
+    }
+
+    public void OnClick(Button button)
+    {
+        cameraAnim.Play();
+        button.interactable = false;
+        choicePatient.OnClick();
     }
 }

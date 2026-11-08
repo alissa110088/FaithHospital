@@ -16,7 +16,10 @@ public class ChoicePatient : MonoBehaviour
 
     public void OnClick()
     {
-        gameObject.SetActive(true);
+        foreach (var patients in patientContainerInstance)
+        {
+            patients.ActivateButton();
+        }
     }
 
     public void OnExitClick()

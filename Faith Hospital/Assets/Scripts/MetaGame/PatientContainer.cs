@@ -10,9 +10,13 @@ public class PatientContainer : MonoBehaviour
     [SerializeField] private RawImage imagePatients;
     [SerializeField] private Button[] buttonsPatientsChoice;
     [SerializeField] private Button buttonChoiceOperation;
+    private CanvasGroup canvasGroup;
     private void OnEnable()
     {
         textContainer = GetComponentInChildren<TextMeshProUGUI>();
+        imagePatients.SetNativeSize();
+        GetComponent<Image>().raycastTarget = false;
+        canvasGroup = GetComponent<CanvasGroup>();
     }
 
     public void LinkButtonOperation(UnityAction pMyFunc)
@@ -27,6 +31,11 @@ public class PatientContainer : MonoBehaviour
             int index = i;
             buttonsPatientsChoice[i].onClick.AddListener(() => pMyFunc(index));
         }
+    }
+
+    public void ActivateButton()
+    {
+        canvasGroup.blocksRaycasts = true;
     }
     public void SetText(string text)
     {
