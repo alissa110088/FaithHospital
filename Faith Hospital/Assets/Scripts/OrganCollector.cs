@@ -74,7 +74,7 @@ public class OrganCollector : MonoBehaviour
     public void InstantiateOrgan(Organs pOrgan, string pName, int pNextLayer)
     {
         isNew = true;
-        Vector3 startPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 2f);
+        Vector3 startPos = new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z);
         Organs organ = Instantiate(pOrgan, startPos, pOrgan.transform.rotation);
               
         organ.newOrgan = true;

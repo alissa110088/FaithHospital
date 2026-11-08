@@ -114,14 +114,16 @@ public class Grab : State
         if (_grabbed == null)
             return;
 
-        float distance = -Camera.main.transform.position.z;
+        Ray planeRay = Camera.main.ScreenPointToRay(pPosition);
+        Plane plane = new Plane(Vector3.up, new Vector3(0f, 5f, 0f));
+        if (!plane.Raycast(planeRay, out float enter))
+            return;
 
-        Vector3 worldPos3 = Camera.main.ScreenToWorldPoint(
-            new Vector3(pPosition.x, pPosition.y, distance)
-        );
+        Vector3 worldPos3 = planeRay.GetPoint(enter);
 
-        _targetPos = new Vector3(worldPos3.x, worldPos3.y, -5f);
-        _rb.MovePosition(Vector3.Lerp(_grabbed.transform.position, new Vector3(worldPos3.x, worldPos3.y, -5f),
+
+        _targetPos = new Vector3(worldPos3.x,5f , worldPos3.z);
+        _rb.MovePosition(Vector3.Lerp(_grabbed.transform.position, _targetPos,
             Time.deltaTime * 5));
     }
 }

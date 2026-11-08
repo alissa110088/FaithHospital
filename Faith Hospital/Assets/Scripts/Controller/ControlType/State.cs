@@ -22,9 +22,9 @@ public abstract class State : MonoBehaviour
     protected int _errorMargin = 25;
     protected int _currentErrorMargin = 0;
 
-    protected Vector2 _currentPoint;
+    protected Vector3 _currentPoint;
 
-    protected List<Vector2> _points;
+    protected List<Vector3> _points;
 
     protected float _range = 1f;
     
@@ -58,7 +58,7 @@ public abstract class State : MonoBehaviour
 
     protected bool CheckIfInRange(Vector3 pPosition, Vector3 pPoint)
     {
-        if (Mathf.Abs((pPosition.x - pPoint.x)) < _range && Mathf.Abs((pPosition.y - pPoint.y)) < _range)
+        if (Mathf.Abs((pPosition.x - pPoint.x)) < _range && Mathf.Abs((pPosition.z - pPoint.z)) < _range)
         {
             return true;
         }
@@ -81,5 +81,11 @@ public abstract class State : MonoBehaviour
         }
 
         return false;
+    }
+    
+    protected Vector3 Flat(Vector3 v)
+    {
+        v.y = 0f;
+        return v;
     }
 }

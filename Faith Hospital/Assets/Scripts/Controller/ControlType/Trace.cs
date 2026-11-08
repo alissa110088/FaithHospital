@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class Trace : State
 {
-    private const float ReachThreshold = 0.1f; 
+    private const float ReachThreshold = 0.1f;
 
-    private Vector2 _currentPos = Vector2.zero;
+    private Vector2 _currentPos = Vector2.zero; 
     private bool _start;
     private int _currentIndex = 1;
 
@@ -53,7 +53,7 @@ public class Trace : State
         if (!_drawShape.isActiveAndEnabled)
             return;
 
-        _points = _drawShape.points;
+        _points = _drawShape.points; 
         SetPosition(_points[0]);
         _traceSettings = _inputSettings as TraceSettings;
     }
@@ -101,7 +101,7 @@ public class Trace : State
         inputManager.onToucheStart -= OnTouchedScreen;
         inputManager.onToucheEnd -= OnEndTouch;
 
-        _currentPoint = Vector2.zero;
+        _currentPoint = Vector3.zero;
         inputManager = null;
     }
 
@@ -111,7 +111,6 @@ public class Trace : State
         if (_start)
             FollowPattern(_currentPos);
     }
-
 
     private void OnTouchedScreen() => _start = true;
 
@@ -126,14 +125,27 @@ public class Trace : State
         ResetToStart();
     }
 
-
-    private Vector2 ScreenToCursorPlane(Vector2 screenPos)
+    private bool ScreenToCursorPlane(Vector2 screenPos, out Vector3 result)
     {
-        float depth = Cam.WorldToScreenPoint(transform.position).z;
-        Vector3 w = Cam.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, depth));
-        return new Vector2(w.x, w.y);
+        Ray ray = Cam.ScreenPointToRay(screenPos);
+        Plane plane = new Plane(Vector3.up, transform.position);
+
+        if (plane.Raycast(ray, out float enter))
+        {
+            result = ray.GetPoint(enter);
+            return true;
+        }
+
+        result = default;
+        return false;
     }
 
+    private static float FlatDistance(Vector3 a, Vector3 b)
+    {
+        a.y = 0f;
+        b.y = 0f;
+        return Vector3.Distance(a, b);
+    }
 
     private void FollowPattern(Vector2 pPosition)
     {
@@ -141,16 +153,18 @@ public class Trace : State
             !_drawShape.isActiveAndEnabled)
             return;
 
-        Vector2 worldPos = ScreenToCursorPlane(pPosition);
-        Vector2 pos2D = transform.position;
+        if (!ScreenToCursorPlane(pPosition, out Vector3 worldPos))
+            return;
 
-        if (!_canStart && CheckIfInRange(worldPos, pos2D) && pos2D == _points[0])
+        Vector3 pos = transform.position;
+
+        if (!_canStart && CheckIfInRange(worldPos, pos) && FlatDistance(pos, _points[0]) < ReachThreshold)
             _canStart = true;
 
         if (!_canStart)
             return;
 
-        if (!CheckIfInRange(worldPos, pos2D))
+        if (!CheckIfInRange(worldPos, pos))
         {
             Controller.OnInputNotValidate.Invoke();
 
@@ -166,7 +180,7 @@ public class Trace : State
             }
         }
 
-        if (Vector2.Distance(pos2D, _points[_currentIndex]) < ReachThreshold)
+        if (FlatDistance(pos, _points[_currentIndex]) < ReachThreshold)
         {
             if (_currentIndex >= _points.Count - 1)
             {
@@ -178,7 +192,7 @@ public class Trace : State
             _currentPoint = _points[_currentIndex];
         }
 
-        Vector3 target = new Vector3(_points[_currentIndex].x, _points[_currentIndex].y, transform.position.z);
+        Vector3 target = new Vector3(_points[_currentIndex].x, transform.position.y, _points[_currentIndex].z);
         transform.position = Vector3.MoveTowards(
             transform.position, target, _traceSettings.speedMoving * Time.deltaTime);
     }
@@ -210,9 +224,9 @@ public class Trace : State
         SetPosition(_points[0]);
     }
 
-    private void SetPosition(Vector2 p)
+    private void SetPosition(Vector3 p)
     {
-        transform.position = new Vector3(p.x, p.y, transform.position.z);
+        transform.position = new Vector3(p.x, transform.position.y, p.z);
     }
 
     private void DisableImage(State state)
