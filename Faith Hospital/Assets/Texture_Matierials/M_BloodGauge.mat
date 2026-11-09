@@ -38,7 +38,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FillAmount: 0.671
+    - _FillAmount: 0.512
     - _NoiseScale1: 2.5
     - _NoiseScale2: 5
     - _NoiseStep1: 0.45
@@ -48,6 +48,7 @@ Material:
     - _WaveAmplitude: 0.015
     - _WaveFrequency: 4
     - _WaveSpeed: 1.5
+    - _XRMotionVectorsPass: 1
     m_Colors:
     - _BloodColor: {r: 0.3773584, g: 0, b: 0, a: 1}
     - _NoiseColor1: {r: 0.22012568, g: 0, b: 0, a: 1}
