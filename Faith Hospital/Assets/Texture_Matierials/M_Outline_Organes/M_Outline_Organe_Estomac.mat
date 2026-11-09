@@ -40,8 +40,8 @@ Material:
     m_Floats:
     - _BeatSharpness: 3
     - _OutlineThickness: 0.0008
-    - _PulseIntensity: 0.001
-    - _PulseSpeed: 3
+    - _PulseIntensity: 0.003
+    - _PulseSpeed: 5
     - _QueueControl: 0
     - _QueueOffset: 0
     - _WaveFrequency: 30

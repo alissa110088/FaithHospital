@@ -43,7 +43,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorMask: 15
-    - _FillAmount: 0.72
+    - _FillAmount: 0.67
     - _NoiseScale1: 2.5
     - _NoiseScale2: 5
     - _NoiseStep1: 0.45

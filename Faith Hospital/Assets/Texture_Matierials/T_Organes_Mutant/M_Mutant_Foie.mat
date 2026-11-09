@@ -117,8 +117,8 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _PulseIntensity: 0.0008
-    - _PulseSpeed: 0.5
+    - _PulseIntensity: 0.002
+    - _PulseSpeed: 0.9
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
