@@ -57,12 +57,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -3284165064514780139, guid: 0f30d6244c8fabf4589ce65ed3a5b1a4, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -3284165064514780139, guid: 0f30d6244c8fabf4589ce65ed3a5b1a4, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 1e20eb3f1b2b561469687fd13ce85716, type: 2}
+    - target: {fileID: -3284165064514780139, guid: 0f30d6244c8fabf4589ce65ed3a5b1a4, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 72dff5ccaea0faa4183589a2f7f4f38d, type: 2}
     - target: {fileID: 919132149155446097, guid: 0f30d6244c8fabf4589ce65ed3a5b1a4, type: 3}
       propertyPath: m_Name
-      value: Jean_Vichier_Open
+      value: PF_Jean_Vichier
       objectReference: {fileID: 0}
     - target: {fileID: 1646733720424155422, guid: 0f30d6244c8fabf4589ce65ed3a5b1a4, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
