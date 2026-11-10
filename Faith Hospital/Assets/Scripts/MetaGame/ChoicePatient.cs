@@ -10,16 +10,19 @@ public class ChoicePatient : MonoBehaviour
 
     [SerializeField] private PatientContainer patientContainer;
     [SerializeField] private OperationDay operationPerDay;
+    [SerializeField] private Transform transformParent;
+    [SerializeField] private CanvasGroup canvasGroup;
 
-    private PatientContainer currentActive;
     private List<PatientContainer> patientContainerInstance = new List<PatientContainer>();
+
+    private void OnEnable()
+    {
+        canvasGroup.blocksRaycasts = false;
+    }
 
     public void OnClick()
     {
-        foreach (var patients in patientContainerInstance)
-        {
-            patients.ActivateButton();
-        }
+        canvasGroup.blocksRaycasts = true;
     }
 
     public void OnExitClick()
@@ -35,34 +38,22 @@ public class ChoicePatient : MonoBehaviour
 
         for (int i = 0; i < pairing.operationsSO.Count; i++)
         {
-            PatientContainer current = Instantiate(patientContainer, transform);
+            PatientContainer current = Instantiate(patientContainer, transformParent);
             current.SetPicture(pairing.operationsSO[i].operationsImage);
             current.SetText(pairing.operationsSO[i].operationsText);
             current.LinkButtonOperation(PatientChosen);
-            current.LinkButtonsChoice(ChangePatient);
             patientContainerInstance.Add(current);
-            current.gameObject.SetActive(false);
         }
         
-        currentActive = patientContainerInstance[0];
         
-        currentActive.gameObject.SetActive(true);
     }
 
-    public void PatientChosen()
+    public void PatientChosen(PatientContainer patient)
     {
-        int indexOp = patientContainerInstance.IndexOf(currentActive);
+        int indexOp = patientContainerInstance.IndexOf(patient);
         string sceneName = MetaManager.remainingSurgery.operationsSO[indexOp].operationsSceneName;
         MetaManager.remainingSurgery.operationsSO.RemoveAt(indexOp);
         StartCoroutine(GameManager.Instance.LoadScene(sceneName));
     }
     
-    public void ChangePatient(int pIndex)
-    {
-        if (pIndex > patientContainerInstance.Count - 1)
-            return;
-        currentActive.gameObject.SetActive(false);
-        currentActive =  patientContainerInstance[pIndex];
-        currentActive.gameObject.SetActive(true);
-    }
 }

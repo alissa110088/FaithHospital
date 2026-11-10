@@ -40,6 +40,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FeedBack/InputFeedBack/Cote.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FeedBack/InputFeedBack/Organs.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FeedBack/InputFeedBack/Skin.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MetaGame/CanvasTImer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MetaGame/Timer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SO/CameraSettings.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SO/OperationDay.cs" root0="FORCE_HIGHLIGHTING" />
@@ -170,7 +171,7 @@
       <workItem from="1793900031399" duration="9979000" />
       <workItem from="1794144554714" duration="5229000" />
       <workItem from="1794304404389" duration="330000" />
-      <workItem from="1794304759120" duration="1167000" />
+      <workItem from="1794304759120" duration="5845000" />
     </task>
     <servers />
   </component>

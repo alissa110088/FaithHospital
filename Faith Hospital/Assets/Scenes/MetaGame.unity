@@ -235,8 +235,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08f9c304d428194fb55c2e05579b255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChoicePatient
-  patientContainer: {fileID: 8336005317576879210, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
+  patientContainer: {fileID: 124346360909535992, guid: 03a0925a0b0156a4d87f0fc2de053cc7, type: 3}
   operationPerDay: {fileID: 11400000, guid: 7602e603076ccbf4db66051d607fc014, type: 2}
+  transformParent: {fileID: 1389481613}
 --- !u!1 &121375083
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,6 +1086,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ChoicePatient
   patientContainer: {fileID: 8336005317576879210, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
   operationPerDay: {fileID: 11400000, guid: 7602e603076ccbf4db66051d607fc014, type: 2}
+  transformParent: {fileID: 0}
 --- !u!1001 &333486906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1099,7 +1101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1289375932656208419, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3307411336660124413, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
       propertyPath: m_Pivot.x
@@ -1181,8 +1183,43 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    - target: {fileID: 8336005317576879210, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
+      propertyPath: imagePatients
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336005317576879210, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
+      propertyPath: buttonChoiceOperation
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336005317576879210, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
+      propertyPath: 'buttonsPatientsChoice.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336005317576879210, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
+      propertyPath: 'buttonsPatientsChoice.Array.data[1]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336005317576879210, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
+      propertyPath: 'buttonsPatientsChoice.Array.data[2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336005317576879210, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
+      propertyPath: 'buttonsPatientsChoice.Array.data[3]'
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8336005317576879210, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 5406686789972547259, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
+    - {fileID: 6951524378457136776, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
+    - {fileID: 15963390365965899, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
+    - {fileID: 3968761955054337782, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
+    - {fileID: 5469151181789726772, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
+    - {fileID: 7895274705842111704, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
+    - {fileID: 7303347483313408623, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
+    - {fileID: 9163764840070838723, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
+    - {fileID: 7372732121176234590, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
+    - {fileID: 5464644398906203775, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
@@ -3386,6 +3423,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1f40bba1ed4505446971096a54241767, type: 3}
   m_PrefabInstance: {fileID: 1317876324}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1389481613 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3666110535463953933, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
+  m_PrefabInstance: {fileID: 333486906}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1452988352
 PrefabInstance:
