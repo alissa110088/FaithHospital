@@ -1848,9 +1848,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a537e181f255e34fa5716adabe314bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  MetaManager: {fileID: 1954134870}
   energyToLoose: 0
   metaManager: {fileID: 0}
+  minSecBetweenPatients: 0
+  maxSecBetweenPatients: 0
+  operationDaySource: {fileID: 0}
+  operationDay: {fileID: 0}
 --- !u!4 &769757117
 Transform:
   m_ObjectHideFlags: 0
@@ -3583,7 +3586,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486237043}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 0.07
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -5136,12 +5139,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a812b8db444774b93bd86e8af8abab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetaManager
-  energy: {fileID: 264282676}
+  timer: {fileID: 0}
   daySystem: {fileID: 1486237048}
   choicePatient: {fileID: 76715673}
-  operationDaySource: {fileID: 11400000, guid: 7602e603076ccbf4db66051d607fc014, type: 2}
   cameraAnim: {fileID: 959158642}
-  operationDay: {fileID: 0}
 --- !u!4 &1954134871
 Transform:
   m_ObjectHideFlags: 0
