@@ -6,15 +6,14 @@ using UnityEngine.UI;
 
 public class ChoicePatient : MonoBehaviour
 {
-    private DayOrganPairing currentDayPairing;
-
     [SerializeField] private PatientContainer patientContainer;
     [SerializeField] private OperationDay operationPerDay;
     [SerializeField] private Transform transformParent;
     [SerializeField] private CanvasGroup canvasGroup;
 
     private List<PatientContainer> patientContainerInstance = new List<PatientContainer>();
-
+    private List<OperationsSO> patientSo = new List<OperationsSO>();
+    
     private void OnEnable()
     {
         canvasGroup.blocksRaycasts = false;
@@ -29,31 +28,22 @@ public class ChoicePatient : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+    
 
-    public void UpdatePanel(DayOrganPairing pairing)
+    //quand je dois instancier un nouveau patient, appeler dans le game manager?
+    public void UpdatePanel(OperationsSO operation)
     {
-        currentDayPairing = pairing;
-        if (currentDayPairing == null)
-            return;
-
-        for (int i = 0; i < pairing.operationsSO.Count; i++)
-        {
-            PatientContainer current = Instantiate(patientContainer, transformParent);
-            current.SetPicture(pairing.operationsSO[i].operationsImage);
-            current.SetText(pairing.operationsSO[i].operationsText);
-            current.LinkButtonOperation(PatientChosen);
-            patientContainerInstance.Add(current);
-        }
-        
-        
+        PatientContainer current = Instantiate(patientContainer, transformParent);
+        current.SetPicture(operation.operationsImage);
+        current.SetText(operation.operationsText);
+        current.LinkButtonOperation(PatientChosen);
+        patientContainerInstance.Add(current);
+        patientSo.Add(operation);
     }
 
     public void PatientChosen(PatientContainer patient)
     {
         int indexOp = patientContainerInstance.IndexOf(patient);
-        string sceneName = MetaManager.remainingSurgery.operationsSO[indexOp].operationsSceneName;
-        MetaManager.remainingSurgery.operationsSO.RemoveAt(indexOp);
-        StartCoroutine(GameManager.Instance.LoadScene(sceneName));
+        GameManager.Instance.StartLevel(patientSo[indexOp]);
     }
-    
 }

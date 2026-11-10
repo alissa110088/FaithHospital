@@ -14,7 +14,7 @@ public class OperationDay : ScriptableObject
 public class DayOrganPairing
 {
     public int day;
-    public List<OperationsSO> operationsSO;
+    public List<OperationsSO> poolOperation;
 
 }
 
