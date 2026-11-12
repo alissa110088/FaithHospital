@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [HideInInspector] public int energyToLoose;
-    [HideInInspector] public MetaManager metaManager;
+    public MetaManager metaManager;
     [SerializeField] private int minSecBetweenPatients;
     [SerializeField] private int maxSecBetweenPatients;
     [SerializeField] private OperationDay operationDaySource;
@@ -18,7 +18,8 @@ public class GameManager : MonoBehaviour
     public static List<OperationsSO> remainingSurgery;
 
     private float timeBeforeNext;
-    private static int currentDay = 1;
+    private static int currentDay = 0;
+    private OperationsSO currentOperation;
 
 
     public static GameManager Instance { get; private set; }
@@ -34,25 +35,26 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
+        
         operationDay = Instantiate(operationDaySource);
     }
 
     private void Start()
     {
-        // remainingSurgery = operationDay.operationsSettings[0];
-        // CheckChangeDay();
+        ChangeDay();
     }
 
-    public void OperationEnded(int pToLoose)
+    public IEnumerator OperationEnded(int pToLoose)
     {
         energyToLoose = pToLoose;
-
-        StartCoroutine(LoadScene("MetaGame"));
+        remainingSurgery.Remove(currentOperation);
+        yield return StartCoroutine(LoadScene("MetaGame"));
+        metaManager.choicePatient.UpdatePanel(remainingSurgery);
     }
 
     public void StartLevel(OperationsSO operationDay)
     {
+        currentOperation = operationDay; 
         StartCoroutine(LoadScene(operationDay.operationsSceneName));
     }
 
@@ -84,22 +86,31 @@ public class GameManager : MonoBehaviour
                 .poolOperation.Remove(patient);
             remainingSurgery.Add(patient);
 
-            SpawnPatient();
-            // metaManager.choicePatient.UpdatePanel(patient);
+            ChooseTime();
+            metaManager.choicePatient.UpdatePanel(remainingSurgery);
         }
     }
 
     private void ChangeDay()
     {
         currentDay++;
-        // remainingSurgery = operationDay.operationsSettings[currentDay-1];
+        Debug.Log(metaManager.daySystem);
         StartCoroutine(metaManager.daySystem.ShowCurrentDay(currentDay));
+        remainingSurgery.Clear();
+        
+        OperationsSO patient = operationDay.operationsSettings[currentDay - 1]
+            .poolOperation[
+                Random.Range(0, operationDay.operationsSettings[currentDay - 1].poolOperation.Count - 1)];
 
-        // metaManager.choicePatient.UpdatePanel(remainingSurgery);
-        // choicePatient.gameObject.SetActive(false);
+        operationDay.operationsSettings[currentDay - 1]
+            .poolOperation.Remove(patient);
+        remainingSurgery.Add(patient);
+
+        ChooseTime();
+        metaManager.choicePatient.UpdatePanel(remainingSurgery);
     }
 
-    private void SpawnPatient()
+    private void ChooseTime()
     {
         timeBeforeNext = Random.Range(minSecBetweenPatients, maxSecBetweenPatients);
     }

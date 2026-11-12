@@ -168,6 +168,6 @@ public class PatientManager : MonoBehaviour
         int toLoose = OnOperationFinished.Invoke();
         endScreen.gameObject.SetActive(true);
         yield return endScreen.Open(toLoose);
-        GameManager.Instance.OperationEnded(toLoose);
+        StartCoroutine(GameManager.Instance.OperationEnded(toLoose));
     }
 }
