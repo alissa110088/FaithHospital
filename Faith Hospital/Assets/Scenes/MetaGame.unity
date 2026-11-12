@@ -1849,10 +1849,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   energyToLoose: 0
-  metaManager: {fileID: 0}
+  metaManager: {fileID: 1954134870}
   minSecBetweenPatients: 5
   maxSecBetweenPatients: 15
-  operationDaySource: {fileID: 0}
+  operationDaySource: {fileID: 11400000, guid: 7602e603076ccbf4db66051d607fc014, type: 2}
   operationDay: {fileID: 0}
 --- !u!4 &769757117
 Transform:
