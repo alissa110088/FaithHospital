@@ -12,14 +12,15 @@ public class Timer : MonoBehaviour
     private void OnEnable()
     {
         _image = GetComponent<Image>();
-        StartTimer();
     }
     
-    private void StartTimer()
+    public void StartTimer()
     {
+        Debug.Log("Starting Timer");
+        _currentTime = 0;
+        _image.fillAmount = 0;
         _divider = 1 / _timerDuration;
         _timerStarted = true;
-        _currentTime = 0;
     }
 
     private void Update()
@@ -29,6 +30,14 @@ public class Timer : MonoBehaviour
         
         _currentTime += Time.deltaTime;
         _image.fillAmount = _currentTime *  _divider;
+        if (_image.fillAmount == 1)
+        {
+            Debug.Log("Ending Timer");
+            _currentTime = 0;
+            _image.fillAmount = 0;
+            _timerStarted = false;
+            GameManager.Instance.OnTimerEnded.Invoke();
+        }
 
     }
 }

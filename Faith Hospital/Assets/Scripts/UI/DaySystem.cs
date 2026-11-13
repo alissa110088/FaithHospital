@@ -8,7 +8,7 @@ public class DaySystem : MonoBehaviour
     private CanvasGroup canvasGroup;
     private TextMeshProUGUI dayText;
 
-    private void Start()
+    private void OnEnable()
     {
         dayText = GetComponentInChildren<TextMeshProUGUI>();
         canvasGroup = GetComponent<CanvasGroup>();
@@ -21,4 +21,5 @@ public class DaySystem : MonoBehaviour
         yield return new WaitForSeconds(1);
         canvasGroup.DOFade(0, 1);
     }
+    
 }

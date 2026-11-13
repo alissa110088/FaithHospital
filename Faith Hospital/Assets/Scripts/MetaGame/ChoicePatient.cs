@@ -29,14 +29,13 @@ public class ChoicePatient : MonoBehaviour
         gameObject.SetActive(false);
     }
     
-
-    //quand je dois instancier un nouveau patient, appeler dans le game manager?
     public void UpdatePanel( List<OperationsSO> listPatient)
     {
         for (int i = 0; i < listPatient.Count; i++)
         {
+            
             if (patientSo.Contains(listPatient[i]))
-                return;
+                continue;
             
             PatientContainer current = Instantiate(patientContainer, transformParent);
             current.SetPicture(listPatient[i].operationsImage);
@@ -44,6 +43,16 @@ public class ChoicePatient : MonoBehaviour
             current.LinkButtonOperation(PatientChosen);
             patientContainerInstance.Add(current);
             patientSo.Add(listPatient[i]);
+        }
+    }
+
+    public void ResetPanel()
+    {
+        for (int i =  patientContainerInstance.Count -1; i >= 0; i--)
+        {
+            Destroy(patientContainerInstance[i].gameObject);
+            patientContainerInstance.RemoveAt(i);
+            patientSo.Remove(patientSo[i]);
         }
     }
 

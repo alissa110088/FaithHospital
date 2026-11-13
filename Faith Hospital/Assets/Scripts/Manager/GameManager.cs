@@ -1,24 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
     [HideInInspector] public int energyToLoose;
-    public MetaManager metaManager;
+    private MetaManager metaManager;
     [SerializeField] private int minSecBetweenPatients;
     [SerializeField] private int maxSecBetweenPatients;
     [SerializeField] private OperationDay operationDaySource;
+    [SerializeField] private Timer timer;
 
     [HideInInspector] public OperationDay operationDay;
 
-    public static List<OperationsSO> remainingSurgery;
+    public static List<OperationsSO> remainingSurgery = new List<OperationsSO>();
+
+    public Action OnTimerEnded;
 
     private float timeBeforeNext;
-    private static int currentDay = 0;
     private OperationsSO currentOperation;
 
 
@@ -37,11 +39,14 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         
         operationDay = Instantiate(operationDaySource);
+        OnTimerEnded += OnTimerDone;
     }
-
+    
     private void Start()
     {
-        ChangeDay();
+        metaManager = MetaManager.Instance;
+        metaManager.ChangeDay(remainingSurgery, operationDay);
+        timer.StartTimer();
     }
 
     public IEnumerator OperationEnded(int pToLoose)
@@ -75,43 +80,46 @@ public class GameManager : MonoBehaviour
             timeBeforeNext -= Time.deltaTime;
         }
 
-        if (timeBeforeNext == 0)
+        if (timeBeforeNext <= 0)
         {
             //lol
-            OperationsSO patient = operationDay.operationsSettings[currentDay - 1]
+             OperationsSO patient = operationDay.operationsSettings[MetaManager.currentDay - 1]
                 .poolOperation[
-                    Random.Range(0, operationDay.operationsSettings[currentDay - 1].poolOperation.Count - 1)];
-
-            operationDay.operationsSettings[currentDay - 1]
+                    Random.Range(0, operationDay.operationsSettings[MetaManager.currentDay - 1].poolOperation.Count - 1)];
+            
+             
+            operationDay.operationsSettings[MetaManager.currentDay - 1]
                 .poolOperation.Remove(patient);
             remainingSurgery.Add(patient);
-
-            ChooseTime();
             metaManager.choicePatient.UpdatePanel(remainingSurgery);
+            ChooseTime();
+            
         }
     }
 
-    private void ChangeDay()
+    private void OnTimerDone()
     {
-        currentDay++;
-        Debug.Log(metaManager.daySystem);
-        StartCoroutine(metaManager.daySystem.ShowCurrentDay(currentDay));
-        remainingSurgery.Clear();
-        
-        OperationsSO patient = operationDay.operationsSettings[currentDay - 1]
-            .poolOperation[
-                Random.Range(0, operationDay.operationsSettings[currentDay - 1].poolOperation.Count - 1)];
-
-        operationDay.operationsSettings[currentDay - 1]
-            .poolOperation.Remove(patient);
-        remainingSurgery.Add(patient);
-
-        ChooseTime();
-        metaManager.choicePatient.UpdatePanel(remainingSurgery);
+        if (SceneManager.GetActiveScene().name == "MetaGame")
+        {
+            metaManager.ChangeDay(remainingSurgery, operationDay);
+        }
+        else
+            StartCoroutine(WaitForEndLoad());
     }
 
-    private void ChooseTime()
+    private IEnumerator WaitForEndLoad()
     {
-        timeBeforeNext = Random.Range(minSecBetweenPatients, maxSecBetweenPatients);
+        yield return LoadScene("MetaGame");
+        metaManager = MetaManager.Instance;
+        metaManager.ChangeDay(remainingSurgery, operationDay);
+        timer.StartTimer();
+    }
+
+    public void ChooseTime()
+    {
+        if (operationDay.operationsSettings[MetaManager.currentDay - 1].poolOperation.Count > 0)
+            timeBeforeNext = Random.Range(minSecBetweenPatients, maxSecBetweenPatients);
+        else
+            timeBeforeNext = Mathf.Infinity;
     }
 }
