@@ -6,9 +6,13 @@ using Random = UnityEngine.Random;
 
 public class MetaManager : MonoBehaviour
 {
+    [SerializeField] private Animation cameraAnim;
+    
     public DaySystem daySystem;
     public ChoicePatient choicePatient;
-    [SerializeField] private Animation cameraAnim;
+    private GameManager gameManager;
+    private int maxDay;
+    
     public static int currentDay = 0;
     public static MetaManager Instance { get; private set; }
 
@@ -23,6 +27,17 @@ public class MetaManager : MonoBehaviour
 
         Instance = this;
     }
+
+    private void OnEnable()
+    {
+        gameManager = GameManager.Instance;
+    }
+
+    private void Start()
+    {
+        maxDay = gameManager.operationDay.operationsSettings[currentDay - 1].poolOperation.Count;
+    }
+    
     public void OnClick(Button button)
     {
         cameraAnim.Play();
@@ -32,18 +47,22 @@ public class MetaManager : MonoBehaviour
         choicePatient.OnClick();
     }
     
-    public void ChangeDay(List<OperationsSO> remainingSurgery, OperationDay operationDay)
+    public void ChangeDay(List<OperationsSO> remainingSurgery)
     {
         currentDay++;
-
+        
+        //TODO fin du jeu 
+        if (currentDay >= maxDay)
+            return;
+        
         StartCoroutine(daySystem.ShowCurrentDay(currentDay));
         remainingSurgery.Clear();
-
-        OperationsSO patient = operationDay.operationsSettings[currentDay - 1]
+        
+        OperationsSO patient = gameManager.operationDay.operationsSettings[currentDay - 1]
             .poolOperation[
-                Random.Range(0, operationDay.operationsSettings[currentDay - 1].poolOperation.Count - 1)];
+                Random.Range(0, gameManager.operationDay.operationsSettings[currentDay - 1].poolOperation.Count - 1)];
 
-        operationDay.operationsSettings[currentDay - 1]
+        gameManager.operationDay.operationsSettings[currentDay - 1]
             .poolOperation.Remove(patient);
         remainingSurgery.Add(patient);
 

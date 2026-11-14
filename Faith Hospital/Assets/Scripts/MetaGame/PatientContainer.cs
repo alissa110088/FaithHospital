@@ -7,8 +7,11 @@ using UnityEngine.UI;
 public class PatientContainer : MonoBehaviour
 {
     private TextMeshProUGUI textContainer;
+    public PatientBloodLevel bloodLevel;
+    
     [SerializeField] private RawImage imagePatients;
     [SerializeField] private Button buttonChoiceOperation;
+    [SerializeField] private Image bloodBar;
     private void OnEnable()
     {
         textContainer = GetComponentInChildren<TextMeshProUGUI>();
@@ -21,6 +24,11 @@ public class PatientContainer : MonoBehaviour
     public void SetText(string text)
     {
         textContainer.text = text;
+    }
+
+    private void Update()
+    {
+        bloodBar.fillAmount = bloodLevel.currentBloodLevel;
     }
 
     public void SetPicture(Texture sprite)

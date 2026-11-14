@@ -1241,7 +1241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1177fec0938d2b488d789dec7c46aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
-  _timerDuration: 30
+  _timerDuration: 500
 --- !u!114 &496967010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1851,6 +1851,7 @@ MonoBehaviour:
   energyToLoose: 0
   minSecBetweenPatients: 5
   maxSecBetweenPatients: 15
+  howLongPerPatient: 25
   operationDaySource: {fileID: 11400000, guid: 7602e603076ccbf4db66051d607fc014, type: 2}
   timer: {fileID: 496967009}
   operationDay: {fileID: 0}
@@ -1977,7 +1978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5139,9 +5140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a812b8db444774b93bd86e8af8abab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetaManager
+  cameraAnim: {fileID: 959158642}
   daySystem: {fileID: 1486237048}
   choicePatient: {fileID: 76715673}
-  cameraAnim: {fileID: 959158642}
 --- !u!4 &1954134871
 Transform:
   m_ObjectHideFlags: 0

@@ -16,7 +16,6 @@ public class Timer : MonoBehaviour
     
     public void StartTimer()
     {
-        Debug.Log("Starting Timer");
         _currentTime = 0;
         _image.fillAmount = 0;
         _divider = 1 / _timerDuration;
@@ -32,7 +31,6 @@ public class Timer : MonoBehaviour
         _image.fillAmount = _currentTime *  _divider;
         if (_image.fillAmount == 1)
         {
-            Debug.Log("Ending Timer");
             _currentTime = 0;
             _image.fillAmount = 0;
             _timerStarted = false;

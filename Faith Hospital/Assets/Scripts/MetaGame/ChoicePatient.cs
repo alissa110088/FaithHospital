@@ -38,6 +38,7 @@ public class ChoicePatient : MonoBehaviour
                 continue;
             
             PatientContainer current = Instantiate(patientContainer, transformParent);
+            current.bloodLevel = GameManager.Instance.patientsBloodLevelList[i];    
             current.SetPicture(listPatient[i].operationsImage);
             current.SetText(listPatient[i].operationsText);
             current.LinkButtonOperation(PatientChosen);

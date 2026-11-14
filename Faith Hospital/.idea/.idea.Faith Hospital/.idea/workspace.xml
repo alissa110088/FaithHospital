@@ -12,11 +12,18 @@
   <component name="ChangeListManager">
     <list default="true" id="006f48b2-230d-49c6-ad1f-c1054c25bbaa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Faith Hospital/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Faith Hospital/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/PatientContainer 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/PatientContainer 1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/PF_Meta/PatientUblo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/PF_Meta/PatientUblo.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MetaGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MetaGame.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/PatientManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/PatientManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MetaGame/ChoicePatient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MetaGame/ChoicePatient.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MetaGame/MetaManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MetaGame/MetaManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MetaGame/PatientContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MetaGame/PatientContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MetaGame/Timer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MetaGame/Timer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +37,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/987aa4221989419a947e2c4ff5d6829c212c00/69/6a257a7e/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Editor/DrawShapeEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Editor/LayerView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/OrganMagnet.cs" root0="FORCE_HIGHLIGHTING" />
@@ -41,6 +49,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FeedBack/InputFeedBack/Organs.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FeedBack/InputFeedBack/Skin.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MetaGame/CanvasTImer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MetaGame/PatientBloodLevel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MetaGame/Timer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SO/CameraSettings.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SO/OperationDay.cs" root0="FORCE_HIGHLIGHTING" />
@@ -174,6 +183,7 @@
       <workItem from="1794304759120" duration="17365000" />
       <workItem from="1794506629514" duration="977000" />
       <workItem from="1794575030104" duration="11941000" />
+      <workItem from="1794606828061" duration="11492000" />
     </task>
     <servers />
   </component>
