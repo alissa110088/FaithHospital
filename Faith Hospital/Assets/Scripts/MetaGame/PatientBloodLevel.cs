@@ -6,7 +6,7 @@ public class PatientBloodLevel
     public float currentBloodLevel = 1;
     private float currentBlood = 1;
     private float divider = -1;
-    private float failLoss = 0.05f;
+    private float failLoss = 0.1f;
     public static Action<PatientBloodLevel> onBloodDead;
     
     public PatientBloodLevel()
@@ -17,7 +17,7 @@ public class PatientBloodLevel
 
     public void OnFail()
     {
-        currentBloodLevel -= failLoss;
+        currentBlood -= failLoss;
     }
     
     public void UpdateBloodLevel(float deltaTime)
