@@ -13,6 +13,11 @@ public class MetaManager : MonoBehaviour
     public ChoicePatient choicePatient;
     private GameManager gameManager;
     private int maxDay;
+
+    private Image imageChoice;
+    private Button buttonChoice;
+    private Vector3 camBase;
+    private Quaternion camRotation;
     
     public static int currentDay = 0;
     public static MetaManager Instance { get; private set; }
@@ -34,19 +39,27 @@ public class MetaManager : MonoBehaviour
         gameManager = GameManager.Instance;
         maxDay = gameManager.operationDay.operationsSettings.Length ;
     }
-
-    private void Start()
-    {
-        
-    }
     
     public void OnClick(Button button)
     {
         cameraAnim.Play();
+        camBase = Camera.main.transform.position;
+        camRotation = Camera.main.transform.rotation;
         button.interactable = false;
-        Image image = button.GetComponent<Image>();
-        image.raycastTarget = false;
+        buttonChoice = button;
+        imageChoice = button.GetComponent<Image>();
+        imageChoice.raycastTarget = false;
         choicePatient.OnClick();
+    }
+
+    private void ResetCam()
+    {
+        if (buttonChoice == null)
+            return;
+        buttonChoice.interactable = true;
+        imageChoice.raycastTarget = true;
+        Camera.main.transform.position = camBase;
+        Camera.main.transform.rotation = camRotation;
     }
     
     public IEnumerator ChangeDay(List<OperationsSO> remainingSurgery, List<PatientBloodLevel> patientBloodLevels)
@@ -78,6 +91,7 @@ public class MetaManager : MonoBehaviour
         GameManager.Instance.ChooseTime();
         choicePatient.ResetPanel();
         choicePatient.UpdatePanel(remainingSurgery);
+        ResetCam();
         daySystem.FinishShowDay();
     }
     
