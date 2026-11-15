@@ -7,6 +7,7 @@ public class PatientBloodLevel
     private float currentBlood = 1;
     private float divider = -1;
     private float failLoss = 0.1f;
+    private bool block = false;
     public static Action<PatientBloodLevel> onBloodDead;
     
     public PatientBloodLevel()
@@ -22,11 +23,19 @@ public class PatientBloodLevel
     
     public void UpdateBloodLevel(float deltaTime)
     {
+        if (block)
+            return;
+        
         currentBlood -= deltaTime;
         currentBloodLevel = currentBlood * divider;
         if (currentBloodLevel <= 0)
         {
             onBloodDead.Invoke(this);
         }
+    }
+
+    public void BlockDownfall()
+    {
+        block = true;
     }
 }

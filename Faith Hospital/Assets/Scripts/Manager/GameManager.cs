@@ -19,11 +19,12 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public OperationDay operationDay;
     [HideInInspector] public PatientBloodLevel currentPatientBlood;
 
-    public static List<OperationsSO> remainingSurgery = new List<OperationsSO>();
-    public List<PatientBloodLevel> patientsBloodLevelList = new List<PatientBloodLevel>();
+    [HideInInspector] public static List<OperationsSO> remainingSurgery = new List<OperationsSO>();
+    [HideInInspector] public List<PatientBloodLevel> patientsBloodLevelList = new List<PatientBloodLevel>();
 
     public Action OnTimerEnded;
 
+    private int debt;
     private float timeBeforeNext = Mathf.Infinity;
     private OperationsSO currentOperation;
     private MetaManager metaManager;
@@ -96,6 +97,8 @@ public class GameManager : MonoBehaviour
         if (pSceneName == "MetaGame")
         {
             metaManager = MetaManager.Instance;
+            metaManager.quotaManager.UpdateMoney(-debt);
+            debt = 0;
             
             if (operationDay.operationsSettings[MetaManager.currentDay - 1].poolOperation.Count == 0 &&
                 remainingSurgery.Count == 0)
@@ -159,8 +162,11 @@ public class GameManager : MonoBehaviour
         patientsBloodLevelList.Remove(patientBloodLevel);
         OperationsSO tem = remainingSurgery[index];
         remainingSurgery.RemoveAt(index);   
+        int moneyLoss = currentOperation.moneyWon/3;
         if (SceneManager.GetActiveScene().name == "MetaGame")
         {
+            metaManager.quotaManager.UpdateMoney(- moneyLoss);
+            
             if (operationDay.operationsSettings[MetaManager.currentDay - 1].poolOperation.Count == 0 &&
                 remainingSurgery.Count == 0)
             {
@@ -175,6 +181,7 @@ public class GameManager : MonoBehaviour
 
         else
         {
+            debt = moneyLoss;
             if(tem == currentOperation)
                 StartCoroutine(OnDieInOp());
             else

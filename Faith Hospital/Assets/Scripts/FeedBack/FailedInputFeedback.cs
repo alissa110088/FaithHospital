@@ -79,6 +79,7 @@ public class FailedInputFeedback
 
     private int OnOperationEnded()
     {
+        currentPatientBlood.BlockDownfall();
         return energyLostFromStart;
     }
 }

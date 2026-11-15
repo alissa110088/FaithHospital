@@ -11,6 +11,9 @@ public class QuotaManager : MonoBehaviour
     public void UpdateMoney(int pMoneyWin)
     {
         money += pMoneyWin;
+        
+        if(money<0)
+            money = 0;
         string text = money.ToString() + "/" + quota;
         TextMoney.text = text;
     }
