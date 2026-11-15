@@ -19,6 +19,11 @@ public class DaySystem : MonoBehaviour
         dayText.text = $"Day {pDay}";
         canvasGroup.DOFade(1, 1);
         yield return new WaitForSeconds(1);
+        
+    }
+
+    public void FinishShowDay()
+    {
         canvasGroup.DOFade(0, 1);
     }
     

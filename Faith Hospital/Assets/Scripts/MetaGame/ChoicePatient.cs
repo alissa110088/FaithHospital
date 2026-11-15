@@ -34,7 +34,7 @@ public class ChoicePatient : MonoBehaviour
     
     public void UpdatePanel( List<OperationsSO> listPatient)
     {
-        
+     
         //check a rajouter
         for (int i = 0; i < listPatient.Count; i++)
         {

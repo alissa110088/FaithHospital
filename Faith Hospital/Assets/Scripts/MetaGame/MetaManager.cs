@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -48,18 +49,18 @@ public class MetaManager : MonoBehaviour
         choicePatient.OnClick();
     }
     
-    public void ChangeDay(List<OperationsSO> remainingSurgery, List<PatientBloodLevel> patientBloodLevels)
+    public IEnumerator ChangeDay(List<OperationsSO> remainingSurgery, List<PatientBloodLevel> patientBloodLevels)
     {
         currentDay++;
         
         //TODO fin du jeu 
         if (currentDay -1 >= maxDay)
         {
-            return;
+            yield break;
         }
             
         
-        StartCoroutine(daySystem.ShowCurrentDay(currentDay));
+        yield return StartCoroutine(daySystem.ShowCurrentDay(currentDay));
         remainingSurgery.Clear();
         patientBloodLevels.Clear();
         
@@ -77,6 +78,7 @@ public class MetaManager : MonoBehaviour
         GameManager.Instance.ChooseTime();
         choicePatient.ResetPanel();
         choicePatient.UpdatePanel(remainingSurgery);
+        daySystem.FinishShowDay();
     }
     
     
