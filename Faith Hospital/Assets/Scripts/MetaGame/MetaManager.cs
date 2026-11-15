@@ -8,6 +8,8 @@ using Random = UnityEngine.Random;
 public class MetaManager : MonoBehaviour
 {
     [SerializeField] private Animation cameraAnim;
+    [SerializeField] private GameObject LooseScreen;
+    public QuotaManager quotaManager;
     
     public DaySystem daySystem;
     public ChoicePatient choicePatient;
@@ -37,7 +39,6 @@ public class MetaManager : MonoBehaviour
     private void OnEnable()
     {
         gameManager = GameManager.Instance;
-        maxDay = gameManager.operationDay.operationsSettings.Length ;
     }
     
     public void OnClick(Button button)
@@ -64,6 +65,9 @@ public class MetaManager : MonoBehaviour
     
     public IEnumerator ChangeDay(List<OperationsSO> remainingSurgery, List<PatientBloodLevel> patientBloodLevels)
     {
+        if(maxDay == 0)
+            maxDay = gameManager.operationDay.operationsSettings.Length;
+        
         currentDay++;
         
         //TODO fin du jeu 
@@ -71,11 +75,18 @@ public class MetaManager : MonoBehaviour
         {
             yield break;
         }
-            
         
-        yield return StartCoroutine(daySystem.ShowCurrentDay(currentDay));
         remainingSurgery.Clear();
         patientBloodLevels.Clear();
+
+        if (!quotaManager.QuotaMet())
+        {
+            yield return OnGameOver();
+            GameManager.Instance.StartGame();
+            yield break;
+        }
+        
+        yield return StartCoroutine(daySystem.ShowCurrentDay(currentDay));
         
         OperationsSO patient = gameManager.operationDay.operationsSettings[currentDay - 1]
             .poolOperation[
@@ -91,9 +102,15 @@ public class MetaManager : MonoBehaviour
         GameManager.Instance.ChooseTime();
         choicePatient.ResetPanel();
         choicePatient.UpdatePanel(remainingSurgery);
+        quotaManager.SetQuota( gameManager.operationDay.operationsSettings[currentDay - 1].quota);
         ResetCam();
         daySystem.FinishShowDay();
     }
-    
-    
+
+    private IEnumerator OnGameOver()
+    {
+        LooseScreen.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2);
+        LooseScreen.gameObject.SetActive(false);
+    }
 }

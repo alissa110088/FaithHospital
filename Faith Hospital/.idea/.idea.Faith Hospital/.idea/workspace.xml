@@ -12,9 +12,15 @@
   <component name="ChangeListManager">
     <list default="true" id="006f48b2-230d-49c6-ad1f-c1054c25bbaa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Faith Hospital/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Faith Hospital/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/PF_Meta/PatientUblo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/PF_Meta/PatientUblo.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MetaGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MetaGame.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Patient0.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Patient0.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MetaGame/ChoicePatient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MetaGame/ChoicePatient.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/DeathScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/DeathScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MetaGame/MetaManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MetaGame/MetaManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MetaGame/PatientContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MetaGame/PatientContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SO/Data/OperationDay.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SO/Data/OperationDay.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SO/OperationDay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SO/OperationDay.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +53,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SO/SwipeSettings.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SO/TraceSettings.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/DeathScreen.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/QuotaManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@21a28c3a6c83/InputSystem/Actions/InputActionState.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@21a28c3a6c83/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@8a9b4021522a/Editor/2D/Overrides/MeshEditor2DURP.cs" root0="SKIP_HIGHLIGHTING" />
@@ -177,7 +184,7 @@
       <workItem from="1794575030104" duration="11941000" />
       <workItem from="1794606828061" duration="11492000" />
       <workItem from="1794665726499" duration="1214000" />
-      <workItem from="1794696065336" duration="15771000" />
+      <workItem from="1794696065336" duration="21237000" />
     </task>
     <servers />
   </component>

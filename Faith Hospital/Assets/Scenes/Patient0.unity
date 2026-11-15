@@ -5727,7 +5727,7 @@ MonoBehaviour:
   isAffliction: 0
   _groupped: 0
   _nextLayer: 2
-  isLast: 0
+  isLast: 1
 --- !u!1 &6773417325496942387
 GameObject:
   m_ObjectHideFlags: 0

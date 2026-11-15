@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.SpriteAssetUtilities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -41,18 +42,26 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        operationDay = Instantiate(operationDaySource);
+        
         OnTimerEnded += OnTimerDone;
     }
 
     private void Start()
     {
-        metaManager = MetaManager.Instance;
-        StartCoroutine(metaManager.ChangeDay(remainingSurgery, patientsBloodLevelList));
-        timer.StartTimer();
+        StartGame();
         PatientBloodLevel.onBloodDead += OnPatientDie;
     }
 
+    public void StartGame()
+    {
+        operationDay = Instantiate(operationDaySource);
+        metaManager = MetaManager.Instance;
+        metaManager.quotaManager.SetQuota(0);
+        MetaManager.currentDay = 0;
+        StartCoroutine(metaManager.ChangeDay(remainingSurgery, patientsBloodLevelList));
+        timer.StartTimer();
+    }
+    
     public void OpEnded()
     {
         StartCoroutine(OperationEnded());
@@ -61,8 +70,10 @@ public class GameManager : MonoBehaviour
     private IEnumerator OperationEnded()
     {
         remainingSurgery.Remove(currentOperation);
+        patientsBloodLevelList.Remove(currentPatientBlood);
         yield return StartCoroutine(LoadScene("MetaGame"));
         yield return new WaitForSeconds(0.3f);
+        metaManager.quotaManager.UpdateMoney(currentOperation.moneyWon);
         metaManager.choicePatient.UpdatePanel(remainingSurgery);
     }
 
@@ -112,7 +123,7 @@ public class GameManager : MonoBehaviour
 
         if (timeBeforeNext <= 0)
         {
-            
+         
             OperationsSO patient = operationDay.operationsSettings[MetaManager.currentDay - 1]
                 .poolOperation[
                     Random.Range(0,

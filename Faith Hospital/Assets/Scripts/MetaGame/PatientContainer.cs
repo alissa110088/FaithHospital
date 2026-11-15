@@ -12,6 +12,7 @@ public class PatientContainer : MonoBehaviour
     [SerializeField] private RawImage imagePatients;
     [SerializeField] private Button buttonChoiceOperation;
     [SerializeField] private Image bloodBar;
+    [SerializeField] private TextMeshProUGUI textCoin;
     private void OnEnable()
     {
         textContainer = GetComponentInChildren<TextMeshProUGUI>();
@@ -26,6 +27,11 @@ public class PatientContainer : MonoBehaviour
     public void SetText(string text)
     {
         textContainer.text = text;
+    }
+
+    public void SetTextCoin(int coin)
+    {
+        textCoin.text = coin.ToString() ;
     }
 
     private void Update()

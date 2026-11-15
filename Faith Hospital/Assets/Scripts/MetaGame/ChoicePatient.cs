@@ -52,6 +52,7 @@ public class ChoicePatient : MonoBehaviour
             current.bloodLevel = GameManager.Instance.patientsBloodLevelList[i];    
             current.SetPicture(listPatient[i].operationsImage);
             current.SetText(listPatient[i].operationsText);
+            current.SetTextCoin(listPatient[i].moneyWon);
             current.LinkButtonOperation(PatientChosen);
             patientContainerInstance.Add(current);
             patientSo.Add(listPatient[i]);
