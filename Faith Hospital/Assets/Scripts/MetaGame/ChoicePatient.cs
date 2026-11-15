@@ -20,6 +20,12 @@ public class ChoicePatient : MonoBehaviour
     {
         canvasGroup.blocksRaycasts = false;
         OriginalPos =  transform.position;
+        PatientBloodLevel.onBloodDead += Close;
+    }
+
+    private void OnDisable()
+    {
+        PatientBloodLevel.onBloodDead -= Close;
     }
 
     public void OnClick()
@@ -86,6 +92,13 @@ public class ChoicePatient : MonoBehaviour
         transform.DOMoveY( OriginalPos.y - 2000, 1f);
     }
 
+    private void Close(PatientBloodLevel patient)
+    {
+        if (patient != GameManager.Instance.currentPatientBlood)
+            return;
+        gameObject.SetActive(false);
+    }
+    
     public void Close(Button  button)
     {
         button.gameObject.SetActive(true);

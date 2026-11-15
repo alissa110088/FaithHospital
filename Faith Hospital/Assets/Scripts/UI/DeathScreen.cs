@@ -17,6 +17,8 @@ public class DeathScreen : MonoBehaviour
 
     private void CorStart(PatientBloodLevel patientBloodLevel)
     {
+        if (patientBloodLevel != GameManager.Instance.currentPatientBlood)
+            return;
         gameObject.SetActive(true);
         StartCoroutine(OnDie(patientBloodLevel));
     } 
