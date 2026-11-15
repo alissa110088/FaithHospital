@@ -31,6 +31,8 @@ public class ChoicePatient : MonoBehaviour
     
     public void UpdatePanel( List<OperationsSO> listPatient)
     {
+        
+        //check a rajouter
         for (int i = 0; i < listPatient.Count; i++)
         {
             
@@ -44,6 +46,17 @@ public class ChoicePatient : MonoBehaviour
             current.LinkButtonOperation(PatientChosen);
             patientContainerInstance.Add(current);
             patientSo.Add(listPatient[i]);
+        }
+        
+        //check a enlever
+        for (int i =  patientSo.Count-1; i >= 0; i--)
+        {
+            if (!listPatient.Contains(patientSo[i]))
+            {
+                Destroy(patientContainerInstance[i].gameObject);
+                patientContainerInstance.RemoveAt(i);
+                patientSo.RemoveAt(i);
+            }           
         }
     }
 

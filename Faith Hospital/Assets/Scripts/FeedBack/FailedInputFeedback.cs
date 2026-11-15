@@ -12,10 +12,11 @@ public class FailedInputFeedback
     [SerializeField] private int numEventDuringGame;
     [SerializeField] private DrawShape[] afflictions;
     
-    public List<int> afflictionStage = new List<int>();
+    private List<float> afflictionStage = new List<float>();
     private CameraShake cam;
     private bool isInAfflictionStage = false;
     private int energyLostFromStart = 0;
+    private PatientBloodLevel currentPatientBlood;
 
     private void Start()
     {
@@ -24,7 +25,7 @@ public class FailedInputFeedback
         
         for (int i = 0; i < numEventDuringGame; i++)
         {
-            int num = Random.Range(0, (int)failedSlider.maxValue);
+            float num = Random.Range(0, failedSlider.maxValue);
             afflictionStage.Add(num);
         }
 
@@ -35,6 +36,8 @@ public class FailedInputFeedback
         
         Controller.OnInputNotValidate += OnFailed;
         cam = Camera.main.GetComponent<CameraShake>();
+        currentPatientBlood = GameManager.Instance.currentPatientBlood;
+        
         if(cam == null)
             Debug.Log("NO CAMERE SHAKE FOUND");
     }
@@ -44,6 +47,11 @@ public class FailedInputFeedback
         PatientManager.Instance.OnOperationFinished -= OnOperationEnded;
         Controller.OnInputValidate -= OnAfflictionFinished;
         Controller.OnInputNotValidate -= OnFailed;
+    }
+
+    private void Update()
+    {
+         failedSlider.value = currentPatientBlood.currentBloodLevel;
     }
 
     private void OnAfflictionFinished(bool pIsGrouped, State _state = null)
@@ -58,20 +66,11 @@ public class FailedInputFeedback
     {
         if (isInAfflictionStage)
             return;
+        
+        currentPatientBlood.OnFail();
+        cam.StartShake();
 
-        if (failedSlider.value != failedSlider.maxValue)
-        {
-            failedSlider.value ++;
-            energyLostFromStart++;
-        }
-            
-        else
-        {
-            cam.StartShake();
-            failedSlider.value = 0;
-        }
-
-        if (afflictionStage.Contains((int)failedSlider.value))
+        if (afflictionStage.Contains(failedSlider.value))
         {
             DrawShape affliction = afflictions[Random.Range(0, afflictions.Length)];
             PatientManager.Instance.AfflictionInterruption(affliction);

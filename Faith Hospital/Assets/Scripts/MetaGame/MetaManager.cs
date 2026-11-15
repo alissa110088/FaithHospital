@@ -47,7 +47,7 @@ public class MetaManager : MonoBehaviour
         choicePatient.OnClick();
     }
     
-    public void ChangeDay(List<OperationsSO> remainingSurgery)
+    public void ChangeDay(List<OperationsSO> remainingSurgery, List<PatientBloodLevel> patientBloodLevels)
     {
         currentDay++;
         
@@ -57,6 +57,7 @@ public class MetaManager : MonoBehaviour
         
         StartCoroutine(daySystem.ShowCurrentDay(currentDay));
         remainingSurgery.Clear();
+        patientBloodLevels.Clear();
         
         OperationsSO patient = gameManager.operationDay.operationsSettings[currentDay - 1]
             .poolOperation[
@@ -65,6 +66,9 @@ public class MetaManager : MonoBehaviour
         gameManager.operationDay.operationsSettings[currentDay - 1]
             .poolOperation.Remove(patient);
         remainingSurgery.Add(patient);
+        
+        PatientBloodLevel patientBloodLevel = new PatientBloodLevel();
+        patientBloodLevels.Add(patientBloodLevel);
 
         GameManager.Instance.ChooseTime();
         choicePatient.ResetPanel();
