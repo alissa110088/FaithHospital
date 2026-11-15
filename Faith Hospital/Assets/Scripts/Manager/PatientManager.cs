@@ -16,6 +16,7 @@ public class PatientManager : MonoBehaviour
     [SerializeField] private OrganCollector _organCollector;
     [SerializeField] private int _layerCount = 7;
     [SerializeField] private EndScreen endScreen;
+    public ChoicePatient choicePatient;
     
     private OrganLayerPairing currentLayerPairing;
     private int _numToInstantiate;

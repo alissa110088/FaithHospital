@@ -31,7 +31,6 @@ public class MetaManager : MonoBehaviour
     private void OnEnable()
     {
         gameManager = GameManager.Instance;
-        Debug.Log("num day" + gameManager.operationDay.operationsSettings.Length);
         maxDay = gameManager.operationDay.operationsSettings.Length ;
     }
 
@@ -52,14 +51,10 @@ public class MetaManager : MonoBehaviour
     public void ChangeDay(List<OperationsSO> remainingSurgery, List<PatientBloodLevel> patientBloodLevels)
     {
         currentDay++;
-        Debug.Log("wesh");
         
         //TODO fin du jeu 
         if (currentDay -1 >= maxDay)
         {
-            Debug.Log(currentDay);
-            Debug.Log(maxDay);
-            Debug.Log("returning");
             return;
         }
             

@@ -236,7 +236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChoicePatient
   patientContainer: {fileID: 124346360909535992, guid: 03a0925a0b0156a4d87f0fc2de053cc7, type: 3}
-  operationPerDay: {fileID: 11400000, guid: 7602e603076ccbf4db66051d607fc014, type: 2}
   transformParent: {fileID: 1389481613}
   canvasGroup: {fileID: 741136527}
 --- !u!1 &121375083
@@ -1086,7 +1085,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChoicePatient
   patientContainer: {fileID: 8336005317576879210, guid: 091cd6ed46d10304eb4d907935c78ef9, type: 3}
-  operationPerDay: {fileID: 11400000, guid: 7602e603076ccbf4db66051d607fc014, type: 2}
   transformParent: {fileID: 0}
   canvasGroup: {fileID: 0}
 --- !u!224 &333486907
@@ -1851,7 +1849,7 @@ MonoBehaviour:
   energyToLoose: 0
   minSecBetweenPatients: 5
   maxSecBetweenPatients: 15
-  howLongPerPatient: 10
+  howLongPerPatient: 30
   operationDaySource: {fileID: 11400000, guid: 7602e603076ccbf4db66051d607fc014, type: 2}
   timer: {fileID: 496967009}
   operationDay: {fileID: 0}

@@ -19,6 +19,8 @@ public class PatientContainer : MonoBehaviour
 
     public void LinkButtonOperation(UnityAction<PatientContainer> pMyFunc)
     {
+        if (buttonChoiceOperation == null)
+            return;
         buttonChoiceOperation.onClick.AddListener(() => pMyFunc(this));
     }
     public void SetText(string text)

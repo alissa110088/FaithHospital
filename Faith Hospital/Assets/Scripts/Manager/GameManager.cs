@@ -13,11 +13,11 @@ public class GameManager : MonoBehaviour
     public float howLongPerPatient;
     [SerializeField] private OperationDay operationDaySource;
     [SerializeField] private Timer timer;
-    
+
 
     [HideInInspector] public OperationDay operationDay;
     [HideInInspector] public PatientBloodLevel currentPatientBlood;
-    
+
     public static List<OperationsSO> remainingSurgery = new List<OperationsSO>();
     public List<PatientBloodLevel> patientsBloodLevelList = new List<PatientBloodLevel>();
 
@@ -40,11 +40,11 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        
+
         operationDay = Instantiate(operationDaySource);
         OnTimerEnded += OnTimerDone;
     }
-    
+
     private void Start()
     {
         metaManager = MetaManager.Instance;
@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
     {
         int index = remainingSurgery.IndexOf(operationDay);
         currentPatientBlood = patientsBloodLevelList[index];
-        currentOperation = operationDay; 
+        currentOperation = operationDay;
         StartCoroutine(LoadScene(operationDay.operationsSceneName));
     }
 
@@ -85,13 +85,17 @@ public class GameManager : MonoBehaviour
         if (pSceneName == "MetaGame")
         {
             metaManager = MetaManager.Instance;
+            metaManager.choicePatient.UpdatePanel(remainingSurgery);
             if (operationDay.operationsSettings[MetaManager.currentDay - 1].poolOperation.Count == 0 &&
                 remainingSurgery.Count == 0)
             {
                 timer.StartTimer();
                 metaManager.ChangeDay(remainingSurgery, patientsBloodLevelList);
             }
-                
+        }
+        else
+        {
+            PatientManager.Instance.choicePatient.UpdatePanel(remainingSurgery);
         }
     }
 
@@ -104,21 +108,24 @@ public class GameManager : MonoBehaviour
 
         if (timeBeforeNext <= 0)
         {
-            //lol
-             OperationsSO patient = operationDay.operationsSettings[MetaManager.currentDay - 1]
-                .poolOperation[
-                    Random.Range(0, operationDay.operationsSettings[MetaManager.currentDay - 1].poolOperation.Count - 1)];
             
-             
+            OperationsSO patient = operationDay.operationsSettings[MetaManager.currentDay - 1]
+                .poolOperation[
+                    Random.Range(0,
+                        operationDay.operationsSettings[MetaManager.currentDay - 1].poolOperation.Count - 1)];
+
+
             operationDay.operationsSettings[MetaManager.currentDay - 1]
                 .poolOperation.Remove(patient);
             remainingSurgery.Add(patient);
-            
+
             PatientBloodLevel patientBloodLevel = new PatientBloodLevel();
             patientsBloodLevelList.Add(patientBloodLevel);
-            
-            if(SceneManager.GetActiveScene().name == "MetaGame")
+
+            if (SceneManager.GetActiveScene().name == "MetaGame")
                 metaManager.choicePatient.UpdatePanel(remainingSurgery);
+            else
+                PatientManager.Instance.choicePatient.UpdatePanel(remainingSurgery);
             ChooseTime();
         }
 
@@ -132,7 +139,8 @@ public class GameManager : MonoBehaviour
     {
         int index = patientsBloodLevelList.IndexOf(patientBloodLevel);
         patientsBloodLevelList.Remove(patientBloodLevel);
-        remainingSurgery.RemoveAt(index);
+        OperationsSO tem = remainingSurgery[index];
+        remainingSurgery.RemoveAt(index);   
         if (SceneManager.GetActiveScene().name == "MetaGame")
         {
             metaManager.choicePatient.UpdatePanel(remainingSurgery);
@@ -142,11 +150,18 @@ public class GameManager : MonoBehaviour
                 timer.StartTimer();
                 metaManager.ChangeDay(remainingSurgery, patientsBloodLevelList);
             }
-                
         }
-            
+
         else
-            StartCoroutine(OnDieInOp());
+        {
+            if(tem == currentOperation)
+                StartCoroutine(OnDieInOp());
+            else
+            {
+                PatientManager.Instance.choicePatient.UpdatePanel(remainingSurgery);
+            }
+            
+        }
     }
 
     private IEnumerator OnDieInOp()
@@ -179,7 +194,10 @@ public class GameManager : MonoBehaviour
         if (operationDay.operationsSettings[MetaManager.currentDay - 1].poolOperation.Count > 0)
             timeBeforeNext = Random.Range(minSecBetweenPatients, maxSecBetweenPatients);
         else
+        {
             timeBeforeNext = Mathf.Infinity;
+        }
+            
     }
 
     private void OnDestroy()

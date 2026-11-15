@@ -1,22 +1,25 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.Composites;
 using UnityEngine.UI;
 
 public class ChoicePatient : MonoBehaviour
 {
     [SerializeField] private PatientContainer patientContainer;
-    [SerializeField] private OperationDay operationPerDay;
     [SerializeField] private Transform transformParent;
     [SerializeField] private CanvasGroup canvasGroup;
 
     private List<PatientContainer> patientContainerInstance = new List<PatientContainer>();
     private List<OperationsSO> patientSo = new List<OperationsSO>();
+    private Vector3 OriginalPos;
     
     private void OnEnable()
     {
         canvasGroup.blocksRaycasts = false;
+        OriginalPos =  transform.position;
     }
 
     public void OnClick()
@@ -74,5 +77,18 @@ public class ChoicePatient : MonoBehaviour
     {
         int indexOp = patientContainerInstance.IndexOf(patient);
         GameManager.Instance.StartLevel(patientSo[indexOp]);
+    }
+
+    public void Open(Button  button)
+    {
+        canvasGroup.blocksRaycasts = true;
+        button.gameObject.SetActive(false);
+        transform.DOMoveY( OriginalPos.y - 2000, 1f);
+    }
+
+    public void Close(Button  button)
+    {
+        button.gameObject.SetActive(true);
+        transform.DOMoveY( OriginalPos.y, 1f);
     }
 }

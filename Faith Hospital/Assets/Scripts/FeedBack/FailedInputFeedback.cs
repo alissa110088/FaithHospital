@@ -51,6 +51,7 @@ public class FailedInputFeedback
 
     private void Update()
     {
+        if(currentPatientBlood != null)
          failedSlider.value = currentPatientBlood.currentBloodLevel;
     }
 
