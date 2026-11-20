@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Fauteuil_Operation
-  m_Shader: {fileID: -6465566751694194690, guid: e96c85fcbac5e164bb77e5e160c528be, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 355d2f487780bc24abc78dea00ed36f0, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -67,7 +67,7 @@ Material:
     - _ShadowTexture:
         m_Texture: {fileID: 8400000, guid: 13f78cc811b221846abbb6fa2fc16933, type: 2}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0.02, y: 0}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
