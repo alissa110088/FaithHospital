@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d203d581838ecb84681747ff710b3f9e, type: 3}
   m_Name: SwipeSettings
   m_EditorClassIdentifier: Assembly-CSharp::SwipeSettings
-  MaxDistanceFromPoint: 1
-  howFarFromSegmentMax: 10
+  MaxDistanceFromPoint: 2.5
+  howFarFromSegmentMax: 15
   DirectionRange: 0.6

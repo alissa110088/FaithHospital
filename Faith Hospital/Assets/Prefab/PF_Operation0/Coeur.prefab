@@ -223,7 +223,7 @@ Transform:
   m_GameObject: {fileID: 7852356125814348483}
   serializedVersion: 2
   m_LocalRotation: {x: 0.25092545, y: -0.66108733, z: -0.25092545, w: 0.66108733}
-  m_LocalPosition: {x: 0.0915, y: 0.0084, z: 0.0015}
+  m_LocalPosition: {x: 0.0915, y: 0.0349, z: 0.025}
   m_LocalScale: {x: 0.0033333325, y: 0.0033333334, z: 0.0033333322}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -503,8 +503,8 @@ MonoBehaviour:
   visualFeedBack:
   - {fileID: 5592639653660279413}
   points:
-  - {x: -0.31637028, y: 0.00000013398721, z: 4.0790396}
-  - {x: 0.95696723, y: 0.0000002386471, z: 4.02067}
+  - {x: -0.3575915, y: 0.0000003828127, z: 3.845395}
+  - {x: 1.527258, y: -0.00000005942519, z: 3.732871}
   isAffliction: 0
   _groupped: 1
   _nextLayer: 9
@@ -627,8 +627,8 @@ MonoBehaviour:
   visualFeedBack:
   - {fileID: 6677767510226578367}
   points:
-  - {x: -0.11088499, y: 0.00000017349197, z: 5.5748196}
-  - {x: 0.98796374, y: -0.00000046168282, z: 4.813451}
+  - {x: -0.1400128, y: 0.00000003294258, z: 6.317659}
+  - {x: 1.202041, y: 0.0000002739908, z: 5.083745}
   isAffliction: 0
   _groupped: 1
   _nextLayer: 9
