@@ -25,11 +25,14 @@ public class OrganMagnet: MonoBehaviour
     {
         if (other.gameObject.layer != LayerMask.NameToLayer("Attrapable")|| other.gameObject.name != _organeName || taken || other.gameObject == _held) return;
         if (_lerpRoutine != null) return; 
+        
+        Debug.Log("Enter");
 
         _gameObjectToMove = other.gameObject;
 
         if (_gameObjectToMove.TryGetComponent(out _rb))
         {
+            Debug.Log("Gor rb");
             _rb.linearVelocity = Vector3.zero; 
             _rb.useGravity = false;
             _rb.isKinematic = true;
@@ -53,16 +56,19 @@ public class OrganMagnet: MonoBehaviour
         var obj = _gameObjectToMove;
         if (obj == null) { taken = false; yield break; }
 
+        Debug.Log("Lerp");
         Transform t = obj.transform;
         Vector3 target = _collider.bounds.center;
 
         while (obj != null && Vector3.Distance(t.position, target) > 0.01f)
         {
-            t.position = Vector3.MoveTowards(t.position, target, 10f * Time.deltaTime);
+            Debug.Log(target);
+            t.position = Vector3.MoveTowards(t.position, target, 10 * Time.deltaTime);
             yield return null;
         }
         if (obj == null) yield break;
 
+        Debug.Log("Done");
         t.position = target;
 
         if (obj.TryGetComponent(out Organs organ) && organ.newOrgan)
@@ -79,6 +85,8 @@ public class OrganMagnet: MonoBehaviour
     {
         if (pOrgan != _gameObjectToMove)
             return;
+        
+        Debug.Log("Release");
         _held = pOrgan;
         Release();
     }
