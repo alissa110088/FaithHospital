@@ -7,39 +7,36 @@ using UnityEngine.UI;
 public class PatientContainer : MonoBehaviour
 {
     private TextMeshProUGUI textContainer;
+    public PatientBloodLevel bloodLevel;
+    
     [SerializeField] private RawImage imagePatients;
-    [SerializeField] private Button[] buttonsPatientsChoice;
     [SerializeField] private Button buttonChoiceOperation;
-    private CanvasGroup canvasGroup;
+    [SerializeField] private Image bloodBar;
+    [SerializeField] private TextMeshProUGUI textCoin;
     private void OnEnable()
     {
         textContainer = GetComponentInChildren<TextMeshProUGUI>();
-        imagePatients.SetNativeSize();
-        GetComponent<Image>().raycastTarget = false;
-        canvasGroup = GetComponent<CanvasGroup>();
     }
 
-    public void LinkButtonOperation(UnityAction pMyFunc)
+    public void LinkButtonOperation(UnityAction<PatientContainer> pMyFunc)
     {
-        buttonChoiceOperation.onClick.AddListener(() => pMyFunc());
-    }
-
-    public void LinkButtonsChoice(UnityAction<int> pMyFunc)
-    {
-        for (int i = 0; i < buttonsPatientsChoice.Length; i++)
-        {
-            int index = i;
-            buttonsPatientsChoice[i].onClick.AddListener(() => pMyFunc(index));
-        }
-    }
-
-    public void ActivateButton()
-    {
-        canvasGroup.blocksRaycasts = true;
+        if (buttonChoiceOperation == null)
+            return;
+        buttonChoiceOperation.onClick.AddListener(() => pMyFunc(this));
     }
     public void SetText(string text)
     {
         textContainer.text = text;
+    }
+
+    public void SetTextCoin(int coin)
+    {
+        textCoin.text = coin.ToString() ;
+    }
+
+    private void Update()
+    {
+        bloodBar.fillAmount = bloodLevel.currentBloodLevel;
     }
 
     public void SetPicture(Texture sprite)

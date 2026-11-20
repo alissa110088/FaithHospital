@@ -1,68 +1,108 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.Composites;
 using UnityEngine.UI;
 
 public class ChoicePatient : MonoBehaviour
 {
-    private DayOrganPairing currentDayPairing;
-
     [SerializeField] private PatientContainer patientContainer;
-    [SerializeField] private OperationDay operationPerDay;
+    [SerializeField] private Transform transformParent;
+    [SerializeField] private CanvasGroup canvasGroup;
 
-    private PatientContainer currentActive;
     private List<PatientContainer> patientContainerInstance = new List<PatientContainer>();
+    private List<OperationsSO> patientSo = new List<OperationsSO>();
+    private Vector3 OriginalPos;
+    
+    private void OnEnable()
+    {
+        canvasGroup.blocksRaycasts = false;
+        OriginalPos =  transform.position;
+        PatientBloodLevel.onBloodDead += Close;
+    }
+
+    private void OnDisable()
+    {
+        PatientBloodLevel.onBloodDead -= Close;
+    }
 
     public void OnClick()
     {
-        foreach (var patients in patientContainerInstance)
-        {
-            patients.ActivateButton();
-        }
+        canvasGroup.blocksRaycasts = true;
     }
 
     public void OnExitClick()
     {
         gameObject.SetActive(false);
     }
-
-    public void UpdatePanel(DayOrganPairing pairing)
+    
+    public void UpdatePanel( List<OperationsSO> listPatient)
     {
-        currentDayPairing = pairing;
-        if (currentDayPairing == null)
-            return;
-
-        for (int i = 0; i < pairing.operationsSO.Count; i++)
+     
+        //check a rajouter
+        for (int i = 0; i < listPatient.Count; i++)
         {
-            PatientContainer current = Instantiate(patientContainer, transform);
-            current.SetPicture(pairing.operationsSO[i].operationsImage);
-            current.SetText(pairing.operationsSO[i].operationsText);
+            
+            if (patientSo.Contains(listPatient[i]))
+                continue;
+            
+            PatientContainer current = Instantiate(patientContainer, transformParent);
+            current.bloodLevel = GameManager.Instance.patientsBloodLevelList[i];    
+            current.SetPicture(listPatient[i].operationsImage);
+            current.SetText(listPatient[i].operationsText);
+            current.SetTextCoin(listPatient[i].moneyWon);
             current.LinkButtonOperation(PatientChosen);
-            current.LinkButtonsChoice(ChangePatient);
             patientContainerInstance.Add(current);
-            current.gameObject.SetActive(false);
+            patientSo.Add(listPatient[i]);
         }
         
-        currentActive = patientContainerInstance[0];
-        
-        currentActive.gameObject.SetActive(true);
+        //check a enlever
+        for (int i =  patientSo.Count-1; i >= 0; i--)
+        {
+            if (!listPatient.Contains(patientSo[i]))
+            {
+                Destroy(patientContainerInstance[i].gameObject);
+                patientContainerInstance.RemoveAt(i);
+                patientSo.RemoveAt(i);
+            }           
+        }
     }
 
-    public void PatientChosen()
+    public void ResetPanel()
     {
-        int indexOp = patientContainerInstance.IndexOf(currentActive);
-        string sceneName = MetaManager.remainingSurgery.operationsSO[indexOp].operationsSceneName;
-        MetaManager.remainingSurgery.operationsSO.RemoveAt(indexOp);
-        StartCoroutine(GameManager.Instance.LoadScene(sceneName));
+        for (int i =  patientContainerInstance.Count -1; i >= 0; i--)
+        {
+            Destroy(patientContainerInstance[i].gameObject);
+            patientContainerInstance.RemoveAt(i);
+            patientSo.Remove(patientSo[i]);
+        }
+    }
+
+    public void PatientChosen(PatientContainer patient)
+    {
+        int indexOp = patientContainerInstance.IndexOf(patient);
+        GameManager.Instance.StartLevel(patientSo[indexOp]);
+    }
+
+    public void Open(Button  button)
+    {
+        canvasGroup.blocksRaycasts = true;
+        button.gameObject.SetActive(false);
+        transform.DOMoveY( OriginalPos.y - 2000, 1f);
+    }
+
+    private void Close(PatientBloodLevel patient)
+    {
+        if (patient != GameManager.Instance.currentPatientBlood)
+            return;
+        gameObject.SetActive(false);
     }
     
-    public void ChangePatient(int pIndex)
+    public void Close(Button  button)
     {
-        if (pIndex > patientContainerInstance.Count - 1)
-            return;
-        currentActive.gameObject.SetActive(false);
-        currentActive =  patientContainerInstance[pIndex];
-        currentActive.gameObject.SetActive(true);
+        button.gameObject.SetActive(true);
+        transform.DOMoveY( OriginalPos.y, 1f);
     }
 }

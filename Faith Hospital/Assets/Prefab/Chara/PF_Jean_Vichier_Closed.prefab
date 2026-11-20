@@ -49,21 +49,37 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6258302975240687015, guid: 0bc7ac60ba3ad6f4e96a8d1afe5bd1e0, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -6258302975240687015, guid: 0bc7ac60ba3ad6f4e96a8d1afe5bd1e0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: d3affa0485359a842b1e2e9112afe2b2, type: 2}
+    - target: {fileID: -6258302975240687015, guid: 0bc7ac60ba3ad6f4e96a8d1afe5bd1e0, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 72dff5ccaea0faa4183589a2f7f4f38d, type: 2}
     - target: {fileID: 919132149155446097, guid: 0bc7ac60ba3ad6f4e96a8d1afe5bd1e0, type: 3}
       propertyPath: m_Name
-      value: Jean_Vichier_Closed
+      value: PF_Jean_Vichier_Closed
       objectReference: {fileID: 0}
     - target: {fileID: 2803436535603912181, guid: 0bc7ac60ba3ad6f4e96a8d1afe5bd1e0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 4c72d2924b2cfe54199721fb85bf671e, type: 2}
     - target: {fileID: 5398624129793050777, guid: 0bc7ac60ba3ad6f4e96a8d1afe5bd1e0, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5398624129793050777, guid: 0bc7ac60ba3ad6f4e96a8d1afe5bd1e0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 1e20eb3f1b2b561469687fd13ce85716, type: 2}
+    - target: {fileID: 5398624129793050777, guid: 0bc7ac60ba3ad6f4e96a8d1afe5bd1e0, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 72dff5ccaea0faa4183589a2f7f4f38d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

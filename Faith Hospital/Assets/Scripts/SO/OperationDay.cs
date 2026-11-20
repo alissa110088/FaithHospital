@@ -14,7 +14,8 @@ public class OperationDay : ScriptableObject
 public class DayOrganPairing
 {
     public int day;
-    public List<OperationsSO> operationsSO;
+    public int quota;
+    public List<OperationsSO> poolOperation;
 
 }
 
@@ -25,4 +26,5 @@ public class OperationsSO
     public string operationsSceneName;
     public Texture operationsImage;
     public string operationsText;
+    public int moneyWon;
 }

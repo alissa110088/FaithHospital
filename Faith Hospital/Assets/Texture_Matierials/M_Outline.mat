@@ -39,7 +39,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _BeatSharpness: 0
-    - _OutlineThickness: 0.0008
+    - _OutlineThickness: 0.0002
     - _PulseIntensity: 0
     - _PulseSpeed: 0
     - _QueueControl: 0
