@@ -297,11 +297,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2896997710168432164, guid: c4411e9b2eb05fe469d9b45c7188ec46, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.299
       objectReference: {fileID: 0}
     - target: {fileID: 2896997710168432164, guid: c4411e9b2eb05fe469d9b45c7188ec46, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2896997710168432164, guid: c4411e9b2eb05fe469d9b45c7188ec46, type: 3}
       propertyPath: m_LocalRotation.w
@@ -335,8 +335,19 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6520106395767343453, guid: c4411e9b2eb05fe469d9b45c7188ec46, type: 3}
+    - target: {fileID: 4500107226375197387, guid: c4411e9b2eb05fe469d9b45c7188ec46, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983137591422071409, guid: c4411e9b2eb05fe469d9b45c7188ec46, type: 3}
+      propertyPath: _controlState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983137591422071409, guid: c4411e9b2eb05fe469d9b45c7188ec46, type: 3}
+      propertyPath: points.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -2842,7 +2853,7 @@ Transform:
   m_GameObject: {fileID: 1366503815711061679}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.878, y: -0.772, z: -2.05}
+  m_LocalPosition: {x: -1.878, y: -1.041, z: -2.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
