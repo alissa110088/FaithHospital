@@ -3515,7 +3515,6 @@ MonoBehaviour:
   failedSlider: {fileID: 4142250046345783215}
   numEventDuringGame: 0
   afflictions: []
-  afflictionStage: 
 --- !u!23 &4637087776857570206
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4645,7 +4644,7 @@ MonoBehaviour:
   - {fileID: 6584902141977105712}
   points:
   - {x: -0.007, y: 0.772, z: 6.396798}
-  - {x: -0.03125, y: -0.422, z: 0.019}
+  - {x: -0.03125, y: -0.422, z: 6.396798}
   isAffliction: 0
   _groupped: 0
   _nextLayer: 2
@@ -5085,6 +5084,7 @@ MonoBehaviour:
   _organCollector: {fileID: 7590659112423065441}
   _layerCount: 15
   endScreen: {fileID: 7175060518789798750}
+  choicePatient: {fileID: 0}
 --- !u!114 &6756702910139173761
 MonoBehaviour:
   m_ObjectHideFlags: 0
