@@ -12,10 +12,13 @@ public class Tool : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     private Vector3 _originPos;
     private RawImage _icon;
     private Vector3 _originScale;
+    private Vector3 _upScale;
     
     private void Start()
     {
         _originPos = transform.position;
+        _upScale = transform.localScale * 1.45f;
+        _originScale = transform.localScale;
         _icon = GetComponent<RawImage>();
     }
 
@@ -33,16 +36,8 @@ public class Tool : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
         activeTool = this;
         Controller.Instance.SwitchState(_toolsEnum);
         _icon.raycastTarget = false;
-        _originScale = transform.localScale;
         
-        transform.DOScale(transform.localScale * 1.45f, 0.5f);
-
-        // if (_toolsEnum != ToolsEnum.none)
-        // {
-        //     transform.position = eventData.position;
-        //     Controller.Instance.inputManager.onTouchingPos += PlaceAtTouch;
-        // }
-
+        transform.DOScale(_upScale, 0.5f);
     }
 
     private void PlaceAtTouch(Vector2 pPos)

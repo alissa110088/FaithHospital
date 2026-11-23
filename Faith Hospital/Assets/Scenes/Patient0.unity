@@ -491,7 +491,6 @@ GameObject:
   m_Component:
   - component: {fileID: 916399284}
   - component: {fileID: 916399288}
-  - component: {fileID: 916399287}
   - component: {fileID: 916399286}
   m_Layer: 0
   m_Name: Render_Camera
@@ -559,14 +558,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!81 &916399287
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 916399283}
-  m_Enabled: 1
 --- !u!20 &916399288
 Camera:
   m_ObjectHideFlags: 0
