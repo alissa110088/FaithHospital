@@ -1166,8 +1166,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9024709366107209131, guid: ad6e580457af242448ca82cea93dc315, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 33473354369882938}
   m_SourcePrefab: {fileID: 100100000, guid: ad6e580457af242448ca82cea93dc315, type: 3}
+--- !u!1 &1740104938 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9024709366107209131, guid: ad6e580457af242448ca82cea93dc315, type: 3}
+  m_PrefabInstance: {fileID: 1670273380}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2126211581
 GameObject:
   m_ObjectHideFlags: 0
@@ -1306,6 +1314,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8535981517321905937, guid: ad6e580457af242448ca82cea93dc315, type: 3}
   m_PrefabInstance: {fileID: 1670273380}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &33473354369882938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740104938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84bbf75dfe5eed46814f6e5a2916c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OrganCollector
+  anchors:
+  - {fileID: 2043398801105275045}
+  - {fileID: 3097716924329778417}
+  isNew: 0
+  isOpen: 0
 --- !u!4 &59232778487525133
 Transform:
   m_ObjectHideFlags: 0
@@ -5951,7 +5976,7 @@ MonoBehaviour:
   _currentLayer: 1
   _cameraSettings: []
   _organsToPut: {fileID: 11400000, guid: 0292d70331099234db5864e782eb7352, type: 2}
-  _organCollector: {fileID: 0}
+  _organCollector: {fileID: 33473354369882938}
   _layerCount: 15
   endScreen: {fileID: 7175060518789798750}
   choicePatient: {fileID: 245907976}
@@ -5980,7 +6005,7 @@ MonoBehaviour:
   isAffliction: 0
   _groupped: 0
   _nextLayer: 2
-  isLast: 1
+  isLast: 0
 --- !u!1 &6773417325496942387
 GameObject:
   m_ObjectHideFlags: 0

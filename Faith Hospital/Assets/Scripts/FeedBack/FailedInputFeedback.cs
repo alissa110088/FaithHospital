@@ -34,7 +34,9 @@ public class FailedInputFeedback
         
         Controller.OnInputNotValidate += OnFailed;
         cam = Camera.main.GetComponent<CameraShake>();
-        currentPatientBlood = GameManager.Instance.currentPatientBlood;
+        
+        if(GameManager.Instance != null)
+            currentPatientBlood = GameManager.Instance.currentPatientBlood;
         
         if(cam == null)
             Debug.Log("NO CAMERE SHAKE FOUND");
@@ -66,7 +68,8 @@ public class FailedInputFeedback
         if (isInAfflictionStage)
             return;
         
-        currentPatientBlood.OnFail();
+        if(currentPatientBlood != null)
+            currentPatientBlood.OnFail();
         cam.StartShake();
 
         if (afflictionStage.Contains(failedSlider.value))
