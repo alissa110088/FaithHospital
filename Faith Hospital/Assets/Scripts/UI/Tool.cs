@@ -9,14 +9,12 @@ public class Tool : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     [SerializeField] private ToolsEnum _toolsEnum;
 
     public static Tool activeTool;
-    private Vector3 _originPos;
     private RawImage _icon;
     private Vector3 _originScale;
     private Vector3 _upScale;
     
     private void Start()
     {
-        _originPos = transform.position;
         _upScale = transform.localScale * 1.45f;
         _originScale = transform.localScale;
         _icon = GetComponent<RawImage>();
@@ -29,7 +27,6 @@ public class Tool : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
         {
             activeTool._icon.raycastTarget = true;
             Controller.Instance.inputManager.onTouchingPos -= activeTool.PlaceAtTouch;
-            activeTool.transform.position = activeTool._originPos;
             activeTool.transform.DOScale(activeTool._originScale, 0.5f);
         }
 
