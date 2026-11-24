@@ -30,8 +30,8 @@ TagManager:
   - Attrapable
   - Water
   - UI
-  - 
-  - 
+  - WallInvisible
+  - PassThrough
   - 
   - 
   - 

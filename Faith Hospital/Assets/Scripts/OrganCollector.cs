@@ -39,6 +39,8 @@ public class OrganCollector : MonoBehaviour
         {
             if (!isOpen)
                 return;
+            
+            other.gameObject.layer = LayerMask.NameToLayer("PassThrough");
             Organs _nextLayer = other.gameObject.GetComponent<Organs>();
             Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
             rb.isKinematic = true;
@@ -82,6 +84,7 @@ public class OrganCollector : MonoBehaviour
         organ.newOrgan = true;
         organ.tag = "Layer" + PatientManager.Instance._currentLayer;
         organ.nextLayer = pNextLayer;
+        organ.gameObject.layer = LayerMask.NameToLayer("PassThrough");
         OpenWithOrgan(organ.gameObject);
     }
     
@@ -95,6 +98,6 @@ public class OrganCollector : MonoBehaviour
         Rigidbody rb = pOrgan.GetComponent<Rigidbody>();
         rb.isKinematic = true;
         transform.DOMoveX(anchors[0].position.x, 0.5f);
-        pOrgan.transform.DOMoveX(anchors[0].position.x, 0.5f).OnComplete(() => { rb.isKinematic = false; });
+        pOrgan.transform.DOMoveX(anchors[0].position.x, 0.5f).OnComplete(() => { rb.isKinematic = false; pOrgan.layer = LayerMask.NameToLayer("Attrapable"); });
     }
 }
