@@ -6,7 +6,7 @@ public enum ControlState
     trace,
     touch,
     place,
-    none
+    all
 }
 public enum ToolsEnum
 {
@@ -15,5 +15,5 @@ public enum ToolsEnum
     touch,
     needle,
     ecarteur,
-    none
+    all
 }

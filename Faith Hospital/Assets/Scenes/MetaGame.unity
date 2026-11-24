@@ -2180,7 +2180,7 @@ MonoBehaviour:
   energyToLoose: 0
   minSecBetweenPatients: 5
   maxSecBetweenPatients: 10
-  howLongPerPatient: 15
+  howLongPerPatient: 120
   operationDaySource: {fileID: 11400000, guid: 7602e603076ccbf4db66051d607fc014, type: 2}
   timer: {fileID: 496967009}
   operationDay: {fileID: 0}

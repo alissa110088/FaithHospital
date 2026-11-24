@@ -12,12 +12,12 @@ public class Cote : Organs
     {
         base.Start();
         if(_touch != null)
-            _animsStep[_touch._state] = (Vector2 pPos, int _hitIndex) => BreakCotes(_touch._state, pPos, _hitIndex);
+            _animsStep[_touch._state] = (Vector2 pPos, float _hitIndex) => BreakCotes(_touch._state, pPos, _hitIndex);
         _meshRenderer = GetComponent<MeshRenderer>();
         _rb =  GetComponent<Rigidbody>();
     }
     
-    private void BreakCotes(State pState, Vector2 pPosition, int pHitIndex)
+    private void BreakCotes(State pState, Vector2 pPosition, float pHitIndex)
     {
         if (pHitIndex != _hitIndex)
             return;
