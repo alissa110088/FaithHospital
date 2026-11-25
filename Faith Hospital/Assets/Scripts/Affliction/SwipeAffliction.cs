@@ -13,12 +13,19 @@ public class SwipeAffliction : MonoBehaviour
 
     private void Erase(State pState, Vector2 pVector, float pPourcentage)
     {
-        Debug.Log("Here");
+        if (pPourcentage > _canvasGroup.alpha)
+            return;
+        
         _canvasGroup.alpha = pPourcentage;
+        if (_canvasGroup.alpha == 0f)
+        {
+            Controller.OnInputValidate(false, pState);
+        }
     }
 
     private void Disable(bool pBool, State pState)
     {
         _affliction.SetActive(false);
+        _canvasGroup.alpha = 1f;
     }
 }

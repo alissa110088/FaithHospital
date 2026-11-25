@@ -195,7 +195,6 @@ public class SwipeFollow : State
                 if (CheckOperationEnded())
                 {
                     _patternValidated = true;
-                    Debug.Log("here");
                     return;
                 }
                 if (_drawShape._groupped)
@@ -205,20 +204,18 @@ public class SwipeFollow : State
                     {
                         Controller.OnInputValidate.Invoke(true, this);
                         _patternValidated = true;
-                        Debug.Log("here");
                         return;
                     }
                 }
 
                 Controller.OnInputValidate.Invoke(false, this);
                 _patternValidated = true;
-                Debug.Log("here");
             }
             else
             {
                 _currentDistance += Vector3.Distance(_currentPoint, _points[_points.IndexOf(_currentPoint) + 1]);
                 _currentPoint = _points[_points.IndexOf(_currentPoint) + 1];
-                Debug.Log("here");
+                Debug.Log("here GOOD");
             }
         }
         else if (sameDirection && distancePointToSegment < _swipeSettings.howFarFromSegmentMax)
@@ -226,7 +223,7 @@ public class SwipeFollow : State
             Debug.Log("here5");
             float distance = _currentDistance + Vector3.Distance(_currentPoint, _points[_points.IndexOf(_currentPoint) + 1]);
             float pourcentage = (distance / _totalDistance);
-            Controller.OnInputStepFinished?.Invoke(this, Vector3.zero, pourcentage);
+            Controller.OnInputStepFinished?.Invoke(this, Vector3.zero, 1- pourcentage);
             return;
         }
         //Checks if goes to the wrong direction 
