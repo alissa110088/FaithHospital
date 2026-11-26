@@ -8,7 +8,7 @@ public abstract class State : MonoBehaviour
 {
     public static Action<InputManager, ToolsEnum> unlockState;
 
-    protected ToolsEnum _tool = ToolsEnum.none;
+    protected ToolsEnum _tool = ToolsEnum.all;
     
     protected static int _countGrouped = 0;
 

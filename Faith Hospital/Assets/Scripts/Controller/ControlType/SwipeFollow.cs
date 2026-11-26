@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEditor;
 using Debug = UnityEngine.Debug;
 
@@ -11,7 +12,9 @@ public class SwipeFollow : State
 
     private Vector3 _lastPos;
     private Vector3 _pos;
-
+    private float _totalDistance;
+    private float _currentDistance;
+    
     private SwipeSettings _swipeSettings;
 
     public Vector3 pos { get => _pos; set { _lastPos = _pos; _pos = value; } }
@@ -58,7 +61,7 @@ public class SwipeFollow : State
     protected override void OnStart(InputManager pInputManager, ToolsEnum pTool)
     {
         base.OnStart(pInputManager, pTool);
-        if (pTool == _tool)
+        if (pTool == _tool || pTool == ToolsEnum.all)
         {
             if (inputManager != null)
             {
@@ -73,7 +76,11 @@ public class SwipeFollow : State
             inputManager.onTouchingPos += OnSwipeStarted;
 
             if (_drawShape.isActiveAndEnabled)
+            {
                 _points = _drawShape.points;
+                CalculateTotalDistance();
+            }
+                
 
 
             TouchStarted();
@@ -86,6 +93,14 @@ public class SwipeFollow : State
             inputManager.onTouchingPos -= OnSwipeStarted;
             inputManager = null;
             _points = null;
+        }
+    }
+
+    private void CalculateTotalDistance()
+    {
+        for (int i = 1; i < _points.Count; i++)
+        {
+            _totalDistance +=  Vector3.Distance(_points[i-1], _points[i]);
         }
     }
 
@@ -136,14 +151,18 @@ public class SwipeFollow : State
 
     private void OnSwipeStarted(Vector2 pPos)
     {
+        
+        Debug.Log("here1");
         if (!_touching || float.IsInfinity(pPos.x) || float.IsInfinity(pPos.y) || _patternValidated)
             return;
 
+        Debug.Log("here2");
         Ray ray = Camera.main.ScreenPointToRay(pPos);
         Plane plane = new Plane(Vector3.up, _drawShape.transform.position);
         if (!plane.Raycast(ray, out float enter))
             return;
 
+        Debug.Log("here3");
         Vector3 worldPos3 = ray.GetPoint(enter);
 
         if (!_canStart && CheckIfInRange(worldPos3, _points[0]))
@@ -153,6 +172,7 @@ public class SwipeFollow : State
         else if (!_canStart)
             return;
 
+        Debug.Log("here4");
         pos = worldPos3;
         Vector3 dir = Flat(_lastPos - pos).normalized;
         Vector3 dirPoints = Flat(_points[_points.IndexOf(_currentPoint) + 1] - _currentPoint).normalized;
@@ -193,22 +213,30 @@ public class SwipeFollow : State
             }
             else
             {
+                _currentDistance += Vector3.Distance(_currentPoint, _points[_points.IndexOf(_currentPoint) + 1]);
                 _currentPoint = _points[_points.IndexOf(_currentPoint) + 1];
+                Debug.Log("here GOOD");
             }
         }
         else if (sameDirection && distancePointToSegment < _swipeSettings.howFarFromSegmentMax)
         {
+            Debug.Log("here5");
+            float distance = _currentDistance + Vector3.Distance(_currentPoint, _points[_points.IndexOf(_currentPoint) + 1]);
+            float pourcentage = (distance / _totalDistance);
+            Controller.OnInputStepFinished?.Invoke(this, Vector3.zero, 1- pourcentage);
             return;
         }
         //Checks if goes to the wrong direction 
         else if (_currentErrorMargin == _errorMargin)
         {
+            Debug.Log("here");
             Controller.OnInputNotValidate.Invoke();
             _currentPoint = _points[0];
             _currentErrorMargin = 0;
         }
         else
         {
+            Debug.Log("here");
             Controller.OnInputNotValidate.Invoke();
             _currentErrorMargin++;
         }

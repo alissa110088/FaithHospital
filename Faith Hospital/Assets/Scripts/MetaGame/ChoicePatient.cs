@@ -15,6 +15,7 @@ public class ChoicePatient : MonoBehaviour
     private List<PatientContainer> patientContainerInstance = new List<PatientContainer>();
     private List<OperationsSO> patientSo = new List<OperationsSO>();
     private Vector3 OriginalPos;
+    private bool isOpen;
     
     private void OnEnable()
     {
@@ -86,11 +87,21 @@ public class ChoicePatient : MonoBehaviour
         GameManager.Instance.StartLevel(patientSo[indexOp]);
     }
 
-    public void Open(Button  button)
+    public void Open()
     {
-        canvasGroup.blocksRaycasts = true;
-        button.gameObject.SetActive(false);
-        transform.DOMoveY( OriginalPos.y - 2000, 1f);
+        if (isOpen)
+        {
+            transform.DOMoveY( OriginalPos.y, 1f);
+            canvasGroup.blocksRaycasts = false;
+            isOpen = false;
+        }
+        else
+        {
+            isOpen = true;
+            canvasGroup.blocksRaycasts = true;
+            transform.DOMoveY( OriginalPos.y - 1700, 1f);
+        }
+        
     }
 
     private void Close(PatientBloodLevel patient)

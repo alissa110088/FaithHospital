@@ -5,7 +5,7 @@ using UnityEngine;
 public class Organs : MonoBehaviour
 {
     protected Dictionary<State, Action> _anims = new Dictionary<State, Action>();
-    protected Dictionary<State, Action<Vector2, int>> _animsStep = new Dictionary<State, Action<Vector2, int>>();
+    protected Dictionary<State, Action<Vector2, float>> _animsStep = new Dictionary<State, Action<Vector2, float>>();
 
     public static int _countGrouped = 0;
     public bool groupped;
@@ -47,7 +47,7 @@ public class Organs : MonoBehaviour
         return true;
     }
 
-    protected virtual void OnInputStepFinished(State _state, Vector2 _position, int _hitIndex)
+    protected virtual void OnInputStepFinished(State _state, Vector2 _position, float _hitIndex)
     {
         if (_animsStep.TryGetValue(_state, out var effect))
             effect.Invoke(_position, _hitIndex);
