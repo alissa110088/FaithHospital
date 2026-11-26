@@ -105,23 +105,29 @@ public class PatientManager : MonoBehaviour
     { 
         for (int i = 0; i < _layers.Count; i++)
         {
-            foreach (State lObject in _layers[i])
-            {
-                if (lObject == null)
-                    continue;
+            
+            if (i != _currentLayer - 1)
+                continue;
 
-                if (i == _currentLayer - 1)
+            if (_layers[i].Count == 0)
+            {
+                toolInUsed = ToolsEnum.touch;
+            }
+            else
+            {
+                foreach (State lObject in _layers[i])
                 {
+                    if (lObject == null)
+                        continue;
+
                     lObject.enabled = true;
                     toolInUsed = lObject._tool;
-                    Debug.Log(toolInUsed + "qsdsq");
-                    foreach (KeyValuePair<ToolsEnum, Tool> tool in tools)
-                    {
-                        tool.Value.IsTurn = tool.Key == toolInUsed;
-                    }
                 }
             }
+
+            CheckTools();
         }
+        
 
         foreach (CameraSettings camSettings in _cameraSettings)
         {

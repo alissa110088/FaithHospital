@@ -164,7 +164,7 @@ public class TouchInput : State
                 return;
             }
         }
-
+        
         Controller.OnInputValidate.Invoke(false, this);
     }
 

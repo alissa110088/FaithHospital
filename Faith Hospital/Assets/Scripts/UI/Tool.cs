@@ -23,8 +23,11 @@ public class Tool : MonoBehaviour, IPointerDownHandler
         set
         {
             isTurn = value;
-            if(value)
+            if (value && activeTool != this)
+            {
                 StartBlinking();
+            }
+                
             else if (blinkCor != null)
             {
                 StopCoroutine(blinkCor);

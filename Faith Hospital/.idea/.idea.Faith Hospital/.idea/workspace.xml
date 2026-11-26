@@ -13,12 +13,10 @@
     <list default="true" id="006f48b2-230d-49c6-ad1f-c1054c25bbaa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Faith Hospital/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Faith Hospital/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Patient0.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Patient0.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/State.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/State.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/SwipeFollow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/SwipeFollow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FeedBack/FailedInputFeedback.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FeedBack/FailedInputFeedback.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/Grab.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/Grab.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/TouchInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/ControlType/TouchInput.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/Controller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/Controller.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/PatientManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/PatientManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Other/DrawShape.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Other/DrawShape.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Tool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Tool.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +188,7 @@
       <workItem from="1794696065336" duration="23021000" />
       <workItem from="1795451449192" duration="1188000" />
       <workItem from="1795624469104" duration="2293000" />
-      <workItem from="1795699460372" duration="8107000" />
+      <workItem from="1795699460372" duration="9653000" />
     </task>
     <servers />
   </component>

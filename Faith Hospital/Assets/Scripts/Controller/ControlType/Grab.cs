@@ -48,6 +48,8 @@ public class Grab : State
             inputManager.onToucheStart += TouchStarted;
             inputManager.onTouchingPos += GetFirstPos;
             inputManager.onToucheEnd += TouchEnded;
+            
+            Debug.Log("connected");
         }
         else if (inputManager != null)
         {
@@ -86,10 +88,14 @@ public class Grab : State
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 GameObject clicked = hit.collider.gameObject;
+                
+                Debug.Log(clicked.name);
 
                 //hardcoder c moche
                 if (clicked.layer != LayerMask.NameToLayer("Attrapable") || clicked.tag != "Layer" + PatientManager.Instance._currentLayer)
                     return;
+
+                Debug.Log("here");
 
                 if (_organCollector.isNew)
                 {
