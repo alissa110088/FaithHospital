@@ -36,7 +36,7 @@ public class DrawShape : MonoBehaviour
                 _state._drawShape = this;
                 break;
         }
-        
+        _state._tool = _toolUsed;
         if(isAffliction)
             _nextLayer = -1;
     }

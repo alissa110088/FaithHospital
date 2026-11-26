@@ -17,16 +17,18 @@ public class PatientManager : MonoBehaviour
     [SerializeField] private int _layerCount = 7;
     [SerializeField] private EndScreen endScreen;
     public ChoicePatient choicePatient;
-    
+
     private OrganLayerPairing currentLayerPairing;
     private int _numToInstantiate;
     private bool CameraWellPlaced = true;
     private CameraSettings _currentCameraSettings;
-    
+    private Dictionary<ToolsEnum, Tool> tools = new Dictionary<ToolsEnum, Tool>();
+    private ToolsEnum toolInUsed;
+
     public Func<int> OnOperationFinished;
-    
+
     public static PatientManager Instance { get; private set; }
-    
+
 
     void Awake()
     {
@@ -44,23 +46,27 @@ public class PatientManager : MonoBehaviour
 
     void Start()
     {
-        UpdateLayers();
-
         Controller.OnInputValidate += UnlockNextLayer;
         Controller.OnInputValidateOrgan += UnlockNextLayer;
+        StartCoroutine(WaitBeforeStart());
     }
 
+    private IEnumerator WaitBeforeStart()
+    {
+        yield return new WaitForSeconds(0.5f);
+        UpdateLayers();
+    }
+    
     private void Update()
     {
         if (!CameraWellPlaced && _currentCameraSettings != null)
         {
             while (Vector3.Distance(Camera.main.transform.position, _currentCameraSettings.Position) > 0.1f)
             {
-                Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, _currentCameraSettings.Position, Time.deltaTime * 5);
+                Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position,
+                    _currentCameraSettings.Position, Time.deltaTime * 5);
                 Camera.main.DOFieldOfView(_currentCameraSettings.fieldOfView, 1f);
             }
-                
-            
 
             CameraWellPlaced = true;
         }
@@ -71,26 +77,49 @@ public class PatientManager : MonoBehaviour
         Controller.OnInputValidate -= UnlockNextLayer;
         Controller.OnInputValidateOrgan -= UnlockNextLayer;
     }
-    
+
+    public void AddTool(Tool tool, ToolsEnum type)
+    {
+        tools[type] = tool;
+    }
+
     public void AddLayer(int pIndex, State pState)
     {
         if (pIndex < 0 || pIndex >= _layers.Count) return;
         if (_layers[pIndex].Contains(pState)) return;
 
         _layers[pIndex].Add(pState);
-        
+
         pState.enabled = pIndex == _currentLayer - 1;
     }
 
-    private void UpdateLayers()
+    public void CheckTools()
     {
+        foreach (KeyValuePair<ToolsEnum, Tool> tool in tools)
+        {
+            tool.Value.IsTurn = tool.Key == toolInUsed;
+        }
+    }
+    
+    private void UpdateLayers()
+    { 
         for (int i = 0; i < _layers.Count; i++)
         {
             foreach (State lObject in _layers[i])
             {
                 if (lObject == null)
                     continue;
-                lObject.enabled = i == _currentLayer - 1;
+
+                if (i == _currentLayer - 1)
+                {
+                    lObject.enabled = true;
+                    toolInUsed = lObject._tool;
+                    Debug.Log(toolInUsed + "qsdsq");
+                    foreach (KeyValuePair<ToolsEnum, Tool> tool in tools)
+                    {
+                        tool.Value.IsTurn = tool.Key == toolInUsed;
+                    }
+                }
             }
         }
 
@@ -129,7 +158,7 @@ public class PatientManager : MonoBehaviour
                 lObject.enabled = false;
             }
         }
-        
+
         drawShape._state.enabled = true;
     }
 
@@ -143,7 +172,8 @@ public class PatientManager : MonoBehaviour
             _state.enabled = false;
             UpdateLayers();
             return;
-        }   
+        }
+
         currentLayerPairing = null;
         _currentLayer = _state._drawShape._nextLayer;
         UpdateLayers();
@@ -158,7 +188,7 @@ public class PatientManager : MonoBehaviour
                 currentLayerPairing.Nextlayer);
             return;
         }
-        
+
         currentLayerPairing = null;
         _currentLayer = pNextLayer;
         UpdateLayers();
