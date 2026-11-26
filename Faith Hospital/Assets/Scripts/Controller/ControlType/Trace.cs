@@ -13,6 +13,7 @@ public class Trace : State
 
     private TraceSettings _traceSettings;
     private Camera _cam;
+    private static bool inUse;
 
     private Camera Cam
     {
@@ -38,7 +39,7 @@ public class Trace : State
 
     private void OnDisable()
     {
-        DisableImage(this);
+        DisableImage( false ,this);
         unlockState -= OnStart;
         _canStart = false;
         _start = false;
@@ -53,6 +54,7 @@ public class Trace : State
         if (!_drawShape.isActiveAndEnabled)
             return;
 
+        Controller.OnInputValidate += DisableImage;
         _points = _drawShape.points; 
         SetPosition(_points[0]);
         _traceSettings = _inputSettings as TraceSettings;
@@ -118,6 +120,7 @@ public class Trace : State
 
     private void OnEndTouch()
     {
+        inUse = false;
         _start = false;
         _canStart = false;
         _currentPos = Vector2.positiveInfinity;
@@ -158,8 +161,12 @@ public class Trace : State
 
         Vector3 pos = transform.position;
 
-        if (!_canStart && CheckIfInRange(worldPos, pos) && FlatDistance(pos, _points[0]) < ReachThreshold)
+        if (!_canStart && CheckIfInRange(worldPos, pos) && FlatDistance(pos, _points[0]) < ReachThreshold && !inUse)
+        {
             _canStart = true;
+            inUse = true;
+        }
+            
 
         if (!_canStart)
             return;
@@ -229,7 +236,7 @@ public class Trace : State
         transform.position = new Vector3(p.x, transform.position.y, p.z);
     }
 
-    private void DisableImage(State state)
+    private void DisableImage(bool lol, State state)
     {
         if (state != this || _drawShape == null)
             return;
