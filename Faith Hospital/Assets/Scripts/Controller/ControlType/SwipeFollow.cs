@@ -67,7 +67,6 @@ public class SwipeFollow : State
             {
                 return;
             }
-
             _patternValidated = false;
 
             inputManager = pInputManager;
@@ -152,17 +151,14 @@ public class SwipeFollow : State
     private void OnSwipeStarted(Vector2 pPos)
     {
         
-        Debug.Log("here1");
         if (!_touching || float.IsInfinity(pPos.x) || float.IsInfinity(pPos.y) || _patternValidated)
             return;
 
-        Debug.Log("here2");
         Ray ray = Camera.main.ScreenPointToRay(pPos);
         Plane plane = new Plane(Vector3.up, _drawShape.transform.position);
         if (!plane.Raycast(ray, out float enter))
             return;
 
-        Debug.Log("here3");
         Vector3 worldPos3 = ray.GetPoint(enter);
 
         if (!_canStart && CheckIfInRange(worldPos3, _points[0]))
@@ -172,7 +168,6 @@ public class SwipeFollow : State
         else if (!_canStart)
             return;
 
-        Debug.Log("here4");
         pos = worldPos3;
         Vector3 dir = Flat(_lastPos - pos).normalized;
         Vector3 dirPoints = Flat(_points[_points.IndexOf(_currentPoint) + 1] - _currentPoint).normalized;
@@ -215,12 +210,10 @@ public class SwipeFollow : State
             {
                 _currentDistance += Vector3.Distance(_currentPoint, _points[_points.IndexOf(_currentPoint) + 1]);
                 _currentPoint = _points[_points.IndexOf(_currentPoint) + 1];
-                Debug.Log("here GOOD");
             }
         }
         else if (sameDirection && distancePointToSegment < _swipeSettings.howFarFromSegmentMax)
         {
-            Debug.Log("here5");
             float distance = _currentDistance + Vector3.Distance(_currentPoint, _points[_points.IndexOf(_currentPoint) + 1]);
             float pourcentage = (distance / _totalDistance);
             Controller.OnInputStepFinished?.Invoke(this, Vector3.zero, 1- pourcentage);
@@ -229,14 +222,12 @@ public class SwipeFollow : State
         //Checks if goes to the wrong direction 
         else if (_currentErrorMargin == _errorMargin)
         {
-            Debug.Log("here");
             Controller.OnInputNotValidate.Invoke();
             _currentPoint = _points[0];
             _currentErrorMargin = 0;
         }
         else
         {
-            Debug.Log("here");
             Controller.OnInputNotValidate.Invoke();
             _currentErrorMargin++;
         }

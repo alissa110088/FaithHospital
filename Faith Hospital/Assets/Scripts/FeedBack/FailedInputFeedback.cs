@@ -31,6 +31,11 @@ public class FailedInputFeedback
             afflictionStage.Add(num);
         }
 
+        foreach (DrawShape affliction in afflictions)
+        {
+            affliction.enabled = false;
+        }
+
         Controller.OnInputNotValidate += OnFailed;
         cam = Camera.main.GetComponent<CameraShake>();
 
@@ -54,6 +59,9 @@ public class FailedInputFeedback
         {
             failedSlider.value = currentPatientBlood.currentBloodLevel;
 
+            if (isInAfflictionStage)
+                return;
+            
             for (int i = 0; i < afflictionStage.Count; i++)
             {
                 if (afflictionStage[i] >= failedSlider.value - 0.05f &&
@@ -62,6 +70,7 @@ public class FailedInputFeedback
                     afflictionIndex = Random.Range(0, afflictions.Length);
                     
                     DrawShape affliction = afflictions[afflictionIndex];
+                    affliction.enabled = true;
                     affliction.gameObject.SetActive(true);
 
                     if (visualAffliction[afflictionIndex].afflictionsVisual[0] != null)

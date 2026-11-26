@@ -29,7 +29,6 @@ public class Controller : MonoBehaviour
 
             return;
         }
-
         Instance = this;
     }
 
@@ -44,6 +43,7 @@ public class Controller : MonoBehaviour
 
     public void SwitchState(ToolsEnum pTool)
     {
+        Debug.Log(pTool);
         _currentTool = pTool;
         State.unlockState.Invoke(inputManager, pTool);
         
