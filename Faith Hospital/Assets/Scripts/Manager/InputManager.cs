@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class InputManager 
 {
-    private InputSystem_Actions action;
+    public InputSystem_Actions action;
     public Action onToucheStart;
     public Action onToucheEnd;
     public Action<Vector2> onTouchingPos;
