@@ -98,7 +98,6 @@ public class TouchInput : State
         Ray ray = Camera.main.ScreenPointToRay(screenPos);
         bool hit = Physics.Raycast(ray, out RaycastHit hitInfo, RayLength);
         Vector3 end = hit ? hitInfo.point : ray.origin + ray.direction * RayLength;
-
         Debug.DrawLine(ray.origin, end, hit ? Color.green : Color.red, _touchRayDuration);
 
         if (hit)
@@ -116,14 +115,17 @@ public class TouchInput : State
             !_drawShape.isActiveAndEnabled || _points.Count < 1)
             return;
 
-        float distance = -Camera.main.transform.position.z;
+        Camera cam = Camera.main;
+        Ray ray = cam.ScreenPointToRay(pPosition);
+        
+        Plane plane = new Plane(-cam.transform.forward, _points[0]);
 
-        Vector3 worldPos3 = Camera.main.ScreenToWorldPoint(
-            new Vector3(pPosition.x, pPosition.y, distance)
-        );
+        plane.Raycast(ray, out float enter);
+
+        Vector3 worldPos3 = ray.GetPoint(enter);
 
         _firtPos = true;
-
+        
         int hitIndex = -1;
         
         for (int i = 0; i < _points.Count; i++)
