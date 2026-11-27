@@ -198,11 +198,15 @@ public class SwipeFollow : State
                     if (_countGrouped > 0)
                     {
                         Controller.OnInputValidate.Invoke(true, this);
+                        _drawShape.OnFinishPlayParticle();
+                        _drawShape.OnFinishStopParticle();
                         _patternValidated = true;
                         return;
                     }
                 }
 
+                _drawShape.OnFinishPlayParticle();
+                _drawShape.OnFinishStopParticle();
                 Controller.OnInputValidate.Invoke(false, this);
                 _patternValidated = true;
             }

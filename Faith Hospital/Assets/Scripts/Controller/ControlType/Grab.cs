@@ -89,13 +89,11 @@ public class Grab : State
             {
                 GameObject clicked = hit.collider.gameObject;
                 
-                Debug.Log(clicked.name);
 
                 //hardcoder c moche
                 if (clicked.layer != LayerMask.NameToLayer("Attrapable") || clicked.tag != "Layer" + PatientManager.Instance._currentLayer)
                     return;
 
-                Debug.Log("here");
 
                 if (_organCollector.isNew)
                 {

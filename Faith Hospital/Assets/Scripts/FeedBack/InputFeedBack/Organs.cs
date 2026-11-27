@@ -7,6 +7,9 @@ public class Organs : MonoBehaviour
     protected Dictionary<State, Action> _anims = new Dictionary<State, Action>();
     protected Dictionary<State, Action<Vector2, float>> _animsStep = new Dictionary<State, Action<Vector2, float>>();
 
+    public ParticleSystem[] particleToPlayWhenEnd;
+    public ParticleSystem[] particleToStopWhenEnd;
+    
     public static int _countGrouped = 0;
     public bool groupped;
     public int nextLayer;
@@ -47,10 +50,33 @@ public class Organs : MonoBehaviour
         return true;
     }
 
-    protected virtual void OnInputStepFinished(State _state, Vector2 _position, float _hitIndex)
+    protected void OnInputStepFinished(State _state, Vector2 _position, float _hitIndex)
     {
         if (_animsStep.TryGetValue(_state, out var effect))
             effect.Invoke(_position, _hitIndex);
+    }
+    
+    public void OnFinishPlayParticle()
+    {
+        if (particleToPlayWhenEnd.Length > 0)
+        {
+            foreach (ParticleSystem particle in particleToPlayWhenEnd)
+            {
+                particle.Play();
+            }
+        }
+    }
+
+    public void OnFinishStopParticle()
+    {
+        if (particleToStopWhenEnd.Length > 0)
+        {
+            foreach (ParticleSystem particle in particleToStopWhenEnd)
+            {
+                if(particle.isPlaying)
+                    particle.Stop();
+            }
+        }
     }
 
     private void OnDestroy()
