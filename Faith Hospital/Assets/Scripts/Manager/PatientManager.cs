@@ -125,6 +125,7 @@ public class PatientManager : MonoBehaviour
             }
 
             CheckTools();
+            Controller.Instance.Refresh();
         }
 
 
@@ -171,10 +172,7 @@ public class PatientManager : MonoBehaviour
     {
         if (pIsGrouped)
             return;
-
-        Debug.Log("WJHSDJHKGDSHKJ");
-        if (_state != null)
-            Debug.Log(_state.gameObject.name);
+        
         if (_state._drawShape._nextLayer == -1)
         {
             _state.enabled = false;
