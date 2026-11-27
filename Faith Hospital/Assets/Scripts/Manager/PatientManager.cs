@@ -124,7 +124,7 @@ public class PatientManager : MonoBehaviour
                     toolInUsed = lObject._tool;
                 }
             }
-
+            Debug.Log(toolInUsed);
             CheckTools();
         }
         

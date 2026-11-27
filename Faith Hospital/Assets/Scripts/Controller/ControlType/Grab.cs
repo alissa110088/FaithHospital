@@ -80,6 +80,7 @@ public class Grab : State
 
     private void GetFirstPos(Vector2 pPosition)
     {
+        Debug.Log("GetFirstPos");
         if (!_touchStarted || float.IsInfinity(pPosition.x) || float.IsInfinity(pPosition.y))
             return;
         if (!_firtPos)

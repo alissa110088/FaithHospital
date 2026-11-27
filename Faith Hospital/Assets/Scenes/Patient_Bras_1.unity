@@ -523,7 +523,7 @@ GameObject:
   - component: {fileID: 212002815}
   m_Layer: 3
   m_Name: Cotes
-  m_TagString: Layer5
+  m_TagString: Layer6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2047,9 +2047,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1191387638}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Thorax_kit
-  m_TagString: Untagged
+  m_TagString: Layer6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2062,13 +2062,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191387637}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.54567003, y: -0.6799995, z: -2.1200006}
-  m_LocalScale: {x: 35.000015, y: 35, z: 35}
+  m_LocalRotation: {x: 0.23011689, y: -0, z: -0.00000004470348, w: 0.97316307}
+  m_LocalPosition: {x: 0.041485414, y: 0.15313311, z: -0.17382081}
+  m_LocalScale: {x: 2.460994, y: 2.4609928, z: 2.4609928}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 212002814}
-  m_Father: {fileID: 3473749116223895175}
+  m_Father: {fileID: 1471976407}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1231481570
 GameObject:
@@ -2599,11 +2599,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b276123fca39c7d4d8263b2627b8c3d9, type: 3}
       propertyPath: m_TagString
-      value: Layer4
+      value: Layer6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b276123fca39c7d4d8263b2627b8c3d9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1191387638}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b276123fca39c7d4d8263b2627b8c3d9, type: 3}
       insertIndex: -1
@@ -4999,7 +5002,6 @@ Transform:
   - {fileID: 1271803876}
   - {fileID: 1097430807}
   - {fileID: 1471976407}
-  - {fileID: 1191387638}
   m_Father: {fileID: 3671508805851417396}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3550685563604339481
@@ -6460,7 +6462,7 @@ GameObject:
   - component: {fileID: 6164065889798857444}
   m_Layer: 0
   m_Name: Stitch
-  m_TagString: Layer8
+  m_TagString: Layer7
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
