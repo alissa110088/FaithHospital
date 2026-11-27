@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: OrgansSO_Bras_1
   m_EditorClassIdentifier: Assembly-CSharp::OrgansSO
   organLayerPairings:
-  - layer: 5
-    Nextlayer: 6
+  - layer: 7
+    Nextlayer: 8
     organ: {fileID: 4874998938014115059, guid: 162eb5380b738544ab33f93440d1a84d, type: 3}
-    nameOrgan: Reins
+    nameOrgan: Bras
     num: 0
