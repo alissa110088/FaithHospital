@@ -83,6 +83,7 @@ public class Grab : State
         Debug.Log("GetFirstPos");
         if (!_touchStarted || float.IsInfinity(pPosition.x) || float.IsInfinity(pPosition.y))
             return;
+        
         if (!_firtPos)
         {
             Ray ray = Camera.main.ScreenPointToRay(pPosition);

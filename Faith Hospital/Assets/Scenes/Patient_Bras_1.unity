@@ -473,6 +473,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41187f6bdf320cb499d1e77b339970fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonDeactivates
+  trail: {fileID: 0}
+  hitImpact: {fileID: 0}
   _toolsEnum: 4
 --- !u!114 &171703232
 MonoBehaviour:
@@ -518,9 +520,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 212002814}
-  - component: {fileID: 212002817}
-  - component: {fileID: 212002816}
-  - component: {fileID: 212002815}
   m_Layer: 3
   m_Name: Cotes
   m_TagString: Layer6
@@ -544,73 +543,6 @@ Transform:
   - {fileID: 1655021137}
   m_Father: {fileID: 1191387638}
   m_LocalEulerAnglesHint: {x: -9.042, y: -92.571, z: 29.136}
---- !u!54 &212002815
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 212002813}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!65 &212002816
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 212002813}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.0895452, y: 1.6530411, z: 0.46303487}
-  m_Center: {x: -0.10165262, y: 0.031090733, z: -0.048434854}
---- !u!114 &212002817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 212002813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 484f1ea47200d734e84f5d5fec431a3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Cote
-  particleToPlayWhenEnd: []
-  particleToStopWhenEnd: []
-  groupped: 0
-  nextLayer: 6
-  newOrgan: 0
-  _touch: {fileID: 0}
-  _hitIndex: 0
 --- !u!1 &236604329
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,7 +569,7 @@ Transform:
   m_GameObject: {fileID: 236604329}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.89762, y: -1.83037, z: -1.4354696}
+  m_LocalPosition: {x: 5.12, y: -1.83037, z: -1.4354696}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -876,6 +808,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41187f6bdf320cb499d1e77b339970fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonDeactivates
+  trail: {fileID: 0}
+  hitImpact: {fileID: 0}
   _toolsEnum: 1
 --- !u!1 &271736874
 GameObject:
@@ -1084,7 +1018,7 @@ GameObject:
   - component: {fileID: 424930037}
   m_Layer: 3
   m_Name: Rib_Mid_R_04
-  m_TagString: Untagged
+  m_TagString: Layer6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1175,7 +1109,7 @@ GameObject:
   - component: {fileID: 440275205}
   m_Layer: 3
   m_Name: Rib_Mid_R_03
-  m_TagString: Untagged
+  m_TagString: Layer6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1481,7 +1415,7 @@ GameObject:
   - component: {fileID: 884287658}
   m_Layer: 3
   m_Name: Rib_Mid_L
-  m_TagString: Untagged
+  m_TagString: Layer6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1646,7 +1580,7 @@ GameObject:
   - component: {fileID: 994751591}
   m_Layer: 3
   m_Name: Rib_Mid_L_02
-  m_TagString: Untagged
+  m_TagString: Layer6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1809,7 +1743,7 @@ GameObject:
   - component: {fileID: 1053761385}
   m_Layer: 3
   m_Name: Rib_Mid_L_04
-  m_TagString: Untagged
+  m_TagString: Layer6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2096,7 +2030,7 @@ Transform:
   m_GameObject: {fileID: 1231481570}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.40238, y: -1.83037, z: -1.4354696}
+  m_LocalPosition: {x: -0.1, y: -1.83037, z: -1.4354696}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2264,6 +2198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41187f6bdf320cb499d1e77b339970fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonDeactivates
+  trail: {fileID: 0}
+  hitImpact: {fileID: 0}
   _toolsEnum: 3
 --- !u!114 &1332811201
 MonoBehaviour:
@@ -2313,7 +2249,7 @@ GameObject:
   - component: {fileID: 1372655155}
   m_Layer: 3
   m_Name: Rib_Mid_R_02
-  m_TagString: Untagged
+  m_TagString: Layer6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2404,7 +2340,7 @@ GameObject:
   - component: {fileID: 1385289262}
   m_Layer: 3
   m_Name: Rib_Mid_R_01
-  m_TagString: Untagged
+  m_TagString: Layer6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2493,7 +2429,7 @@ GameObject:
   - component: {fileID: 1418963712}
   m_Layer: 3
   m_Name: Rib_Mid_R
-  m_TagString: Untagged
+  m_TagString: Layer6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2643,7 +2579,7 @@ MonoBehaviour:
   particleToPlayWhenEnd: []
   particleToStopWhenEnd: []
   groupped: 0
-  nextLayer: 5
+  nextLayer: 7
   newOrgan: 0
 --- !u!65 &1471976410
 BoxCollider:
@@ -2691,7 +2627,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &1528071830
 GameObject:
@@ -3139,7 +3075,7 @@ GameObject:
   - component: {fileID: 1655021137}
   m_Layer: 3
   m_Name: Ribs_Intact_Group
-  m_TagString: Untagged
+  m_TagString: Layer6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3275,6 +3211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41187f6bdf320cb499d1e77b339970fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonDeactivates
+  trail: {fileID: 0}
+  hitImpact: {fileID: 0}
   _toolsEnum: 0
 --- !u!114 &1735328406
 MonoBehaviour:
@@ -3324,7 +3262,7 @@ GameObject:
   - component: {fileID: 1739992587}
   m_Layer: 3
   m_Name: Rib_Mid_L_03
-  m_TagString: Untagged
+  m_TagString: Layer6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3537,7 +3475,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41187f6bdf320cb499d1e77b339970fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tool
-  _toolsEnum: 5
+  trail: {fileID: 0}
+  hitImpact: {fileID: 0}
+  _toolsEnum: 2
 --- !u!222 &1786627409
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3559,7 +3499,7 @@ GameObject:
   - component: {fileID: 1917269411}
   m_Layer: 3
   m_Name: Rib_Mid_L_01
-  m_TagString: Untagged
+  m_TagString: Layer6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3650,7 +3590,7 @@ GameObject:
   - component: {fileID: 1917723064}
   m_Layer: 3
   m_Name: Sternum_Center
-  m_TagString: Untagged
+  m_TagString: Layer6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5166,7 +5106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &4033821356151855748
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5747,7 +5687,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6099838412858727440
 Transform:
   m_ObjectHideFlags: 0
@@ -5781,7 +5721,9 @@ MonoBehaviour:
   particleToStopWhenEnd: []
   inputSettings: {fileID: 11400000, guid: 0c77dbabb5afe6a4e95a3be7a81da396, type: 2}
   _state: {fileID: 0}
-  visualFeedBack: []
+  visualFeedBack:
+  - {fileID: 6439910033039647936}
+  - {fileID: 6584902141977105712}
   points:
   - {x: 2.970136, y: 3.6713796, z: 4.678915}
   - {x: 1.9824167, y: 3.6713793, z: 4.2064033}
@@ -6236,7 +6178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f0066e537d9da4fb19570756b0318c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Grab
-  _tool: 5
+  _tool: 2
   _drawShape: {fileID: 0}
   _organCollector: {fileID: 33473354369882938}
 --- !u!114 &7332325484815506094

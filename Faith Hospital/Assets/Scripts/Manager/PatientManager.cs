@@ -56,7 +56,7 @@ public class PatientManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         UpdateLayers();
     }
-    
+
     private void Update()
     {
         if (!CameraWellPlaced && _currentCameraSettings != null)
@@ -100,12 +100,11 @@ public class PatientManager : MonoBehaviour
             tool.Value.IsTurn = tool.Key == toolInUsed;
         }
     }
-    
+
     private void UpdateLayers()
-    { 
+    {
         for (int i = 0; i < _layers.Count; i++)
         {
-            
             if (i != _currentLayer - 1)
                 continue;
 
@@ -124,10 +123,10 @@ public class PatientManager : MonoBehaviour
                     toolInUsed = lObject._tool;
                 }
             }
-            Debug.Log(toolInUsed);
+
             CheckTools();
         }
-        
+
 
         foreach (CameraSettings camSettings in _cameraSettings)
         {
@@ -173,6 +172,9 @@ public class PatientManager : MonoBehaviour
         if (pIsGrouped)
             return;
 
+        Debug.Log("WJHSDJHKGDSHKJ");
+        if (_state != null)
+            Debug.Log(_state.gameObject.name);
         if (_state._drawShape._nextLayer == -1)
         {
             _state.enabled = false;
