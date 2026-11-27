@@ -58,12 +58,14 @@ public class OrganCollector : MonoBehaviour
         
         yield return new WaitForSeconds(0.5f);
         
+        p.OnFinishPlayParticle();
+        p.OnFinishStopParticle();
         if (p.groupped)
         {
             if (p.UpdateGrouped())
             {
                 Controller.OnInputValidateOrgan.Invoke(p.nextLayer);
-            };
+            }
         }
         else
         {

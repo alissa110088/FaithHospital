@@ -7,8 +7,6 @@ public class Controller : MonoBehaviour
 {
     [SerializeField] private ToolsEnum _currentTool;
 
-    private SwipeFollow _swipeFollow;
-
     public InputManager inputManager;
 
     public static Action<bool,State> OnInputValidate; 
@@ -34,7 +32,6 @@ public class Controller : MonoBehaviour
 
     private void OnEnable()
     {
-        _swipeFollow = GetComponent<SwipeFollow>();
         inputManager = new InputManager();
 
         QualitySettings.vSyncCount = 0;
