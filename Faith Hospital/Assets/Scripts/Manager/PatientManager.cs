@@ -126,6 +126,7 @@ public class PatientManager : MonoBehaviour
             }
 
             CheckTools();
+            Controller.Instance.Refresh();
         }
         
 
