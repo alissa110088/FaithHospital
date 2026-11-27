@@ -604,6 +604,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484f1ea47200d734e84f5d5fec431a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cote
+  particleToPlayWhenEnd: []
+  particleToStopWhenEnd: []
   groupped: 0
   nextLayer: 6
   newOrgan: 0
@@ -1904,6 +1906,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
   _toolUsed: 1
   _controlState: 0
+  particleToPlayWhenEnd: []
+  particleToStopWhenEnd: []
   inputSettings: {fileID: 11400000, guid: 0c77dbabb5afe6a4e95a3be7a81da396, type: 2}
   _state: {fileID: 0}
   visualFeedBack:
@@ -2515,6 +2519,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e01e31f409ffe418a08d54ba4a3091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Organs
+  particleToPlayWhenEnd: []
+  particleToStopWhenEnd: []
   groupped: 0
   nextLayer: 5
   newOrgan: 0
@@ -2612,6 +2618,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
   _toolUsed: 1
   _controlState: 0
+  particleToPlayWhenEnd: []
+  particleToStopWhenEnd: []
   inputSettings: {fileID: 11400000, guid: 0c77dbabb5afe6a4e95a3be7a81da396, type: 2}
   _state: {fileID: 0}
   visualFeedBack:
@@ -3599,6 +3607,73 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1917723062}
   m_Mesh: {fileID: 2550828946514883272, guid: 92ad32ee859777448af5281a9ddc6484, type: 3}
+--- !u!1 &1920213318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1920213319}
+  - component: {fileID: 1920213321}
+  - component: {fileID: 1920213320}
+  m_Layer: 2
+  m_Name: OsPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1920213319
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920213318}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.000000014901159, z: 0.19769047, w: 0.9802645}
+  m_LocalPosition: {x: 0.7, y: -1.35, z: -3.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6701160019233881410}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 22.804}
+--- !u!114 &1920213320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920213318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4deb5730895058f4ca2db6e255d709d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaceOrgane
+  _organeName: Cotes
+--- !u!65 &1920213321
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920213318}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.549974, y: 1.7259775, z: 1}
+  m_Center: {x: -0.27498698, y: 0.032331407, z: 0}
 --- !u!1 &2018187640
 GameObject:
   m_ObjectHideFlags: 0
@@ -5290,6 +5365,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
   _toolUsed: 4
   _controlState: 1
+  particleToPlayWhenEnd: []
+  particleToStopWhenEnd: []
   inputSettings: {fileID: 11400000, guid: 80c6f29178545204699e1ddf8ed16289, type: 2}
   _state: {fileID: 0}
   visualFeedBack:
@@ -5487,7 +5564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4deb5730895058f4ca2db6e255d709d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaceOrgane
-  _organeName: Reins
+  _organeName: Bras
 --- !u!4 &5668659498985918133
 Transform:
   m_ObjectHideFlags: 0
@@ -5579,6 +5656,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
   _toolUsed: 3
   _controlState: 0
+  particleToPlayWhenEnd: []
+  particleToStopWhenEnd: []
   inputSettings: {fileID: 11400000, guid: 0c77dbabb5afe6a4e95a3be7a81da396, type: 2}
   _state: {fileID: 0}
   visualFeedBack:
@@ -5845,6 +5924,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4342475926480869876}
+  - {fileID: 1920213319}
   m_Father: {fileID: 3671508805851417396}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6730963134189492938
@@ -5880,6 +5960,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DrawShape
   _toolUsed: 1
   _controlState: 0
+  particleToPlayWhenEnd: []
+  particleToStopWhenEnd: []
   inputSettings: {fileID: 11400000, guid: 0c77dbabb5afe6a4e95a3be7a81da396, type: 2}
   _state: {fileID: 0}
   visualFeedBack:
