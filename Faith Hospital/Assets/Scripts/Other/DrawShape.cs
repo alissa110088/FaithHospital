@@ -6,8 +6,6 @@ public class DrawShape : MonoBehaviour
 {
     public ToolsEnum _toolUsed;
     [SerializeField] private ControlState _controlState;
-    [SerializeField] private ParticleSystem[] particleToPlayWhenEnd;
-    [SerializeField] private ParticleSystem[] particleToStopWhenEnd;
     public InputSettings inputSettings;
     
     [HideInInspector] public State _state;
@@ -63,29 +61,6 @@ public class DrawShape : MonoBehaviour
         {
             Gizmos.DrawLine(points[i - 1], points[i]);
 
-        }
-    }
-
-    public void OnFinishPlayParticle()
-    {
-        if (particleToPlayWhenEnd.Length > 0)
-        {
-            foreach (ParticleSystem particle in particleToPlayWhenEnd)
-            {
-                particle.Play();
-            }
-        }
-    }
-
-    public void OnFinishStopParticle()
-    {
-        if (particleToStopWhenEnd.Length > 0)
-        {
-            foreach (ParticleSystem particle in particleToStopWhenEnd)
-            {
-                if(particle.isPlaying)
-                    particle.Stop();
-            }
         }
     }
 }

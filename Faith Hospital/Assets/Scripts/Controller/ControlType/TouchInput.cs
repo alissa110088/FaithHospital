@@ -154,9 +154,6 @@ public class TouchInput : State
             return;
         }
 
-        _drawShape.OnFinishPlayParticle();
-        _drawShape.OnFinishStopParticle();
-        
         if (_drawShape._groupped)
         {
             _countGrouped--;

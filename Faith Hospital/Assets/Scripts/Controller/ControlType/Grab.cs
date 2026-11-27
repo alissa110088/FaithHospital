@@ -80,7 +80,6 @@ public class Grab : State
 
     private void GetFirstPos(Vector2 pPosition)
     {
-        Debug.Log("GetFirstPos");
         if (!_touchStarted || float.IsInfinity(pPosition.x) || float.IsInfinity(pPosition.y))
             return;
         if (!_firtPos)
@@ -90,11 +89,13 @@ public class Grab : State
             {
                 GameObject clicked = hit.collider.gameObject;
                 
+                Debug.Log(clicked.name);
 
                 //hardcoder c moche
                 if (clicked.layer != LayerMask.NameToLayer("Attrapable") || clicked.tag != "Layer" + PatientManager.Instance._currentLayer)
                     return;
 
+                Debug.Log("here");
 
                 if (_organCollector.isNew)
                 {

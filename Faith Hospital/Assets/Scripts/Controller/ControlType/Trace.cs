@@ -211,8 +211,6 @@ public class Trace : State
         if (CheckOperationEnded())
             return;
 
-        _drawShape.OnFinishPlayParticle();
-        _drawShape.OnFinishStopParticle();
         if (_drawShape._groupped)
         {
             _countGrouped--;
